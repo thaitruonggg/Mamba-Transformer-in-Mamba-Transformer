@@ -1,1 +1,1 @@
-# MiM-Mamba-Transformer-in-Mamba-Transforme
+# MiM: Mamba-Transformer in Mamba-Transformer
