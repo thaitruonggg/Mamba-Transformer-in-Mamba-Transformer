@@ -1,3 +1,10 @@
+"""
+Author: Omid Nejati
+Email: omid_nejaty@alumni.iust.ac.ir
+
+Introducing locality mechanism into Transformer in Transformer (TNT)
+
+"""
 import torch
 from torch import nn, einsum
 from einops import rearrange, repeat
@@ -12,6 +19,7 @@ from models.localvit import LocalityFeedForward
 from models.tnt_moex import Attention, TNT
 import math
 
+
 def _cfg(url='', **kwargs):
     return {
         'url': url,
@@ -21,6 +29,7 @@ def _cfg(url='', **kwargs):
         'first_conv': 'pixel_embed.proj', 'classifier': 'head',
         **kwargs
     }
+
 
 default_cfgs = {
     'tnt_t_conv_patch16_224': _cfg(
@@ -45,6 +54,7 @@ def default(val, d):
     if exists(val):
         return val
     return d() if isfunction(d) else d
+
 
 class CrossAttention(nn.Module): # Pixel_embed
     def __init__(self, query_dim, context_dim=None, heads=8, dim_head=64, dropout=0.):
@@ -73,6 +83,8 @@ class CrossAttention(nn.Module): # Pixel_embed
         # Check if batch sizes match
         if b_pixel != b_patch:
             # Reshape pixel_embed to match patch_embed's batch size
+            # This assumes pixel_embed has been reshaped elsewhere in the code
+            # and needs to be restored to the original batch size
             real_batch_size = b_patch
             pixels_per_patch = b_pixel // real_batch_size
             pixel_embed = pixel_embed.reshape(real_batch_size, pixels_per_patch * n, -1)
@@ -81,6 +93,7 @@ class CrossAttention(nn.Module): # Pixel_embed
         k = self.to_k(patch_embed)  # (b, m, inner_dim)
         v = self.to_v(patch_embed)  # (b, m, inner_dim)
 
+        #q, k, v = map(lambda t: rearrange(t, 'b seq (h d) -> (b h) seq d', h=h), (q, k, v))
         q = rearrange(q, 'b seq (h d) -> (b h) seq d', h=h)
         k = rearrange(k, 'b seq (h d) -> (b h) seq d', h=h)
         v = rearrange(v, 'b seq (h d) -> (b h) seq d', h=h)
@@ -99,6 +112,7 @@ class CrossAttention(nn.Module): # Pixel_embed
 
         out = self.to_out(out)
         return out
+
 
 class Block(nn.Module):
     """ TNT Block
@@ -125,7 +139,9 @@ class Block(nn.Module):
             dim, dim, num_heads=num_heads, qkv_bias=qkv_bias,
             attn_drop=attn_drop, proj_drop=drop)
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
+
         self.conv = LocalityFeedForward(dim, dim, 1, mlp_ratio, reduction=dim)
+
         # Add cross-attention
         self.cross_attn = CrossAttention(query_dim=in_dim, context_dim=dim, heads=in_num_head)
 
@@ -143,6 +159,7 @@ class Block(nn.Module):
         new_patch_embed = patch_embed.clone()
         new_patch_embed[:, 1:] = patch_embed[:, 1:] + self.proj(self.norm1_proj(pixel_embed).reshape(B, N - 1, -1))
         patch_embed = new_patch_embed
+
         x, weights = self.attn_out(self.norm_out(patch_embed))
         patch_embed = patch_embed + self.drop_path(x)
 
@@ -152,6 +169,7 @@ class Block(nn.Module):
         # Split and process without in-place operations
         cls_token = patch_embed[:, 0:1]
         patch_tokens = patch_embed[:, 1:]
+
         patch_tokens = patch_tokens.transpose(1, 2).view(B, C, Nsqrt, Nsqrt)
         patch_tokens = self.conv(patch_tokens).flatten(2).transpose(1, 2)
 
@@ -160,13 +178,14 @@ class Block(nn.Module):
 
         return pixel_embed, patch_embed, weights
 
+
 class LocalViT_TNT(TNT):
     """ Transformer in Transformer - https://arxiv.org/abs/2103.00112
     """
 
     def __init__(self, img_size=224, patch_size=32, in_chans=3, num_classes=1000, embed_dim=768, in_dim=48, depth=12,
                  num_heads=12, in_num_head=4, mlp_ratio=4., qkv_bias=False, drop_rate=0., attn_drop_rate=0.,
-                 drop_path_rate=0., norm_layer=nn.LayerNorm, first_stride=8): #Old patch_size=16, first_stride=4
+                 drop_path_rate=0., norm_layer=nn.LayerNorm, first_stride=8):
         super().__init__(img_size, patch_size, in_chans, num_classes, embed_dim, in_dim, depth,
                  num_heads, in_num_head, mlp_ratio, qkv_bias, drop_rate, attn_drop_rate,
                  drop_path_rate, norm_layer, first_stride)
@@ -184,6 +203,7 @@ class LocalViT_TNT(TNT):
 
         self.apply(self._init_weights)
 
+
 @register_model
 def LNL_MoEx_Ti(pretrained=False, **kwargs):
     model = LocalViT_TNT(patch_size=16, embed_dim=192, in_dim=12, depth=12, num_heads=3, in_num_head=3,
@@ -193,6 +213,7 @@ def LNL_MoEx_Ti(pretrained=False, **kwargs):
         load_pretrained(
             model, num_classes=model.num_classes, in_chans=kwargs.get('in_chans', 3))
     return model
+
 
 @register_model
 def LNL_MoEx_S(pretrained=False, **kwargs):
