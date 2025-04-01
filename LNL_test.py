@@ -216,11 +216,22 @@ class Block(nn.Module):
                  qkv_bias=False, drop=0., attn_drop=0., drop_path=0., act_layer=nn.GELU, norm_layer=nn.LayerNorm):
         super().__init__()
         # Inner transformer
+        # First block: Norm → MambaVision Mixer → Add
+        self.norm_in_mamba = norm_layer(in_dim)
+        self.mamba_in = MambaVisionMixer(
+            d_model=in_dim,
+            d_state=16,
+            d_conv=4,
+            expand=2
+        )
+
+        # Second block: Norm → Attention → Add
         self.norm_in = norm_layer(in_dim)
         self.attn_in = Attention(
             in_dim, in_dim, num_heads=in_num_head, qkv_bias=qkv_bias,
             attn_drop=attn_drop, proj_drop=drop)
 
+        # Third block: Norm → MLP → Add
         self.norm_mlp_in = norm_layer(in_dim)
         self.mlp_in = Mlp(in_features=in_dim, hidden_features=int(in_dim * mlp_ratio),
                           out_features=in_dim, act_layer=act_layer, drop=drop)
@@ -229,61 +240,43 @@ class Block(nn.Module):
         self.proj = nn.Linear(in_dim * num_pixel, dim, bias=True)
 
         # Outer transformer
-        # Norm → MambaVision Mixer → Add
-        self.norm_mamba = norm_layer(dim)
-        self.mamba_mixer = MambaVisionMixer(
-            d_model=dim,
-            d_state=16,
-            d_conv=4,
-            expand=2,
-        )
-
-        # Norm → Attention → Add
         self.norm_out = norm_layer(dim)
         self.attn_out = Attention(
             dim, dim, num_heads=num_heads, qkv_bias=qkv_bias,
             attn_drop=attn_drop, proj_drop=drop)
-
-        # Norm → LocalityFeedForward → Add
-        self.norm_conv = norm_layer(dim)
-        self.conv = LocalityFeedForward(dim, dim, 1, mlp_ratio, reduction=dim)
-
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
+
+        self.conv = LocalityFeedForward(dim, dim, 1, mlp_ratio, reduction=dim)
 
         # Add CrossAttention
         self.cross_attn = CrossAttention(query_dim=in_dim, context_dim=dim, heads=in_num_head)
 
     def forward(self, pixel_embed, patch_embed):
         # inner transformer
+        # First: Norm → MambaVision Mixer → Add
+        pixel_embed = pixel_embed + self.drop_path(self.mamba_in(self.norm_in_mamba(pixel_embed)))
+
+        # Second: Norm → Attention → Add
         x, _ = self.attn_in(self.norm_in(pixel_embed))
         pixel_embed = pixel_embed + self.drop_path(x)
+
+        # Third: Norm → MLP → Add
         pixel_embed = pixel_embed + self.drop_path(self.mlp_in(self.norm_mlp_in(pixel_embed)))
 
         # outer transformer
         B, N, C = patch_embed.size()
         Nsqrt = int(math.sqrt(N))
         patch_embed[:, 1:] = patch_embed[:, 1:] + self.proj(self.norm1_proj(pixel_embed).reshape(B, N - 1, -1))
-
-        # Norm → MambaVision Mixer → Add
-        patch_embed = patch_embed + self.drop_path(self.mamba_mixer(self.norm_mamba(patch_embed)))
-
-        # Norm → Attention → Add
         x, weights = self.attn_out(self.norm_out(patch_embed))
         patch_embed = patch_embed + self.drop_path(x)
 
         # cross-attention
         pixel_embed = self.cross_attn(pixel_embed, patch_embed)
 
-        # Norm → LocalityFeedForward → Add
-        cls_token, patch_embed_no_cls = torch.split(patch_embed, [1, N - 1], dim=1)
-        patch_embed_spatial = patch_embed_no_cls.transpose(1, 2).view(B, C, Nsqrt, Nsqrt)
-
-        # Apply normalization before LocalityFeedForward
-        patch_embed_spatial_norm = self.norm_conv(patch_embed_no_cls).transpose(1, 2).view(B, C, Nsqrt, Nsqrt)
-        patch_embed_spatial = patch_embed_spatial + self.drop_path(self.conv(patch_embed_spatial_norm))
-
-        patch_embed_no_cls = patch_embed_spatial.flatten(2).transpose(1, 2)
-        patch_embed = torch.cat([cls_token, patch_embed_no_cls], dim=1)
+        cls_token, patch_embed = torch.split(patch_embed, [1, N - 1], dim=1)
+        patch_embed = patch_embed.transpose(1, 2).view(B, C, Nsqrt, Nsqrt)
+        patch_embed = self.conv(patch_embed).flatten(2).transpose(1, 2)
+        patch_embed = torch.cat([cls_token, patch_embed], dim=1)
 
         return pixel_embed, patch_embed, weights
 

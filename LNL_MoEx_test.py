@@ -1,10 +1,3 @@
-"""
-Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
-Introducing locality mechanism into Transformer in Transformer (TNT)
-
-"""
 import torch
 from torch import nn, einsum
 from einops import rearrange, repeat
@@ -230,18 +223,29 @@ class MambaVisionMixer(nn.Module):
 
 
 class Block(nn.Module):
-    """ TNT Block
+    """ TNT Block with MambaVision Mixer
     """
 
     def __init__(self, dim, in_dim, num_pixel, num_heads=12, in_num_head=4, mlp_ratio=4.,
                  qkv_bias=False, drop=0., attn_drop=0., drop_path=0., act_layer=nn.GELU, norm_layer=nn.LayerNorm):
         super().__init__()
         # Inner transformer
+        # First block: Norm → MambaVision Mixer → Add
+        self.norm_in_mamba = norm_layer(in_dim)
+        self.mamba_in = MambaVisionMixer(
+            d_model=in_dim,
+            d_state=16,
+            d_conv=4,
+            expand=2
+        )
+
+        # Second block: Norm → Attention → Add
         self.norm_in = norm_layer(in_dim)
         self.attn_in = Attention(
             in_dim, in_dim, num_heads=in_num_head, qkv_bias=qkv_bias,
             attn_drop=attn_drop, proj_drop=drop)
 
+        # Third block: Norm → MLP → Add
         self.norm_mlp_in = norm_layer(in_dim)
         self.mlp_in = Mlp(in_features=in_dim, hidden_features=int(in_dim * 4),
                           out_features=in_dim, act_layer=act_layer, drop=drop)
@@ -250,37 +254,30 @@ class Block(nn.Module):
         self.proj = nn.Linear(in_dim * num_pixel, dim, bias=True)
 
         # Outer transformer
-        # Norm → MambaVision Mixer → Add
-        self.norm_mamba = norm_layer(dim)
-        self.mamba_mixer = MambaVisionMixer(
-            d_model=dim,
-            d_state=16,
-            d_conv=4,
-            expand=2,
-        )
-
-        # Norm → Attention → Add
         self.norm_out = norm_layer(dim)
         self.attn_out = Attention(
             dim, dim, num_heads=num_heads, qkv_bias=qkv_bias,
             attn_drop=attn_drop, proj_drop=drop)
-
-        # Norm → LocalityFeedForward → Add
-        self.norm_conv = norm_layer(dim)
-        self.conv = LocalityFeedForward(dim, dim, 1, mlp_ratio, reduction=dim)
-
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
+
+        self.conv = LocalityFeedForward(dim, dim, 1, mlp_ratio, reduction=dim)
 
         # Add cross-attention
         self.cross_attn = CrossAttention(query_dim=in_dim, context_dim=dim, heads=in_num_head)
 
     def forward(self, pixel_embed, patch_embed):
-        # inner
+        # Inner transformer
+        # First: Norm → MambaVision Mixer → Add
+        pixel_embed = pixel_embed + self.drop_path(self.mamba_in(self.norm_in_mamba(pixel_embed)))
+
+        # Second: Norm → Attention → Add
         x, _ = self.attn_in(self.norm_in(pixel_embed))
         pixel_embed = pixel_embed + self.drop_path(x)
+
+        # Third: Norm → MLP → Add
         pixel_embed = pixel_embed + self.drop_path(self.mlp_in(self.norm_mlp_in(pixel_embed)))
 
-        # outer
+        # Outer transformer
         B, N, C = patch_embed.size()
         Nsqrt = int(math.sqrt(N))
 
@@ -289,31 +286,18 @@ class Block(nn.Module):
         new_patch_embed[:, 1:] = patch_embed[:, 1:] + self.proj(self.norm1_proj(pixel_embed).reshape(B, N - 1, -1))
         patch_embed = new_patch_embed
 
-        # Norm → MambaVision Mixer → Add
-        patch_embed = patch_embed + self.drop_path(self.mamba_mixer(self.norm_mamba(patch_embed)))
-
-        # Norm → Attention → Add
         x, weights = self.attn_out(self.norm_out(patch_embed))
         patch_embed = patch_embed + self.drop_path(x)
 
         # Apply cross-attention (non-in-place)
         pixel_embed = self.cross_attn(pixel_embed, patch_embed)
 
-        # Split for processing
+        # Split and process without in-place operations
         cls_token = patch_embed[:, 0:1]
         patch_tokens = patch_embed[:, 1:]
 
-        # Norm → LocalityFeedForward → Add
-        # Apply normalization before LocalityFeedForward
-        patch_tokens_norm = self.norm_conv(patch_tokens)
-        patch_tokens_norm = patch_tokens_norm.transpose(1, 2).view(B, C, Nsqrt, Nsqrt)
-
-        # Process through LocalityFeedForward and add residual
         patch_tokens = patch_tokens.transpose(1, 2).view(B, C, Nsqrt, Nsqrt)
-        patch_tokens = patch_tokens + self.drop_path(self.conv(patch_tokens_norm))
-
-        # Reshape back
-        patch_tokens = patch_tokens.flatten(2).transpose(1, 2)
+        patch_tokens = self.conv(patch_tokens).flatten(2).transpose(1, 2)
 
         # Concatenate back together
         patch_embed = torch.cat([cls_token, patch_tokens], dim=1)
