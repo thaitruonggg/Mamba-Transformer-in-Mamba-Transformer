@@ -76,6 +76,15 @@ def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, nu
 
 
 def track_highest_accuracy(accuracy_list):
+    """
+    Tracks the highest accuracy from a list of accuracy values.
+
+    Args:
+        accuracy_list: List of accuracy values collected during training
+
+    Returns:
+        tuple: (highest_accuracy, epoch_with_highest_accuracy)
+    """
     highest_accuracy = max(accuracy_list) if accuracy_list else 0.0
     epoch_with_highest = accuracy_list.index(highest_accuracy) + 1 if accuracy_list else 0
 
@@ -264,8 +273,10 @@ print("--------------------------------------------------------------------")
 
 torch.cuda.empty_cache()
 
-# Train with MoEx
+# Train with Random Erasing
 from LNL_MoEx import LNL_MoEx_Ti as small
+
+# Initialize model
 model = small(pretrained=False)
 model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True)  # 43 classes for GTSRB
 model = model.cuda()
@@ -323,6 +334,7 @@ for epoch in range(num_epochs):
         model, test_loader, loss, testset.classes, batch_size, epoch, num_epochs, display_per_class=False
     )
     moex_accuracy_list.append(test_accuracy)
+    highest_acc, best_epoch = track_highest_accuracy(moex_accuracy_list)
     print("--------------------------------------------------------------------")
 
 print("After applying MoEx")
