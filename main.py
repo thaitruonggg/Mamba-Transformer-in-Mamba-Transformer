@@ -334,7 +334,7 @@ for epoch in range(num_epochs):
         model, test_loader, loss, testset.classes, batch_size, epoch, num_epochs, display_per_class=False
     )
     moex_accuracy_list.append(test_accuracy)
-    highest_acc, best_epoch = track_highest_accuracy(moex_accuracy_list)
+    moex_highest_acc, moex_best_epoch = track_highest_accuracy(moex_accuracy_list)
     print("--------------------------------------------------------------------")
 
 print("After applying MoEx")
