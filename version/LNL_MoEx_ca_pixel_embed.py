@@ -1,10 +1,3 @@
-"""
-Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
-Introducing locality mechanism into Transformer in Transformer (TNT)
-
-"""
 import torch
 from torch import nn, einsum
 from einops import rearrange, repeat
