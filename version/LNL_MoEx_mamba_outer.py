@@ -2,6 +2,7 @@ import torch
 from torch import nn, einsum
 from einops import rearrange, repeat
 from inspect import isfunction
+import torch.nn.functional as F
 
 from timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from timm.models.helpers import load_pretrained
@@ -10,6 +11,7 @@ from timm.models.vision_transformer import Mlp
 from timm.models.registry import register_model
 from models.localvit import LocalityFeedForward
 from models.tnt_moex import Attention, TNT
+from mamba_ssm.ops.selective_scan_interface import selective_scan_fn
 import math
 
 
@@ -67,10 +69,10 @@ class CrossAttention(nn.Module): # Pixel_embed
             nn.Dropout(dropout)
         )
 
-    def forward(self, patch_embed, pixel_embed, mask=None):
+    def forward(self, pixel_embed, patch_embed, mask=None):
         # Get original batch sizes
-        b_patch, m, _ = patch_embed.shape
         b_pixel, n, _ = pixel_embed.shape
+        b_patch, m, _ = patch_embed.shape
         h = self.heads
 
         # Check if batch sizes match
@@ -82,9 +84,9 @@ class CrossAttention(nn.Module): # Pixel_embed
             pixels_per_patch = b_pixel // real_batch_size
             pixel_embed = pixel_embed.reshape(real_batch_size, pixels_per_patch * n, -1)
 
-        q = self.to_q(patch_embed)  # Now querying from patch_embed
-        k = self.to_k(pixel_embed)  # Keys from pixel_embed
-        v = self.to_v(pixel_embed)  # Values from pixel_embed
+        q = self.to_q(pixel_embed)  # (b, n, inner_dim)
+        k = self.to_k(patch_embed)  # (b, m, inner_dim)
+        v = self.to_v(patch_embed)  # (b, m, inner_dim)
 
         #q, k, v = map(lambda t: rearrange(t, 'b seq (h d) -> (b h) seq d', h=h), (q, k, v))
         q = rearrange(q, 'b seq (h d) -> (b h) seq d', h=h)
@@ -104,6 +106,120 @@ class CrossAttention(nn.Module): # Pixel_embed
         out = rearrange(out, '(b h) seq d -> b seq (h d)', h=h)
 
         out = self.to_out(out)
+        return out
+
+# Implement Mambavision
+class MambaVisionMixer(nn.Module):
+    def __init__(
+            self,
+            d_model,
+            d_state=16,
+            d_conv=4,
+            expand=2,
+            dt_rank="auto",
+            dt_min=0.001,
+            dt_max=0.1,
+            dt_init="random",
+            dt_scale=1.0,
+            dt_init_floor=1e-4,
+            conv_bias=True,
+            bias=False,
+            use_fast_path=True,
+            layer_idx=None,
+            device=None,
+            dtype=None,
+    ):
+        factory_kwargs = {"device": device, "dtype": dtype}
+        super().__init__()
+        self.d_model = d_model
+        self.d_state = d_state
+        self.d_conv = d_conv
+        self.expand = expand
+        self.d_inner = int(self.expand * self.d_model)
+        self.dt_rank = math.ceil(self.d_model / 16) if dt_rank == "auto" else dt_rank
+        self.use_fast_path = use_fast_path
+        self.layer_idx = layer_idx
+        self.in_proj = nn.Linear(self.d_model, self.d_inner, bias=bias, **factory_kwargs)
+        self.x_proj = nn.Linear(
+            self.d_inner // 2, self.dt_rank + self.d_state * 2, bias=False, **factory_kwargs
+        )
+        self.dt_proj = nn.Linear(self.dt_rank, self.d_inner // 2, bias=True, **factory_kwargs)
+        dt_init_std = self.dt_rank ** -0.5 * dt_scale
+        if dt_init == "constant":
+            nn.init.constant_(self.dt_proj.weight, dt_init_std)
+        elif dt_init == "random":
+            nn.init.uniform_(self.dt_proj.weight, -dt_init_std, dt_init_std)
+        else:
+            raise NotImplementedError
+        dt = torch.exp(
+            torch.rand(self.d_inner // 2, **factory_kwargs) * (math.log(dt_max) - math.log(dt_min))
+            + math.log(dt_min)
+        ).clamp(min=dt_init_floor)
+        inv_dt = dt + torch.log(-torch.expm1(-dt))
+        with torch.no_grad():
+            self.dt_proj.bias.copy_(inv_dt)
+        self.dt_proj.bias._no_reinit = True
+        A = repeat(
+            torch.arange(1, self.d_state + 1, dtype=torch.float32, device=device),
+            "n -> d n",
+            d=self.d_inner // 2,
+        ).contiguous()
+        A_log = torch.log(A)
+        self.A_log = nn.Parameter(A_log)
+        self.A_log._no_weight_decay = True
+        self.D = nn.Parameter(torch.ones(self.d_inner // 2, device=device))
+        self.D._no_weight_decay = True
+        self.out_proj = nn.Linear(self.d_inner, self.d_model, bias=bias, **factory_kwargs)
+        self.conv1d_x = nn.Conv1d(
+            in_channels=self.d_inner // 2,
+            out_channels=self.d_inner // 2,
+            bias=conv_bias // 2,
+            kernel_size=d_conv,
+            groups=self.d_inner // 2,
+            **factory_kwargs,
+        )
+        self.conv1d_z = nn.Conv1d(
+            in_channels=self.d_inner // 2,
+            out_channels=self.d_inner // 2,
+            bias=conv_bias // 2,
+            kernel_size=d_conv,
+            groups=self.d_inner // 2,
+            **factory_kwargs,
+        )
+
+    def forward(self, hidden_states):
+        """
+        hidden_states: (B, L, D)
+        Returns: same shape as hidden_states
+        """
+        _, seqlen, _ = hidden_states.shape
+        xz = self.in_proj(hidden_states)
+        xz = rearrange(xz, "b l d -> b d l")
+        x, z = xz.chunk(2, dim=1)
+        A = -torch.exp(self.A_log.float())
+        x = F.silu(F.conv1d(input=x, weight=self.conv1d_x.weight, bias=self.conv1d_x.bias, padding='same',
+                            groups=self.d_inner // 2))
+        z = F.silu(F.conv1d(input=z, weight=self.conv1d_z.weight, bias=self.conv1d_z.bias, padding='same',
+                            groups=self.d_inner // 2))
+        x_dbl = self.x_proj(rearrange(x, "b d l -> (b l) d"))
+        dt, B, C = torch.split(x_dbl, [self.dt_rank, self.d_state, self.d_state], dim=-1)
+        dt = rearrange(self.dt_proj(dt), "(b l) d -> b d l", l=seqlen)
+        B = rearrange(B, "(b l) dstate -> b dstate l", l=seqlen).contiguous()
+        C = rearrange(C, "(b l) dstate -> b dstate l", l=seqlen).contiguous()
+        y = selective_scan_fn(x,
+                              dt,
+                              A,
+                              B,
+                              C,
+                              self.D.float(),
+                              z=None,
+                              delta_bias=self.dt_proj.bias.float(),
+                              delta_softplus=True,
+                              return_last_state=None)
+
+        y = torch.cat([y, z], dim=1)
+        y = rearrange(y, "b d l -> b l d")
+        out = self.out_proj(y)
         return out
 
 
@@ -126,17 +242,31 @@ class Block(nn.Module):
 
         self.norm1_proj = norm_layer(in_dim)
         self.proj = nn.Linear(in_dim * num_pixel, dim, bias=True)
+
         # Outer transformer
+        # Norm → MambaVision Mixer → Add
+        self.norm_mamba = norm_layer(dim)
+        self.mamba_mixer = MambaVisionMixer(
+            d_model=dim,
+            d_state=16,
+            d_conv=4,
+            expand=2,
+        )
+
+        # Norm → Attention → Add
         self.norm_out = norm_layer(dim)
         self.attn_out = Attention(
             dim, dim, num_heads=num_heads, qkv_bias=qkv_bias,
             attn_drop=attn_drop, proj_drop=drop)
-        self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
 
+        # Norm → LocalityFeedForward → Add
+        self.norm_conv = norm_layer(dim)
         self.conv = LocalityFeedForward(dim, dim, 1, mlp_ratio, reduction=dim)
 
-        # Add cross-attention - switched query_dim and context_dim
-        self.cross_attn = CrossAttention(query_dim=dim, context_dim=in_dim, heads=in_num_head)
+        self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
+
+        # Add cross-attention
+        self.cross_attn = CrossAttention(query_dim=in_dim, context_dim=dim, heads=in_num_head)
 
     def forward(self, pixel_embed, patch_embed):
         # inner
@@ -153,19 +283,31 @@ class Block(nn.Module):
         new_patch_embed[:, 1:] = patch_embed[:, 1:] + self.proj(self.norm1_proj(pixel_embed).reshape(B, N - 1, -1))
         patch_embed = new_patch_embed
 
+        # Norm → MambaVision Mixer → Add
+        patch_embed = patch_embed + self.drop_path(self.mamba_mixer(self.norm_mamba(patch_embed)))
+
+        # Norm → Attention → Add
         x, weights = self.attn_out(self.norm_out(patch_embed))
         patch_embed = patch_embed + self.drop_path(x)
 
-        # Apply cross-attention with swapped arguments (non-in-place)
-        # Now patch_embed provides queries and pixel_embed provides keys and values
-        patch_embed = self.cross_attn(patch_embed, pixel_embed)
+        # Apply cross-attention (non-in-place)
+        pixel_embed = self.cross_attn(pixel_embed, patch_embed)
 
-        # Split and process without in-place operations
+        # Split for processing
         cls_token = patch_embed[:, 0:1]
         patch_tokens = patch_embed[:, 1:]
 
+        # Norm → LocalityFeedForward → Add
+        # Apply normalization before LocalityFeedForward
+        patch_tokens_norm = self.norm_conv(patch_tokens)
+        patch_tokens_norm = patch_tokens_norm.transpose(1, 2).view(B, C, Nsqrt, Nsqrt)
+
+        # Process through LocalityFeedForward and add residual
         patch_tokens = patch_tokens.transpose(1, 2).view(B, C, Nsqrt, Nsqrt)
-        patch_tokens = self.conv(patch_tokens).flatten(2).transpose(1, 2)
+        patch_tokens = patch_tokens + self.drop_path(self.conv(patch_tokens_norm))
+
+        # Reshape back
+        patch_tokens = patch_tokens.flatten(2).transpose(1, 2)
 
         # Concatenate back together
         patch_embed = torch.cat([cls_token, patch_tokens], dim=1)
