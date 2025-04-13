@@ -222,6 +222,7 @@ batch = next(iter(train_loader))
 classes = trainset.classes
 plot_images(batch[0], batch[1], classes)
 
+
 # Load and modify model
 from LNL import LNL_Ti as small
 model = small(pretrained=False)
@@ -274,7 +275,10 @@ print("--------------------------------------------------------------------")
 torch.cuda.empty_cache()
 
 # Train with Random Erasing
-from LNL_MoEx import LNL_MoEx_Ti as small
+from LNL_MoEx import LNL_MoEx_Ti as small  # Assuming this imports the modified TNT
+import torch
+import torch.nn as nn
+import torch.optim as optim
 
 # Initialize model
 model = small(pretrained=False)
@@ -283,8 +287,7 @@ model = model.cuda()
 
 # Hyperparameters
 num_epochs = 100
-moex_lam = .9
-moex_prob = .7
+erase_prob = 0.5  # Probability of applying Random Erasing (replaces moex_prob)
 
 # Loss and optimizer
 loss = nn.CrossEntropyLoss()
@@ -293,38 +296,32 @@ scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 
 moex_accuracy_list = []
 
+# Assuming train_loader is defined elsewhere
 for epoch in range(num_epochs):
-
     total_batch = len(trainset) // batch_size
 
     for i, (input, target) in enumerate(train_loader):
         input = input.cuda()
         target = target.cuda()
 
+        # Randomly decide whether to apply Random Erasing
         prob = torch.rand(1).item()
-        if prob < moex_prob:
-            swap_index = torch.randperm(input.size(0), device=input.device)
-            with torch.no_grad():
-                target_a = target
-                target_b = target[swap_index]
-            output = model(input, swap_index=swap_index, moex_norm='pono', moex_epsilon=1e-5,
-                           moex_layer='stem', moex_positive_only=False)
-            lam = moex_lam
-            cost = loss(output, target_a) * lam + loss(output, target_b) * (1. - lam)
+        if prob < erase_prob:
+            output = model(input, apply_erasing=True)  # Apply Random Erasing
         else:
-            # compute output
-            output = model(input)
-            # if args.prof >= 0: torch.cuda.nvtx.range_pop()
-            cost = loss(output, target)
+            output = model(input, apply_erasing=False)  # No augmentation
 
-        # compute gradient and do SGD step
+        # Compute loss (no Mixup blending needed)
+        cost = loss(output, target)
+
+        # Backpropagation
         optimizer.zero_grad()
         cost.backward()
         optimizer.step()
 
         if (i + 1) % 200 == 0:
-            print('Epoch [%d/%d], lter [%d/%d], Loss: %.6f'
-                  % (epoch + 1, num_epochs, i + 1, total_batch, cost.item()))
+            print('Epoch [%d/%d], Iter [%d/%d], Loss: %.6f' %
+                  (epoch + 1, num_epochs, i + 1, total_batch, cost.item()))
 
     # Step the scheduler
     #scheduler.step()
