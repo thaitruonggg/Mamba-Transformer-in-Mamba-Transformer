@@ -92,10 +92,106 @@ def track_highest_accuracy(accuracy_list):
     return highest_accuracy, epoch_with_highest
 
 # TT100K
-tt100k_datadir = "../../data/"
-tt100k_annos_file = os.path.join(tt100k_datadir, "annotations.json")
+tt100k_datadir = "TT100K"
+tt100k_annos_file = os.path.join(tt100k_datadir, "annotations_all.json")
 tt100k_train_dir = os.path.join(tt100k_datadir, "train")
 tt100k_test_dir = os.path.join(tt100k_datadir, "test")
+
+# Load annotations
+with open(tt100k_annos_file, 'r') as f:
+    tt100k_annos = json.load(f)
+
+# Define directories for organized TT100K data
+tt100k_organized_train_dir = os.path.join(tt100k_datadir, "organized_train")
+tt100k_organized_test_dir = os.path.join(tt100k_datadir, "organized_test")
+
+# Create directories for each class
+sign_types = tt100k_annos['types']
+for sign_type in sign_types:
+    os.makedirs(os.path.join(tt100k_organized_train_dir, sign_type), exist_ok=True)
+    os.makedirs(os.path.join(tt100k_organized_test_dir, sign_type), exist_ok=True)
+
+# Process training images
+for img_id, img_anno in tt100k_annos['imgs'].items():
+    # Check if it's a training image
+    if img_id.startswith('train'):
+        img_path = os.path.join(tt100k_train_dir, img_id + '.jpg')
+
+        # Skip if image doesn't exist
+        if not os.path.exists(img_path):
+            continue
+
+        # Process each object in the image
+        if 'objects' in img_anno:
+            for obj in img_anno['objects']:
+                sign_type = obj['category']
+
+                # Create a destination path
+                dest_dir = os.path.join(tt100k_organized_train_dir, sign_type)
+                dest_path = os.path.join(dest_dir, img_id + '.jpg')
+
+                # Copy the image to its class directory
+                if not os.path.exists(dest_path):
+                    shutil.copy(img_path, dest_path)
+
+# Process test images
+for img_id, img_anno in tt100k_annos['imgs'].items():
+    # Check if it's a test image
+    if img_id.startswith('test'):
+        img_path = os.path.join(tt100k_test_dir, img_id + '.jpg')
+
+        # Skip if image doesn't exist
+        if not os.path.exists(img_path):
+            continue
+
+        # Process each object in the image
+        if 'objects' in img_anno:
+            for obj in img_anno['objects']:
+                sign_type = obj['category']
+
+                # Create a destination path
+                dest_dir = os.path.join(tt100k_organized_test_dir, sign_type)
+                dest_path = os.path.join(dest_dir, img_id + '.jpg')
+
+                # Copy the image to its class directory
+                if not os.path.exists(dest_path):
+                    shutil.copy(img_path, dest_path)
+
+# Define batch size
+batch_size = 50
+
+# Set up data transformations
+data_transforms = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+])
+
+# Create datasets for TT100K
+tt100k_trainset = torchvision.datasets.ImageFolder(
+    root=tt100k_organized_train_dir,
+    transform=data_transforms
+)
+
+tt100k_testset = torchvision.datasets.ImageFolder(
+    root=tt100k_organized_test_dir,
+    transform=data_transforms
+)
+
+# Create data loaders for TT100K
+tt100k_train_loader = torch.utils.data.DataLoader(
+    dataset=tt100k_trainset,
+    batch_size=batch_size,
+    shuffle=True
+)
+
+tt100k_test_loader = torch.utils.data.DataLoader(
+    dataset=tt100k_testset,
+    batch_size=batch_size,
+    shuffle=True
+)
+
+print(f"TT100K Training set: {len(tt100k_trainset)} images, {len(tt100k_trainset.classes)} classes")
+print(f"TT100K Test set: {len(tt100k_testset)} images, {len(tt100k_testset.classes)} classes")
 
 def normalize_image(image):
     image_min = image.min()
