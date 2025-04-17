@@ -91,104 +91,11 @@ def track_highest_accuracy(accuracy_list):
     print(f"Highest accuracy: {highest_accuracy:.2f}% achieved at epoch {epoch_with_highest}")
     return highest_accuracy, epoch_with_highest
 
-#GTSRB
-# Organize test data
-data_dir = 'GTSRB/GTSRB_Final_Test_Images/GTSRB'
-images_dir = os.path.join(data_dir, 'Final_Test/Images')
-test_dir = os.path.join(data_dir, 'test')
-os.makedirs(test_dir, exist_ok=True)
-
-with open('GTSRB/GTSRB_Final_Test_GT/GT-final_test.csv') as f:
-    image_names = f.readlines()
-
-for text in image_names[1:]:
-    classes = int(text.split(';')[-1])
-    image_name = text.split(';')[0]
-
-    test_class_dir = os.path.join(test_dir, f"{classes:04d}")
-    os.makedirs(test_class_dir, exist_ok=True)
-    image_path = os.path.join(images_dir, image_name)
-
-    shutil.copy(image_path, test_class_dir)
-
-batch_size = 50
-
-trainset = torchvision.datasets.ImageFolder(root='GTSRB/GTSRB_Final_Training_Images/GTSRB/Final_Training/Images',
-                                                transform=transforms.Compose([
-                                                          transforms.Resize((224,224)),
-                                                          transforms.ToTensor(),
-                                                          ]),
-                                               )
-
-testset = torchvision.datasets.ImageFolder(root='GTSRB/GTSRB_Final_Test_Images/GTSRB/test',
-                                                transform=transforms.Compose([
-                                                          transforms.Resize((224,224)),
-                                                          transforms.ToTensor(),
-                                                          ]),
-                                               )
-
-train_loader = torch.utils.data.DataLoader(dataset=trainset,
-                                         batch_size=batch_size,
-                                         shuffle=True
-                                         )
-
-test_loader = torch.utils.data.DataLoader(dataset=testset,
-                                         batch_size=batch_size,
-                                         shuffle=True
-                                         )
-'''
-# GTSRB class names (43 classes)
-gtsrb_class_names = [
-    "Speed limit (20km/h)", "Speed limit (30km/h)", "Speed limit (50km/h)",
-    "Speed limit (60km/h)", "Speed limit (80km/h)", "End of speed limit (80km/h)",
-    "Speed limit (100km/h)", "Speed limit (120km/h)", "No passing",
-    "No passing for vehicles over 3.5t", "Right-of-way at the next intersection",
-    "Priority road", "Yield", "Stop", "No vehicles",
-    "Vehicles over 3.5t prohibited", "No entry", "General caution",
-    "Dangerous curve to the left", "Dangerous curve to the right",
-    "Double curve", "Bumpy road", "Slippery road",
-    "Road narrows on the right", "Road work", "Traffic signals",
-    "Pedestrians", "Children crossing", "Bicycles crossing",
-    "Beware of ice/snow", "Wild animals crossing",
-    "End of all speed and passing limits", "Turn right ahead",
-    "Turn left ahead", "Ahead only", "Go straight or right",
-    "Go straight or left", "Keep right", "Keep left",
-    "Roundabout mandatory", "End of no passing",
-    "End of no passing by vehicles over 3.5t"
-]
-
-# Function to count samples per class
-def get_class_distribution(dataset, name="Dataset"):
-    class_counts = {}
-    for _, label in dataset.samples:
-        class_counts[label] = class_counts.get(label, 0) + 1
-    return class_counts
-# Get class distributions
-train_class_counts = get_class_distribution(trainset, "Training Set")
-test_class_counts = get_class_distribution(testset, "Test Set")
-# Prepare data for plotting
-num_classes = len(gtsrb_class_names)  # Should be 43
-train_counts = [train_class_counts.get(i, 0) for i in range(num_classes)]
-test_counts = [test_class_counts.get(i, 0) for i in range(num_classes)]
-# Plotting
-fig, ax = plt.subplots(figsize=(15, 8))  # Increased height to accommodate vertical labels
-x = np.arange(num_classes)
-width = 0.35  # Width of the bars
-# Plot bars for train and test sets
-ax.bar(x - width/2, train_counts, width, label='Training Set', color='skyblue')
-ax.bar(x + width/2, test_counts, width, label='Test Set', color='salmon')
-# Customize the plot
-ax.set_xlabel('Traffic Sign Class')
-ax.set_ylabel('Number of Images')
-ax.set_title('Number of Images per Class in GTSRB Dataset')
-ax.set_xticks(x)
-ax.set_xticklabels(gtsrb_class_names, rotation=90, ha='center', fontsize=8)  # Vertical labels
-ax.legend()
-# Adjust layout to prevent label cutoff
-plt.tight_layout()
-# Display the plot
-#plt.show()
-'''
+# TT100K
+tt100k_datadir = "../../data/"
+tt100k_annos_file = os.path.join(tt100k_datadir, "annotations.json")
+tt100k_train_dir = os.path.join(tt100k_datadir, "train")
+tt100k_test_dir = os.path.join(tt100k_datadir, "test")
 
 def normalize_image(image):
     image_min = image.min()
