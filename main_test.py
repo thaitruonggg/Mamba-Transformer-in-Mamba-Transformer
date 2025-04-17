@@ -18,6 +18,7 @@ from ptflops import get_model_complexity_info
 import warnings
 warnings.filterwarnings("ignore")
 import torch
+import json
 torch.autograd.set_detect_anomaly(True)
 torch.cuda.empty_cache()
 
@@ -167,31 +168,31 @@ data_transforms = transforms.Compose([
 ])
 
 # Create datasets for TT100K
-tt100k_trainset = torchvision.datasets.ImageFolder(
+trainset = torchvision.datasets.ImageFolder(
     root=tt100k_organized_train_dir,
     transform=data_transforms
 )
 
-tt100k_testset = torchvision.datasets.ImageFolder(
+testset = torchvision.datasets.ImageFolder(
     root=tt100k_organized_test_dir,
     transform=data_transforms
 )
 
 # Create data loaders for TT100K
-tt100k_train_loader = torch.utils.data.DataLoader(
-    dataset=tt100k_trainset,
+train_loader = torch.utils.data.DataLoader(
+    dataset=trainset,
     batch_size=batch_size,
     shuffle=True
 )
 
-tt100k_test_loader = torch.utils.data.DataLoader(
-    dataset=tt100k_testset,
+test_loader = torch.utils.data.DataLoader(
+    dataset=testset,
     batch_size=batch_size,
     shuffle=True
 )
 
-print(f"TT100K Training set: {len(tt100k_trainset)} images, {len(tt100k_trainset.classes)} classes")
-print(f"TT100K Test set: {len(tt100k_testset)} images, {len(tt100k_testset.classes)} classes")
+print(f"TT100K Training set: {len(trainset)} images, {len(trainset.classes)} classes")
+print(f"TT100K Test set: {len(testset)} images, {len(testset.classes)} classes")
 
 def normalize_image(image):
     image_min = image.min()
