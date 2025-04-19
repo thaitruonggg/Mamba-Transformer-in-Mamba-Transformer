@@ -16,8 +16,10 @@ from torchsummary import summary
 import shutil
 from ptflops import get_model_complexity_info
 import warnings
+
 warnings.filterwarnings("ignore")
 import torch
+
 torch.autograd.set_detect_anomaly(True)
 torch.cuda.empty_cache()
 
@@ -91,7 +93,44 @@ def track_highest_accuracy(accuracy_list):
     print(f"Highest accuracy: {highest_accuracy:.2f}% achieved at epoch {epoch_with_highest}")
     return highest_accuracy, epoch_with_highest
 
-#GTSRB
+
+def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model_name):
+    """
+    Plot training progress showing accuracy vs epoch and loss vs epoch
+
+    Args:
+        train_loss_list: List of training loss values per epoch
+        test_loss_list: List of test loss values per epoch
+        accuracy_list: List of accuracy values per epoch
+        model_name: Name of the model for plot titles
+    """
+    epochs = range(1, len(accuracy_list) + 1)
+
+    # Create a figure with two subplots
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+
+    # Plot accuracy vs epoch
+    ax1.plot(epochs, accuracy_list, 'o-', color='blue', label='Test Accuracy')
+    ax1.set_title(f'{model_name} - Accuracy vs Epoch')
+    ax1.set_xlabel('Epoch')
+    ax1.set_ylabel('Accuracy (%)')
+    ax1.grid(True, linestyle='--', alpha=0.7)
+    ax1.legend()
+
+    # Plot loss vs epoch
+    ax2.plot(epochs, train_loss_list, 'o-', color='red', label='Training Loss')
+    ax2.plot(epochs, test_loss_list, 'o-', color='green', label='Test Loss')
+    ax2.set_title(f'{model_name} - Loss vs Epoch')
+    ax2.set_xlabel('Epoch')
+    ax2.set_ylabel('Loss')
+    ax2.grid(True, linestyle='--', alpha=0.7)
+    ax2.legend()
+
+    plt.tight_layout()
+    plt.savefig(f'{model_name}_training_progress.png')
+    plt.show()
+
+# GTSRB
 # Organize test data
 data_dir = 'GTSRB/GTSRB_Final_Test_Images/GTSRB'
 images_dir = os.path.join(data_dir, 'Final_Test/Images')
@@ -114,28 +153,28 @@ for text in image_names[1:]:
 batch_size = 50
 
 trainset = torchvision.datasets.ImageFolder(root='GTSRB/GTSRB_Final_Training_Images/GTSRB/Final_Training/Images',
-                                                transform=transforms.Compose([
-                                                          transforms.Resize((224,224)),
-                                                          transforms.ToTensor(),
-                                                          ]),
-                                               )
+                                            transform=transforms.Compose([
+                                                transforms.Resize((224, 224)),
+                                                transforms.ToTensor(),
+                                            ]),
+                                            )
 
 testset = torchvision.datasets.ImageFolder(root='GTSRB/GTSRB_Final_Test_Images/GTSRB/test',
-                                                transform=transforms.Compose([
-                                                          transforms.Resize((224,224)),
-                                                          transforms.ToTensor(),
-                                                          ]),
-                                               )
+                                           transform=transforms.Compose([
+                                               transforms.Resize((224, 224)),
+                                               transforms.ToTensor(),
+                                           ]),
+                                           )
 
 train_loader = torch.utils.data.DataLoader(dataset=trainset,
-                                         batch_size=batch_size,
-                                         shuffle=True
-                                         )
+                                           batch_size=batch_size,
+                                           shuffle=True
+                                           )
 
 test_loader = torch.utils.data.DataLoader(dataset=testset,
-                                         batch_size=batch_size,
-                                         shuffle=True
-                                         )
+                                          batch_size=batch_size,
+                                          shuffle=True
+                                          )
 '''
 # GTSRB class names (43 classes)
 gtsrb_class_names = [
@@ -187,7 +226,7 @@ ax.legend()
 # Adjust layout to prevent label cutoff
 plt.tight_layout()
 # Display the plot
-#plt.show()
+plt.show()
 '''
 
 def normalize_image(image):
@@ -196,6 +235,7 @@ def normalize_image(image):
     image.clamp_(min=image_min, max=image_max)
     image.add_(-image_min).div_(image_max - image_min + 1e-5)
     return image
+
 
 def plot_images(images, labels, classes, normalize=True):
     n_images = len(images)
@@ -222,9 +262,9 @@ batch = next(iter(train_loader))
 classes = trainset.classes
 plot_images(batch[0], batch[1], classes)
 
-
 # Load and modify model
 from LNL import LNL_Ti as small
+
 model = small(pretrained=False)
 model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True)
 model = model.cuda()
@@ -236,10 +276,14 @@ optimizer = optim.SGD(model.parameters(), lr=0.007, momentum=0.9)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 
 lnl_accuracy_list = []
+lnl_train_loss_list = []
+lnl_test_loss_list = []
 
 for epoch in range(num_epochs):
     total_batch = len(trainset) // batch_size
+    running_loss = 0.0
 
+    model.train()
     for i, (batch_images, batch_labels) in enumerate(train_loader):
         X = batch_images.cuda()
         Y = batch_labels.cuda()
@@ -251,20 +295,27 @@ for epoch in range(num_epochs):
         cost.backward()
         optimizer.step()
 
+        running_loss += cost.item()
+
         if (i + 1) % 200 == 0:
             print('Epoch [%d/%d], Iter [%d/%d], Loss: %.6f' %
                   (epoch + 1, num_epochs, i + 1, total_batch, cost.item()))
 
     # Step the scheduler
-    #scheduler.step()
+    # scheduler.step()
+
+    # Calculate average training loss for this epoch
+    avg_train_loss = running_loss / len(train_loader)
+    lnl_train_loss_list.append(avg_train_loss)
 
     # Add evaluation after each epoch (without per-class accuracy)
     test_loss, test_accuracy = evaluate_model(
         model, test_loader, loss, testset.classes, batch_size, epoch, num_epochs, display_per_class=False)
+    lnl_test_loss_list.append(test_loss)
     lnl_accuracy_list.append(test_accuracy)
     highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
-    print("--------------------------------------------------------------------")
 
+print("--------------------------------------------------------------------")
 print("Final Evaluation of Locality-iN-Locality Model")
 # Final evaluation with per-class accuracy
 final_loss, final_accuracy = evaluate_model(
@@ -272,10 +323,13 @@ final_loss, final_accuracy = evaluate_model(
 highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
 print("--------------------------------------------------------------------")
 
+# Plot training progress for LNL model
+plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_list, "MiM")
+
 torch.cuda.empty_cache()
 
-# Train with Random Erasing
-from LNL_MoEx import LNL_MoEx_Ti as small  # Assuming this imports the modified TNT
+# Train with MoEx
+from LNL_MoEx import LNL_MoEx_Ti as small
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -287,7 +341,8 @@ model = model.cuda()
 
 # Hyperparameters
 num_epochs = 100
-erase_prob = 0.5  # Probability of applying Random Erasing (replaces moex_prob)
+moex_lam = .9
+moex_prob = .7
 
 # Loss and optimizer
 loss = nn.CrossEntropyLoss()
@@ -295,45 +350,58 @@ optimizer = optim.SGD(model.parameters(), lr=0.007, momentum=0.9)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 
 moex_accuracy_list = []
+moex_train_loss_list = []
+moex_test_loss_list = []
 
-# Assuming train_loader is defined elsewhere
 for epoch in range(num_epochs):
     total_batch = len(trainset) // batch_size
+    running_loss = 0.0
 
+    model.train()
     for i, (input, target) in enumerate(train_loader):
         input = input.cuda()
         target = target.cuda()
 
-        # Randomly decide whether to apply Random Erasing
         prob = torch.rand(1).item()
-        if prob < erase_prob:
-            output = model(input, apply_erasing=True)  # Apply Random Erasing
+        if prob < moex_prob:
+            swap_index = torch.randperm(input.size(0), device=input.device)
+            with torch.no_grad():
+                target_a = target
+                target_b = target[swap_index]
+            output = model(input, swap_index=swap_index, moex_norm='pono', moex_epsilon=1e-5,
+                           moex_layer='stem', moex_positive_only=False)
+            lam = moex_lam
+            cost = loss(output, target_a) * lam + loss(output, target_b) * (1. - lam)
         else:
-            output = model(input, apply_erasing=False)  # No augmentation
-
-        # Compute loss (no Mixup blending needed)
-        cost = loss(output, target)
+            # compute output
+            output = model(input)
+            cost = loss(output, target)
 
         # Backpropagation
         optimizer.zero_grad()
         cost.backward()
         optimizer.step()
 
+        running_loss += cost.item()
+
         if (i + 1) % 200 == 0:
             print('Epoch [%d/%d], Iter [%d/%d], Loss: %.6f' %
                   (epoch + 1, num_epochs, i + 1, total_batch, cost.item()))
 
-    # Step the scheduler
-    #scheduler.step()
+    # Calculate average training loss for this epoch
+    avg_train_loss = running_loss / len(train_loader)
+    moex_train_loss_list.append(avg_train_loss)
 
     # Add evaluation after each epoch (without per-class accuracy)
     test_loss, test_accuracy = evaluate_model(
         model, test_loader, loss, testset.classes, batch_size, epoch, num_epochs, display_per_class=False
     )
+
+    moex_test_loss_list.append(test_loss)
     moex_accuracy_list.append(test_accuracy)
     moex_highest_acc, moex_best_epoch = track_highest_accuracy(moex_accuracy_list)
-    print("--------------------------------------------------------------------")
 
+print("--------------------------------------------------------------------")
 print("After applying MoEx")
 print("Final Evaluation of LNL-MoEx Model")
 # Final evaluation with per-class accuracy
@@ -342,11 +410,43 @@ final_loss, final_accuracy = evaluate_model(
 moex_highest_acc, moex_best_epoch = track_highest_accuracy(moex_accuracy_list)
 print("--------------------------------------------------------------------")
 
+# Plot training progress for LNL-MoEx model
+plot_training_progress(moex_train_loss_list, moex_test_loss_list, moex_accuracy_list, "MiM-MoEx")
+
+# Plot comparison between the two models
+plt.figure(figsize=(15, 6))
+
+# Accuracy comparison
+plt.subplot(1, 2, 1)
+epochs = range(1, num_epochs + 1)
+plt.plot(epochs, lnl_accuracy_list, 'b-', label='LNL')
+plt.plot(epochs, moex_accuracy_list, 'r-', label='LNL-MoEx')
+plt.title('Model Comparison - Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy (%)')
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.legend()
+
+# Test Loss comparison
+plt.subplot(1, 2, 2)
+plt.plot(epochs, lnl_test_loss_list, 'b-', label='LNL')
+plt.plot(epochs, moex_test_loss_list, 'r-', label='LNL-MoEx')
+plt.title('Model Comparison - Test Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.legend()
+
+plt.tight_layout()
+plt.savefig('model_comparison.png')
+plt.show()
+
 torch.cuda.empty_cache()
 
 # Model complexity
 with torch.cuda.device(0):
     net = model
-    macs, params = get_model_complexity_info(net, (3, 224, 224), as_strings=True, print_per_layer_stat=True, verbose=True)
+    macs, params = get_model_complexity_info(net, (3, 224, 224), as_strings=True, print_per_layer_stat=True,
+                                             verbose=True)
     print('{:<30}  {:<8}'.format('Computational complexity: ', macs))
     print('{:<30}  {:<8}'.format('Number of parameters: ', params))

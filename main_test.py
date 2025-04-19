@@ -16,11 +16,16 @@ from torchsummary import summary
 import shutil
 from ptflops import get_model_complexity_info
 import warnings
+
 warnings.filterwarnings("ignore")
 import torch
 import json
+from torch.cuda.amp import autocast, GradScaler
+
 torch.autograd.set_detect_anomaly(True)
 torch.cuda.empty_cache()
+from PIL import Image
+from torch.utils.data import Dataset
 
 print("PyTorch", torch.__version__)
 print("Torchvision", torchvision.__version__)
@@ -92,93 +97,116 @@ def track_highest_accuracy(accuracy_list):
     print(f"Highest accuracy: {highest_accuracy:.2f}% achieved at epoch {epoch_with_highest}")
     return highest_accuracy, epoch_with_highest
 
+
 # TT100K
-tt100k_datadir = "TT100K"
+# TT100K dataset paths
+tt100k_datadir = "tt100k_2021"  # Adjust this to your actual data path
 tt100k_annos_file = os.path.join(tt100k_datadir, "annotations_all.json")
 tt100k_train_dir = os.path.join(tt100k_datadir, "train")
 tt100k_test_dir = os.path.join(tt100k_datadir, "test")
 
-# Load annotations
+# Load annotations with error handling
 with open(tt100k_annos_file, 'r') as f:
     tt100k_annos = json.load(f)
+print(
+    f"Successfully loaded annotations with {len(tt100k_annos['imgs'])} images and {len(tt100k_annos['types'])} sign types")
 
-# Define directories for organized TT100K data
-tt100k_organized_train_dir = os.path.join(tt100k_datadir, "organized_train")
-tt100k_organized_test_dir = os.path.join(tt100k_datadir, "organized_test")
 
-# Create directories for each class
-sign_types = tt100k_annos['types']
-for sign_type in sign_types:
-    os.makedirs(os.path.join(tt100k_organized_train_dir, sign_type), exist_ok=True)
-    os.makedirs(os.path.join(tt100k_organized_test_dir, sign_type), exist_ok=True)
+# Create a custom dataset class for TT100K with better error handling
+class TT100KDataset(Dataset):
+    def __init__(self, data_dir, annos, split='train', transform=None):
+        self.data_dir = data_dir
+        self.annos = annos
+        self.split = split
+        self.transform = transform
 
-# Process training images
-for img_id, img_anno in tt100k_annos['imgs'].items():
-    # Check if it's a training image
-    if img_id.startswith('train'):
-        img_path = os.path.join(tt100k_train_dir, img_id + '.jpg')
+        # Initialize these attributes first
+        self.image_paths = []
+        self.labels = []
+        self.class_to_idx = {cls: idx for idx, cls in enumerate(sorted(annos['types']))}
 
-        # Skip if image doesn't exist
-        if not os.path.exists(img_path):
-            continue
+        # Get a list of all files in the directory
+        split_dir = os.path.join(self.data_dir, split)
+        all_files = set([f.split('.')[0] for f in os.listdir(split_dir) if f.endswith('.jpg')])
 
-        # Process each object in the image
-        if 'objects' in img_anno:
-            for obj in img_anno['objects']:
-                sign_type = obj['category']
+        # Match annotations with files
+        valid_images_found = 0
+        for img_id, img_anno in annos['imgs'].items():
+            if img_id in all_files:
+                if 'objects' in img_anno and len(img_anno['objects']) > 0:
+                    for obj in img_anno['objects']:
+                        sign_type = obj['category']
+                        if sign_type in self.class_to_idx:
+                            img_path = os.path.join(split_dir, f"{img_id}.jpg")
+                            self.image_paths.append(img_path)
+                            self.labels.append(self.class_to_idx[sign_type])
+                            valid_images_found += 1
+                            break  # Only use the first valid sign in each image
 
-                # Create a destination path
-                dest_dir = os.path.join(tt100k_organized_train_dir, sign_type)
-                dest_path = os.path.join(dest_dir, img_id + '.jpg')
+        # Now that self.labels is populated, we can check max label
+        if self.labels:  # Only check if labels exist
+            max_label = max(self.labels)
+            num_classes = len(self.class_to_idx)
+            if max_label >= num_classes:
+                print("WARNING: Max label index exceeds number of classes!")
 
-                # Copy the image to its class directory
-                if not os.path.exists(dest_path):
-                    shutil.copy(img_path, dest_path)
+        if valid_images_found == 0:
+            print("WARNING: No valid images found. Trying alternative approach...")
+            # Alternative approach: use all images and assign dummy labels
+            self.image_paths = [os.path.join(split_dir, f) for f in os.listdir(split_dir)
+                                if f.endswith('.jpg')]
+            self.labels = [0] * len(self.image_paths)  # Assign all to first class as fallback
+            print(f"Alternative approach found {len(self.image_paths)} images")
 
-# Process test images
-for img_id, img_anno in tt100k_annos['imgs'].items():
-    # Check if it's a test image
-    if img_id.startswith('test'):
-        img_path = os.path.join(tt100k_test_dir, img_id + '.jpg')
+    def __len__(self):
+        return len(self.image_paths)
 
-        # Skip if image doesn't exist
-        if not os.path.exists(img_path):
-            continue
+    def __getitem__(self, idx):
+        img_path = self.image_paths[idx]
+        label = self.labels[idx]
 
-        # Process each object in the image
-        if 'objects' in img_anno:
-            for obj in img_anno['objects']:
-                sign_type = obj['category']
+        # Load image
+        try:
+            image = Image.open(img_path).convert('RGB')
+        except Exception as e:
+            print(f"Error loading image {img_path}: {str(e)}")
+            # Return a dummy image in case of error
+            image = Image.new('RGB', (224, 224), color=0)
 
-                # Create a destination path
-                dest_dir = os.path.join(tt100k_organized_test_dir, sign_type)
-                dest_path = os.path.join(dest_dir, img_id + '.jpg')
+        if self.transform:
+            image = self.transform(image)
 
-                # Copy the image to its class directory
-                if not os.path.exists(dest_path):
-                    shutil.copy(img_path, dest_path)
+        return image, label
 
-# Define batch size
-batch_size = 50
+    @property
+    def classes(self):
+        return list(self.class_to_idx.keys())
 
-# Set up data transformations
+
+# Define transformations
 data_transforms = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
 ])
 
-# Create datasets for TT100K
-trainset = torchvision.datasets.ImageFolder(
-    root=tt100k_organized_train_dir,
+# Create TT100K datasets
+trainset = TT100KDataset(
+    data_dir=tt100k_datadir,
+    annos=tt100k_annos,
+    split='train',
     transform=data_transforms
 )
 
-testset = torchvision.datasets.ImageFolder(
-    root=tt100k_organized_test_dir,
+testset = TT100KDataset(
+    data_dir=tt100k_datadir,
+    annos=tt100k_annos,
+    split='test',
     transform=data_transforms
 )
 
-# Create data loaders for TT100K
+# Define batch size
+batch_size = 32
+
 train_loader = torch.utils.data.DataLoader(
     dataset=trainset,
     batch_size=batch_size,
@@ -191,8 +219,6 @@ test_loader = torch.utils.data.DataLoader(
     shuffle=True
 )
 
-print(f"TT100K Training set: {len(trainset)} images, {len(trainset.classes)} classes")
-print(f"TT100K Test set: {len(testset)} images, {len(testset.classes)} classes")
 
 def normalize_image(image):
     image_min = image.min()
@@ -200,6 +226,7 @@ def normalize_image(image):
     image.clamp_(min=image_min, max=image_max)
     image.add_(-image_min).div_(image_max - image_min + 1e-5)
     return image
+
 
 def plot_images(images, labels, classes, normalize=True):
     n_images = len(images)
@@ -222,15 +249,16 @@ def plot_images(images, labels, classes, normalize=True):
         ax.set_title(classes[labels[i]])
         ax.axis('off')
 
+
 batch = next(iter(train_loader))
 classes = trainset.classes
 plot_images(batch[0], batch[1], classes)
 
-
 # Load and modify model
 from LNL import LNL_Ti as small
+
 model = small(pretrained=False)
-model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True)
+model.head = torch.nn.Linear(in_features=192, out_features=232, bias=True)
 model = model.cuda()
 
 # Train Locality-iN-Locality
@@ -260,7 +288,7 @@ for epoch in range(num_epochs):
                   (epoch + 1, num_epochs, i + 1, total_batch, cost.item()))
 
     # Step the scheduler
-    #scheduler.step()
+    # scheduler.step()
 
     # Add evaluation after each epoch (without per-class accuracy)
     test_loss, test_accuracy = evaluate_model(
@@ -279,44 +307,45 @@ print("--------------------------------------------------------------------")
 torch.cuda.empty_cache()
 
 # Train with Random Erasing
-from LNL_MoEx import LNL_MoEx_Ti as small  # Assuming this imports the modified TNT
-import torch
-import torch.nn as nn
-import torch.optim as optim
+from LNL_MoEx import LNL_MoEx_Ti as small
 
-# Initialize model
 model = small(pretrained=False)
-model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True)  # 43 classes for GTSRB
+model.head = torch.nn.Linear(in_features=192, out_features=232, bias=True)
 model = model.cuda()
 
-# Hyperparameters
-num_epochs = 100
-erase_prob = 0.5  # Probability of applying Random Erasing (replaces moex_prob)
+num_epochs = 400
+moex_lam = .9
+moex_prob = .7
 
-# Loss and optimizer
 loss = nn.CrossEntropyLoss()
-optimizer = optim.SGD(model.parameters(), lr=0.007, momentum=0.9)
+optimizer = optim.SGD(model.parameters(), lr=0.002, momentum=0.9)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 
 moex_accuracy_list = []
 
-# Assuming train_loader is defined elsewhere
 for epoch in range(num_epochs):
+
     total_batch = len(trainset) // batch_size
 
     for i, (input, target) in enumerate(train_loader):
         input = input.cuda()
         target = target.cuda()
 
-        # Randomly decide whether to apply Random Erasing
         prob = torch.rand(1).item()
-        if prob < erase_prob:
-            output = model(input, apply_erasing=True)  # Apply Random Erasing
+        if prob < moex_prob:
+            swap_index = torch.randperm(input.size(0), device=input.device)
+            with torch.no_grad():
+                target_a = target
+                target_b = target[swap_index]
+            output = model(input, swap_index=swap_index, moex_norm='pono', moex_epsilon=1e-5,
+                           moex_layer='stem', moex_positive_only=False)
+            lam = moex_lam
+            cost = loss(output, target_a) * lam + loss(output, target_b) * (1. - lam)
         else:
-            output = model(input, apply_erasing=False)  # No augmentation
-
-        # Compute loss (no Mixup blending needed)
-        cost = loss(output, target)
+            # compute output
+            output = model(input)
+            # if args.prof >= 0: torch.cuda.nvtx.range_pop()
+            cost = loss(output, target)
 
         # Backpropagation
         optimizer.zero_grad()
@@ -328,7 +357,7 @@ for epoch in range(num_epochs):
                   (epoch + 1, num_epochs, i + 1, total_batch, cost.item()))
 
     # Step the scheduler
-    #scheduler.step()
+    # scheduler.step()
 
     # Add evaluation after each epoch (without per-class accuracy)
     test_loss, test_accuracy = evaluate_model(
@@ -348,9 +377,9 @@ print("--------------------------------------------------------------------")
 
 torch.cuda.empty_cache()
 
-# Model complexity
 with torch.cuda.device(0):
     net = model
-    macs, params = get_model_complexity_info(net, (3, 224, 224), as_strings=True, print_per_layer_stat=True, verbose=True)
+    macs, params = get_model_complexity_info(net, (3, 224, 224), as_strings=True, print_per_layer_stat=True,
+                                             verbose=True)
     print('{:<30}  {:<8}'.format('Computational complexity: ', macs))
     print('{:<30}  {:<8}'.format('Number of parameters: ', params))

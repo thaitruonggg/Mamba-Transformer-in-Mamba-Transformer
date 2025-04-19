@@ -1,19 +1,8 @@
-"""
-Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
-Code borrowed from https://github.com/rwightman/pytorch-image-models
-
-Transformer in Transformer (TNT) in PyTorch
-A PyTorch implement of TNT as described in
-'Transformer in Transformer' - https://arxiv.org/abs/2103.00112
-The official mindspore code is released and available at
-https://gitee.com/mindspore/mindspore/tree/master/model_zoo/research/cv/TNT
-"""
 import math
 import torch
 import torch.nn as nn
 from functools import partial
+import torch.nn.functional as F
 
 from timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from timm.models.helpers import load_pretrained
@@ -28,11 +17,11 @@ def moex(x, swap_index, norm_type, epsilon=1e-5, positive_only=False):
 
     B, C, L = x.shape
     if norm_type == 'bn':
-        norm_dims = [0, 2, 3]
+        norm_dims = [0, 2]  # Changed from [0, 2, 3]
     elif norm_type == 'in':
-        norm_dims = [2, 3]
+        norm_dims = [2]     # Changed from [2, 3]
     elif norm_type == 'ln':
-        norm_dims = [1, 2, 3]
+        norm_dims = [1, 2]  # Changed from [1, 2, 3]
     elif norm_type == 'pono':
         norm_dims = [1]
     elif norm_type.startswith('gn'):
@@ -44,8 +33,8 @@ def moex(x, swap_index, norm_type, epsilon=1e-5, positive_only=False):
             # gn4 means GN with 4 groups
             G = int(norm_type[2:])
             G_dim = C // G
-        x = x.view(B, G, G_dim, H, W)
-        norm_dims = [2, 3, 4]
+        x = x.view(B, G, G_dim, L)  # Changed from (B, G, G_dim, H, W)
+        norm_dims = [2, 3]          # Changed from [2, 3, 4]
     elif norm_type.startswith('gpono'):
         if norm_type.startswith('gpono-d'):
             # gpono-d4 means GPONO where each group has 4 dims
@@ -55,7 +44,7 @@ def moex(x, swap_index, norm_type, epsilon=1e-5, positive_only=False):
             # gpono4 means GPONO with 4 groups
             G = int(norm_type[len('gpono'):])
             G_dim = C // G
-        x = x.view(B, G, G_dim, H, W)
+        x = x.view(B, G, G_dim, L)  # Changed from (B, G, G_dim, H, W)
         norm_dims = [2]
     else:
         raise NotImplementedError(f'norm_type={norm_type}')
