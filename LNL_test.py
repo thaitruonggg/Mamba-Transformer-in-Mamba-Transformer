@@ -1,9 +1,10 @@
-from os.path import exists
-from inspect import isfunction
+"""
+Author: Omid Nejati
+Email: omid_nejaty@alumni.iust.ac.ir
+LNL : Introducing locality mechanism into Transformer in Transformer (TNT)
+"""
 import torch
-from torch import nn, einsum
-import torch.nn.functional as F
-from einops import rearrange, repeat
+import torch.nn as nn
 
 from timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from timm.models.helpers import load_pretrained
@@ -12,7 +13,6 @@ from timm.models.vision_transformer import Mlp
 from timm.models.registry import register_model
 from models.localvit import LocalityFeedForward
 from models.tnt import Attention, TNT
-from mamba_ssm.ops.selective_scan_interface import selective_scan_fn
 import math
 
 
@@ -39,61 +39,6 @@ default_cfgs = {
     ),
 }
 
-# CrossAttn precision handling
-import os
-_ATTN_PRECISION = os.environ.get("ATTN_PRECISION", "fp32")
-
-def exists(val):
-    return val is not None
-
-def default(val, d):
-    if exists(val):
-        return val
-    return d() if isfunction(d) else d
-
-
-class CrossAttention(nn.Module): # Pixel_embed
-    def __init__(self, query_dim, context_dim=None, heads=8, dim_head=64, dropout=0.):
-        super().__init__()
-        inner_dim = dim_head * heads
-        context_dim = default(context_dim, query_dim)
-
-        self.scale = dim_head ** -0.5
-        self.heads = heads
-
-        self.to_q = nn.Linear(query_dim, inner_dim, bias=False)
-        self.to_k = nn.Linear(context_dim, inner_dim, bias=False)
-        self.to_v = nn.Linear(context_dim, inner_dim, bias=False)
-
-        self.to_out = nn.Sequential(
-            nn.Linear(inner_dim, query_dim),
-            nn.Dropout(dropout)
-        )
-
-    def forward(self, pixel_embed, patch_embed, mask=None):
-        b, n, _ = pixel_embed.shape
-        h = self.heads
-
-        q = self.to_q(pixel_embed)  # (b, n, inner_dim)
-        k = self.to_k(patch_embed)  # (b, m, inner_dim)
-        v = self.to_v(patch_embed)  # (b, m, inner_dim)
-
-        q, k, v = map(lambda t: rearrange(t, 'b seq (h d) -> (b h) seq d', h=h), (q, k, v))
-
-        sim = einsum('b i d, b j d -> b i j', q, k) * self.scale
-
-        if exists(mask):
-            mask = repeat(mask, 'b j -> (b h) () j', h=h)
-            max_neg_value = -torch.finfo(sim.dtype).max
-            sim.masked_fill_(~mask, max_neg_value)
-
-        attn = sim.softmax(dim=-1)
-
-        out = einsum('b i j, b j d -> b i d', attn, v)
-        out = rearrange(out, '(b h) seq d -> b seq (h d)', h=h)
-
-        out = self.to_out(out)
-        return out
 
 class Block(nn.Module):
     """ TNT Block
@@ -123,17 +68,12 @@ class Block(nn.Module):
 
         self.conv = LocalityFeedForward(dim, dim, 1, mlp_ratio, reduction=dim)
 
-        # Add CrossAttention
-        self.cross_attn = CrossAttention(query_dim=in_dim, context_dim=dim, heads=in_num_head)
 
     def forward(self, pixel_embed, patch_embed):
         # inner
         x, _ = self.attn_in(self.norm_in(pixel_embed))
         pixel_embed = pixel_embed + self.drop_path(x)
         pixel_embed = pixel_embed + self.drop_path(self.mlp_in(self.norm_mlp_in(pixel_embed)))
-
-        # cross-attention
-        pixel_embed = self.cross_attn(pixel_embed, patch_embed)
 
         # outer
         B, N, C = patch_embed.size()
@@ -154,9 +94,9 @@ class LocalViT_TNT(TNT):
     """ Transformer in Transformer - https://arxiv.org/abs/2103.00112
     """
 
-    def __init__(self, img_size=224, patch_size=32, in_chans=3, num_classes=1000, embed_dim=768, in_dim=48, depth=12,
+    def __init__(self, img_size=224, patch_size=16, in_chans=3, num_classes=1000, embed_dim=768, in_dim=48, depth=12,
                  num_heads=12, in_num_head=4, mlp_ratio=4., qkv_bias=False, drop_rate=0., attn_drop_rate=0.,
-                 drop_path_rate=0., norm_layer=nn.LayerNorm, first_stride=8):
+                 drop_path_rate=0., norm_layer=nn.LayerNorm, first_stride=4):
         super().__init__(img_size, patch_size, in_chans, num_classes, embed_dim, in_dim, depth,
                  num_heads, in_num_head, mlp_ratio, qkv_bias, drop_rate, attn_drop_rate,
                  drop_path_rate, norm_layer, first_stride)
