@@ -1,9 +1,6 @@
 """
-Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
-Implementation of "Tokens-to-token vit: Training vision transformers from scratch on imagenet".
-Code borrowed from https://github.com/yitu-opensource/T2T-ViT
+The implementation of "Tokens-to-token vit: Training vision transformers from scratch on imagenet".
+From: https://github.com/yitu-opensource/T2T-ViT
 """
 import torch
 import torch.nn as nn
@@ -38,10 +35,6 @@ default_cfgs = {
     'T2t_vit_14_resnext': _cfg(),
     'T2t_vit_14_wide': _cfg(),
 }
-
-
-
-
 
 class T2T_module(nn.Module):
     """
@@ -206,7 +199,6 @@ def T2t_vit_12(pretrained=False, **kwargs): # adopt performer for tokens to toke
         load_pretrained(
             model, num_classes=model.num_classes, in_chans=kwargs.get('in_chans', 3))
     return model
-
 
 @register_model
 def T2t_vit_14(pretrained=False, **kwargs):  # adopt performer for tokens to token

@@ -15,22 +15,17 @@
 # Lint as: python3
 """Bottleneck ResNet v2 with GroupNorm and Weight Standardization."""
 import math
-
 from os.path import join as pjoin
-
 from collections import OrderedDict  # pylint: disable=g-importing-member
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
 
 def np2th(weights, conv=False):
     """Possibly convert HWIO to OIHW."""
     if conv:
         weights = weights.transpose([3, 2, 0, 1])
     return torch.from_numpy(weights)
-
 
 class StdConv2d(nn.Conv2d):
 
@@ -41,16 +36,13 @@ class StdConv2d(nn.Conv2d):
         return F.conv2d(x, w, self.bias, self.stride, self.padding,
                         self.dilation, self.groups)
 
-
 def conv3x3(cin, cout, stride=1, groups=1, bias=False):
     return StdConv2d(cin, cout, kernel_size=3, stride=stride,
                      padding=1, bias=bias, groups=groups)
 
-
 def conv1x1(cin, cout, stride=1, bias=False):
     return StdConv2d(cin, cout, kernel_size=1, stride=stride,
                      padding=0, bias=bias)
-
 
 class PreActBottleneck(nn.Module):
     """Pre-activation (v2) bottleneck block.

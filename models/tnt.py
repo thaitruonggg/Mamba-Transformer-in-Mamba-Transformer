@@ -1,9 +1,5 @@
 """
-Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
 Code borrowed from https://github.com/rwightman/pytorch-image-models
-
 Transformer in Transformer (TNT) in PyTorch
 A PyTorch implement of TNT as described in
 'Transformer in Transformer' - https://arxiv.org/abs/2103.00112
@@ -14,13 +10,11 @@ import math
 import torch
 import torch.nn as nn
 from functools import partial #1
-
 from timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from timm.models.helpers import load_pretrained
 from timm.models.layers import DropPath, trunc_normal_
 from timm.models.vision_transformer import Mlp
 from timm.models.registry import register_model
-
 
 def _cfg(url='', **kwargs):
     return {
@@ -31,7 +25,6 @@ def _cfg(url='', **kwargs):
         'first_conv': 'pixel_embed.proj', 'classifier': 'head',
         **kwargs
     }
-
 
 default_cfgs = {
     'tnt_t_patch16_224': _cfg(
@@ -45,7 +38,6 @@ default_cfgs = {
         mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5),
     ),
 }
-
 
 class Attention(nn.Module): #0: Unimportant
     """ Multi-Head Attention
@@ -80,7 +72,6 @@ class Attention(nn.Module): #0: Unimportant
         x = self.proj(x)
         x = self.proj_drop(x)
         return x, weights
-
 
 class Block(nn.Module):
     """ TNT Block
@@ -126,7 +117,6 @@ class Block(nn.Module):
         patch_embed = patch_embed + self.drop_path(self.mlp(self.norm_mlp(patch_embed)))
         return pixel_embed, patch_embed, weights
 
-
 class PixelEmbed(nn.Module):
     """ Image to Pixel Embedding
     """
@@ -153,7 +143,6 @@ class PixelEmbed(nn.Module):
         x = x + pixel_pos
         x = x.reshape(B * self.num_patches, self.in_dim, -1).transpose(1, 2)
         return x
-
 
 class TNT(nn.Module):
     """ Transformer in Transformer - https://arxiv.org/abs/2103.00112
@@ -243,7 +232,6 @@ class TNT(nn.Module):
         else:
             return x
 
-
 @register_model
 def tnt_t_patch16_224(pretrained=False, **kwargs):
     model = TNT(patch_size=16, embed_dim=192, in_dim=12, depth=12, num_heads=3, in_num_head=3,
@@ -254,7 +242,6 @@ def tnt_t_patch16_224(pretrained=False, **kwargs):
             model, num_classes=model.num_classes, in_chans=kwargs.get('in_chans', 3))
     return model
 
-
 @register_model
 def tnt_s_patch16_224(pretrained=False, **kwargs):
     model = TNT(patch_size=16, embed_dim=384, in_dim=24, depth=12, num_heads=6, in_num_head=4,
@@ -264,7 +251,6 @@ def tnt_s_patch16_224(pretrained=False, **kwargs):
         load_pretrained(
             model, num_classes=model.num_classes, in_chans=kwargs.get('in_chans', 3))
     return model
-
 
 @register_model
 def tnt_b_patch16_224(pretrained=False, **kwargs):

@@ -1,7 +1,5 @@
 """
 Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
 Introducing locality mechanism to "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows".
 """
 
@@ -13,7 +11,6 @@ from timm.models.registry import register_model
 from models.swin_transformer import window_partition, window_reverse, WindowAttention, PatchMerging, PatchEmbed
 from models.swin_transformer import SwinTransformer
 from models.localvit import LocalityFeedForward
-
 
 class Mlp(nn.Module):
     def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
@@ -32,7 +29,6 @@ class Mlp(nn.Module):
         x = self.fc2(x)
         x = self.drop(x)
         return x
-
 
 class SwinTransformerBlock(nn.Module):
     r""" Swin Transformer Block.
@@ -168,7 +164,6 @@ class SwinTransformerBlock(nn.Module):
         flops += self.dim * H * W
         return flops
 
-
 class BasicLayer(nn.Module):
     """ A basic Swin Transformer layer for one stage.
     Args:
@@ -238,7 +233,6 @@ class BasicLayer(nn.Module):
             flops += self.downsample.flops()
         return flops
 
-
 class LocalViT_swin(SwinTransformer):
 
     def __init__(self, img_size=224, patch_size=4, in_chans=3, num_classes=1000,
@@ -276,7 +270,6 @@ class LocalViT_swin(SwinTransformer):
             self.layers.append(layer)
 
         self.apply(self._init_weights)
-
 
 @register_model
 def localvit_swin_tiny_patch4_window7_224(pretrain=False, **kwargs):

@@ -1,10 +1,7 @@
 """
 Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
-Implementation of "Tokens-to-token vit: Training vision transformers from scratch on imagenet".
-Code borrowed from https://github.com/yitu-opensource/T2T-ViT
-
+The implementation of "Tokens-to-token vit: Training vision transformers from scratch on imagenet".
+From: https://github.com/yitu-opensource/T2T-ViT
 Take the standard Transformer as T2T Transformer
 """
 import torch.nn as nn
@@ -13,7 +10,6 @@ from models.t2t_vit_block import Mlp
 from models.localvit import LocalityFeedForward
 import math
 import torch
-
 
 class Attention(nn.Module):
     def __init__(self, dim, num_heads=8, in_dim = None, qkv_bias=False, qk_scale=None, attn_drop=0., proj_drop=0.):
@@ -64,7 +60,6 @@ class Token_transformer(nn.Module):
         x = x + self.drop_path(self.mlp(self.norm2(x)))
         return x
 
-
 class Token_transformer_local(nn.Module):
 
     def __init__(self, dim, in_dim, num_heads, mlp_ratio=1., qkv_bias=False, qk_scale=None, drop=0., attn_drop=0.,
@@ -83,4 +78,3 @@ class Token_transformer_local(nn.Module):
         x = x.transpose(1, 2).view(batch_size, embed_dim, patch_size, patch_size)   # (B, dim, 14, 14)
         x = self.conv(x).flatten(2).transpose(1, 2)                                 # (B, 196, dim)
         return x
-

@@ -1,9 +1,7 @@
 """
 Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
-Implementation of "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows".
-Code borrowed from https://github.com/microsoft/Swin-Transformer
+The implementation of "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows".
+From: https://github.com/microsoft/Swin-Transformer
 """
 
 import torch
@@ -11,7 +9,6 @@ import torch.nn as nn
 import torch.utils.checkpoint as checkpoint
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
 from timm.models.registry import register_model
-
 
 class Mlp(nn.Module):
     def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
@@ -31,7 +28,6 @@ class Mlp(nn.Module):
         x = self.drop(x)
         return x
 
-
 def window_partition(x, window_size):
     """
     Args:
@@ -44,7 +40,6 @@ def window_partition(x, window_size):
     x = x.view(B, H // window_size, window_size, W // window_size, window_size, C)
     windows = x.permute(0, 1, 3, 2, 4, 5).contiguous().view(-1, window_size, window_size, C)
     return windows
-
 
 def window_reverse(windows, window_size, H, W):
     """
@@ -60,7 +55,6 @@ def window_reverse(windows, window_size, H, W):
     x = windows.view(B, H // window_size, W // window_size, window_size, window_size, -1)
     x = x.permute(0, 1, 3, 2, 4, 5).contiguous().view(B, H, W, -1)
     return x
-
 
 class WindowAttention(nn.Module):
     r""" Window based multi-head self attention (W-MSA) module with relative position bias.
@@ -157,7 +151,6 @@ class WindowAttention(nn.Module):
         # x = self.proj(x)
         flops += N * self.dim * self.dim
         return flops
-
 
 class SwinTransformerBlock(nn.Module):
     r""" Swin Transformer Block.
@@ -285,7 +278,6 @@ class SwinTransformerBlock(nn.Module):
         flops += self.dim * H * W
         return flops
 
-
 class PatchMerging(nn.Module):
     r""" Patch Merging Layer.
     Args:
@@ -332,7 +324,6 @@ class PatchMerging(nn.Module):
         flops = H * W * self.dim
         flops += (H // 2) * (W // 2) * 4 * self.dim * 2 * self.dim
         return flops
-
 
 class BasicLayer(nn.Module):
     """ A basic Swin Transformer layer for one stage.
@@ -402,7 +393,6 @@ class BasicLayer(nn.Module):
             flops += self.downsample.flops()
         return flops
 
-
 class PatchEmbed(nn.Module):
     r""" Image to Patch Embedding
     Args:
@@ -448,7 +438,6 @@ class PatchEmbed(nn.Module):
         if self.norm is not None:
             flops += Ho * Wo * self.embed_dim
         return flops
-
 
 class SwinTransformer(nn.Module):
     r""" Swin Transformer
@@ -577,7 +566,6 @@ class SwinTransformer(nn.Module):
         flops += self.num_features * self.patches_resolution[0] * self.patches_resolution[1] // (2 ** self.num_layers)
         flops += self.num_features * self.num_classes
         return flops
-
 
 @register_model
 def swin_tiny_patch4_window7_224(pretrain=False, **kwargs):

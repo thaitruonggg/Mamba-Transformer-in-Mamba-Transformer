@@ -1,16 +1,13 @@
 """
 Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
-Implementation of "Tokens-to-token vit: Training vision transformers from scratch on imagenet".
-Code borrowed from https://github.com/yitu-opensource/T2T-ViT
+The implementation of "Tokens-to-token vit: Training vision transformers from scratch on imagenet".
+From: https://github.com/yitu-opensource/T2T-ViT
 """
 
 import torch
 import torch.nn as nn
 import numpy as np
 from timm.models.layers import DropPath
-
 
 class Mlp(nn.Module):
     def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
@@ -29,7 +26,6 @@ class Mlp(nn.Module):
         x = self.fc2(x)
         x = self.drop(x)
         return x
-
 
 class Attention(nn.Module):
     def __init__(self, dim, num_heads=8, qkv_bias=False, qk_scale=None, attn_drop=0., proj_drop=0.):
@@ -58,7 +54,6 @@ class Attention(nn.Module):
         x = self.proj_drop(x)
         return x
 
-
 class Block(nn.Module):
 
     def __init__(self, dim, num_heads, mlp_ratio=4., qkv_bias=False, qk_scale=None, drop=0., attn_drop=0.,
@@ -76,7 +71,6 @@ class Block(nn.Module):
         x = x + self.drop_path(self.attn(self.norm1(x)))
         x = x + self.drop_path(self.mlp(self.norm2(x)))
         return x
-
 
 def get_sinusoid_encoding(n_position, d_hid):
     ''' Sinusoid position encoding table '''

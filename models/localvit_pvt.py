@@ -1,14 +1,11 @@
 """
 Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
 Introducing locality mechanism to "Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions".
 """
 
 import torch
 import torch.nn as nn
 from functools import partial
-
 from timm.models.layers import DropPath, trunc_normal_
 from timm.models.registry import register_model
 from timm.models.vision_transformer import _cfg
@@ -19,7 +16,6 @@ import math
 __all__ = [
     'localvit_pvt_tiny'
 ]
-
 
 class Block(nn.Module):
 
@@ -56,7 +52,6 @@ class Block(nn.Module):
             x = x.transpose(1, 2).view(batch_size, embed_dim, patch_size, patch_size)  # (B, dim, 14, 14)
             x = self.conv(x).flatten(2).transpose(1, 2)  # (B, 196, dim)
         return x
-
 
 class LocalViT_PVT(PyramidVisionTransformer):
     def __init__(self, img_size=224, patch_size=16, in_chans=3, num_classes=1000, embed_dims=[64, 128, 256, 512],
@@ -100,7 +95,6 @@ class LocalViT_PVT(PyramidVisionTransformer):
 
         # init weights
         self.apply(self._init_weights)
-
 
 @register_model
 def localvit_pvt_tiny(pretrained=False, **kwargs):

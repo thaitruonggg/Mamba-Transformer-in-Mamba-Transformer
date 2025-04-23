@@ -1,15 +1,11 @@
 """
-Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
-Implementation of "DeiT: Data-efficient Image Transformers".
-Code borrowed from https://github.com/facebookresearch/deit
+The implementation of "DeiT: Data-efficient Image Transformers"
+From: https://github.com/facebookresearch/deit
 """
 
 import torch
 import torch.nn as nn
 from functools import partial
-
 from timm.models.vision_transformer import VisionTransformer, _cfg
 from timm.models.registry import register_model
 from timm.models.layers import trunc_normal_
@@ -21,7 +17,6 @@ __all__ = [
     'deit_base_distilled_patch16_224', 'deit_base_patch16_384',
     'deit_base_distilled_patch16_384',
 ]
-
 
 class DistilledVisionTransformer(VisionTransformer):
     def __init__(self, *args, **kwargs):
@@ -64,7 +59,6 @@ class DistilledVisionTransformer(VisionTransformer):
             # during inference, return the average of both classifier predictions
             return (x + x_dist) / 2
 
-
 @register_model
 def deit_tiny_patch16_224_ex6(pretrained=False, **kwargs):
     # the expanded Deit-T in Table 1
@@ -73,7 +67,6 @@ def deit_tiny_patch16_224_ex6(pretrained=False, **kwargs):
         norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
     model.default_cfg = _cfg()
     return model
-
 
 @register_model
 def deit_tiny_patch16_224(pretrained=False, **kwargs):
@@ -89,7 +82,6 @@ def deit_tiny_patch16_224(pretrained=False, **kwargs):
         model.load_state_dict(checkpoint["model"])
     return model
 
-
 @register_model
 def deit_small_patch16_224(pretrained=False, **kwargs):
     model = VisionTransformer(
@@ -103,7 +95,6 @@ def deit_small_patch16_224(pretrained=False, **kwargs):
         )
         model.load_state_dict(checkpoint["model"])
     return model
-
 
 @register_model
 def deit_base_patch16_224(pretrained=False, **kwargs):
@@ -119,7 +110,6 @@ def deit_base_patch16_224(pretrained=False, **kwargs):
         model.load_state_dict(checkpoint["model"])
     return model
 
-
 @register_model
 def deit_tiny_distilled_patch16_224(pretrained=False, **kwargs):
     model = DistilledVisionTransformer(
@@ -133,7 +123,6 @@ def deit_tiny_distilled_patch16_224(pretrained=False, **kwargs):
         )
         model.load_state_dict(checkpoint["model"])
     return model
-
 
 @register_model
 def deit_small_distilled_patch16_224(pretrained=False, **kwargs):
@@ -149,7 +138,6 @@ def deit_small_distilled_patch16_224(pretrained=False, **kwargs):
         model.load_state_dict(checkpoint["model"])
     return model
 
-
 @register_model
 def deit_base_distilled_patch16_224(pretrained=False, **kwargs):
     model = DistilledVisionTransformer(
@@ -164,7 +152,6 @@ def deit_base_distilled_patch16_224(pretrained=False, **kwargs):
         model.load_state_dict(checkpoint["model"])
     return model
 
-
 @register_model
 def deit_base_patch16_384(pretrained=False, **kwargs):
     model = VisionTransformer(
@@ -178,7 +165,6 @@ def deit_base_patch16_384(pretrained=False, **kwargs):
         )
         model.load_state_dict(checkpoint["model"])
     return model
-
 
 @register_model
 def deit_base_distilled_patch16_384(pretrained=False, **kwargs):

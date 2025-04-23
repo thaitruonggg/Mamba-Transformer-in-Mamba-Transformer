@@ -1,7 +1,5 @@
 """
 Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
 Introducing locality mechanism to "Tokens-to-token vit: Training vision transformers from scratch on imagenet".
 """
 import torch
@@ -31,7 +29,6 @@ default_cfgs = {
     'localvit_T2t_conv7': _cfg(),
 }
 
-
 class Block(nn.Module):
 
     def __init__(self, dim, num_heads, mlp_ratio=4., qkv_bias=False, qk_scale=None, drop=0., attn_drop=0.,
@@ -57,7 +54,6 @@ class Block(nn.Module):
         x = self.conv(x).flatten(2).transpose(1, 2)                                 # (B, 196, dim)
         x = torch.cat([cls_token, x], dim=1)
         return x
-
 
 class T2T_module_local(nn.Module):
     """
@@ -139,7 +135,6 @@ class LocalViT_T2T(T2T_ViT):
 
         self.apply(self._init_weights)
 
-
 @register_model
 def localvit_T2t_conv7(pretrained=False, **kwargs): # adopt performer for tokens to token
     if pretrained:
@@ -151,7 +146,3 @@ def localvit_T2t_conv7(pretrained=False, **kwargs): # adopt performer for tokens
         load_pretrained(
             model, num_classes=model.num_classes, in_chans=kwargs.get('in_chans', 3))
     return model
-
-
-
-

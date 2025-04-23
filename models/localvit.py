@@ -1,7 +1,5 @@
 """
 Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
 Introducing locality mechanism to "DeiT: Data-efficient Image Transformers".
 """
 import torch
@@ -12,7 +10,6 @@ from timm.models.vision_transformer import VisionTransformer
 from timm.models.layers import DropPath
 from timm.models.registry import register_model
 
-
 class h_sigmoid(nn.Module):
     def __init__(self, inplace=True):
         super(h_sigmoid, self).__init__()
@@ -21,7 +18,6 @@ class h_sigmoid(nn.Module):
     def forward(self, x):
         return self.relu(x + 3) / 6
 
-
 class h_swish(nn.Module):
     def __init__(self, inplace=True):
         super(h_swish, self).__init__()
@@ -29,7 +25,6 @@ class h_swish(nn.Module):
 
     def forward(self, x):
         return x * self.sigmoid(x)
-
 
 class ECALayer(nn.Module):
     def __init__(self, channel, gamma=2, b=1, sigmoid=True):
@@ -51,7 +46,6 @@ class ECALayer(nn.Module):
         y = self.sigmoid(y)
         return x * y.expand_as(x)
 
-
 class SELayer(nn.Module):
     def __init__(self, channel, reduction=4):
         super(SELayer, self).__init__()
@@ -68,7 +62,6 @@ class SELayer(nn.Module):
         y = self.avg_pool(x).view(b, c)
         y = self.fc(y).view(b, c, 1, 1)
         return x * y
-
 
 class LocalityFeedForward(nn.Module):
     def __init__(self, in_dim, out_dim, stride, expand_ratio=4., act='hs+se', reduction=4,
@@ -131,7 +124,6 @@ class LocalityFeedForward(nn.Module):
         x = x + self.conv(x)
         return x
 
-
 class Attention(nn.Module):
     def __init__(self, dim, num_heads=8, qkv_bias=False, qk_scale=None, qk_reduce=1, attn_drop=0., proj_drop=0.):
         """
@@ -177,7 +169,6 @@ class Attention(nn.Module):
         x = self.proj_drop(x)
         return x
 
-
 class Block(nn.Module):
     def __init__(self, dim, num_heads, mlp_ratio=4., qkv_bias=False, qk_scale=None, qk_reduce=1, drop=0., attn_drop=0.,
                  drop_path=0., norm_layer=nn.LayerNorm, act='hs+se', reduction=4, wo_dp_conv=False, dp_first=False):
@@ -204,7 +195,6 @@ class Block(nn.Module):
         # Concatenate the class token and the newly computed image token.
         x = torch.cat([cls_token, x], dim=1)
         return x
-
 
 class TransformerLayer(nn.Module):
     def __init__(self, dim, num_heads, mlp_ratio=4., qkv_bias=False, qk_scale=None, drop=0., attn_drop=0.,
@@ -244,7 +234,6 @@ class TransformerLayer(nn.Module):
         x = torch.cat([cls_token, x], dim=1)
         return x
 
-
 class LocalVisionTransformer(VisionTransformer):
     """ Vision Transformer with support for patch or hybrid CNN input stage
     """
@@ -281,15 +270,12 @@ class LocalVisionTransformer(VisionTransformer):
 
         self.apply(self._init_weights)
 
-
-
 @register_model
 def localvit_tiny_mlp6_act1(pretrained=False, **kwargs):
     model = LocalVisionTransformer(
         patch_size=16, embed_dim=192, depth=12, num_heads=4, mlp_ratio=6, qkv_bias=True, act=1,
         norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
     return model
-
 
 # reduction = 4
 @register_model
@@ -306,7 +292,6 @@ def localvit_tiny_mlp4_act3_r192(pretrained=False, **kwargs):
         patch_size=16, embed_dim=192, depth=12, num_heads=4, mlp_ratio=4, qkv_bias=True, act=3, reduction=192,
         norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
     return model
-
 
 @register_model
 def localvit_small_mlp4_act3_r384(pretrained=False, **kwargs):

@@ -1,13 +1,9 @@
 """
 Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
 LNL : Introducing locality mechanism into Transformer in Transformer (TNT)
-
 """
 import torch
 import torch.nn as nn
-
 from timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from timm.models.helpers import load_pretrained
 from timm.models.layers import DropPath, trunc_normal_
@@ -16,7 +12,6 @@ from timm.models.registry import register_model
 from models.localvit import LocalityFeedForward
 from models.tnt import Attention, TNT
 import math
-
 
 def _cfg(url='', **kwargs):
     return {
@@ -27,7 +22,6 @@ def _cfg(url='', **kwargs):
         'first_conv': 'pixel_embed.proj', 'classifier': 'head',
         **kwargs
     }
-
 
 default_cfgs = {
     'tnt_t_conv_patch16_224': _cfg(
@@ -40,7 +34,6 @@ default_cfgs = {
         mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5),
     ),
 }
-
 
 class Block(nn.Module):
     """ TNT Block
@@ -70,7 +63,6 @@ class Block(nn.Module):
 
         self.conv = LocalityFeedForward(dim, dim, 1, mlp_ratio, reduction=dim)
 
-
     def forward(self, pixel_embed, patch_embed):
         # inner
         x, _ = self.attn_in(self.norm_in(pixel_embed))
@@ -90,7 +82,6 @@ class Block(nn.Module):
         patch_embed = torch.cat([cls_token, patch_embed], dim=1)
 
         return pixel_embed, patch_embed, weights
-
 
 class LocalViT_TNT(TNT):
     """ Transformer in Transformer - https://arxiv.org/abs/2103.00112
@@ -116,7 +107,6 @@ class LocalViT_TNT(TNT):
 
         self.apply(self._init_weights)
 
-
 @register_model
 def LNL_Ti(pretrained=False, **kwargs):
     model = LocalViT_TNT(patch_size=16, embed_dim=192, in_dim=12, depth=12, num_heads=3, in_num_head=3,
@@ -126,7 +116,6 @@ def LNL_Ti(pretrained=False, **kwargs):
         load_pretrained(
             model, num_classes=model.num_classes, in_chans=kwargs.get('in_chans', 3))
     return model
-
 
 @register_model
 def LNL_S(pretrained=False, **kwargs):

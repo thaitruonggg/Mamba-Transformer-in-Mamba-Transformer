@@ -1,15 +1,11 @@
 """
-Author: Omid Nejati
-Email: omid_nejaty@alumni.iust.ac.ir
-
-Implementation of "Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions".
-Code borrowed from https://github.com/whai362/PVT
+The implementation of "Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions".
+From: https://github.com/whai362/PVT
 """
 
 import torch
 import torch.nn as nn
 from functools import partial
-
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
 from timm.models.registry import register_model
 from timm.models.vision_transformer import _cfg
@@ -17,7 +13,6 @@ from timm.models.vision_transformer import _cfg
 __all__ = [
     'pvt_tiny', 'pvt_small', 'pvt_medium', 'pvt_large'
 ]
-
 
 class Mlp(nn.Module):
     def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
@@ -36,7 +31,6 @@ class Mlp(nn.Module):
         x = self.fc2(x)
         x = self.drop(x)
         return x
-
 
 class Attention(nn.Module):
     def __init__(self, dim, num_heads=8, qkv_bias=False, qk_scale=None, attn_drop=0., proj_drop=0., sr_ratio=1):
@@ -82,7 +76,6 @@ class Attention(nn.Module):
 
         return x
 
-
 class Block(nn.Module):
 
     def __init__(self, dim, num_heads, mlp_ratio=4., qkv_bias=False, qk_scale=None, drop=0., attn_drop=0.,
@@ -104,7 +97,6 @@ class Block(nn.Module):
         x = x + self.drop_path(self.mlp(self.norm2(x)))
 
         return x
-
 
 class PatchEmbed(nn.Module):
     """ Image to Patch Embedding
@@ -132,7 +124,6 @@ class PatchEmbed(nn.Module):
         H, W = H // self.patch_size[0], W // self.patch_size[1]
 
         return x, (H, W)
-
 
 class PyramidVisionTransformer(nn.Module):
     def __init__(self, img_size=224, patch_size=16, in_chans=3, num_classes=1000, embed_dims=[64, 128, 256, 512],
@@ -301,7 +292,6 @@ class PyramidVisionTransformer(nn.Module):
 
         return x
 
-
 def _conv_filter(state_dict, patch_size=16):
     """ convert patch embedding weight from manual patchify + linear proj to conv"""
     out_dict = {}
@@ -311,7 +301,6 @@ def _conv_filter(state_dict, patch_size=16):
         out_dict[k] = v
 
     return out_dict
-
 
 @register_model
 def pvt_tiny(pretrained=False, **kwargs):
@@ -323,7 +312,6 @@ def pvt_tiny(pretrained=False, **kwargs):
 
     return model
 
-
 @register_model
 def pvt_small(pretrained=False, **kwargs):
     model = PyramidVisionTransformer(
@@ -332,7 +320,6 @@ def pvt_small(pretrained=False, **kwargs):
     model.default_cfg = _cfg()
 
     return model
-
 
 @register_model
 def pvt_medium(pretrained=False, **kwargs):
@@ -344,7 +331,6 @@ def pvt_medium(pretrained=False, **kwargs):
 
     return model
 
-
 @register_model
 def pvt_large(pretrained=False, **kwargs):
     model = PyramidVisionTransformer(
@@ -354,7 +340,6 @@ def pvt_large(pretrained=False, **kwargs):
     model.default_cfg = _cfg()
 
     return model
-
 
 @register_model
 def pvt_huge_v2(pretrained=False, **kwargs):
