@@ -133,7 +133,7 @@ def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model
 
     plt.tight_layout()
     plt.savefig(f'{model_name}_training_progress.png')
-    plt.show()
+    #plt.show()
 
 # TT100K
 class TT100KDataset(Dataset):
@@ -219,7 +219,7 @@ transform = transforms.Compose([
 ])
 
 # Define paths
-data_dir = '/kaggle/input/tt100k_2021'  # Base directory for TT100K dataset
+data_dir = 'tt100k_2021'  # Base directory for TT100K dataset
 annotation_file = os.path.join(data_dir, 'annotations_all.json')
 
 # Create datasets
@@ -257,6 +257,7 @@ classes = trainset.classes
 print(f"Number of classes: {len(classes)}")
 print(f"Training set size: {len(trainset)}")
 print(f"Test set size: {len(testset)}")
+print("--------------------------------------------------------------------")
 
 def normalize_image(image):
     image_min = image.min()
@@ -264,7 +265,6 @@ def normalize_image(image):
     image.clamp_(min=image_min, max=image_max)
     image.add_(-image_min).div_(image_max - image_min + 1e-5)
     return image
-
 
 def plot_images(images, labels, classes, normalize=True):
     n_images = len(images)
@@ -295,13 +295,13 @@ plot_images(batch[0], batch[1], classes)
 from LNL import LNL_Ti as small
 
 model = small(pretrained=False)
-model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True)
+model.head = torch.nn.Linear(in_features=192, out_features=232, bias=True)
 model = model.cuda()
 
 # Train Locality-iN-Locality
-num_epochs = 100
+num_epochs = 200
 loss = nn.CrossEntropyLoss()
-optimizer = optim.SGD(model.parameters(), lr=0.007, momentum=0.9)
+optimizer = optim.SGD(model.parameters(), lr=0.003, momentum=0.9)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 
 lnl_accuracy_list = []
@@ -343,8 +343,8 @@ for epoch in range(num_epochs):
     lnl_test_loss_list.append(test_loss)
     lnl_accuracy_list.append(test_accuracy)
     highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
+    print("--------------------------------------------------------------------")
 
-print("--------------------------------------------------------------------")
 print("Final Evaluation of Locality-iN-Locality Model")
 # Final evaluation with per-class accuracy
 final_loss, final_accuracy = evaluate_model(
@@ -365,17 +365,17 @@ import torch.optim as optim
 
 # Initialize model
 model = small(pretrained=False)
-model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True)  # 43 classes for GTSRB
+model.head = torch.nn.Linear(in_features=192, out_features=232, bias=True)  # 43 classes for GTSRB
 model = model.cuda()
 
 # Hyperparameters
-num_epochs = 100
+num_epochs = 200
 moex_lam = .9
 moex_prob = .7
 
 # Loss and optimizer
 loss = nn.CrossEntropyLoss()
-optimizer = optim.SGD(model.parameters(), lr=0.007, momentum=0.9)
+optimizer = optim.SGD(model.parameters(), lr=0.003, momentum=0.9)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 
 moex_accuracy_list = []
@@ -429,8 +429,8 @@ for epoch in range(num_epochs):
     moex_test_loss_list.append(test_loss)
     moex_accuracy_list.append(test_accuracy)
     moex_highest_acc, moex_best_epoch = track_highest_accuracy(moex_accuracy_list)
+    print("--------------------------------------------------------------------")
 
-print("--------------------------------------------------------------------")
 print("After applying MoEx")
 print("Final Evaluation of LNL-MoEx Model")
 # Final evaluation with per-class accuracy
@@ -468,7 +468,7 @@ plt.legend()
 
 plt.tight_layout()
 plt.savefig('model_comparison.png')
-plt.show()
+#plt.show()
 
 torch.cuda.empty_cache()
 
