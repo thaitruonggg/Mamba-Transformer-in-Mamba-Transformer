@@ -16,10 +16,7 @@ from torchsummary import summary
 import shutil
 from ptflops import get_model_complexity_info
 import warnings
-
 warnings.filterwarnings("ignore")
-import torch
-
 torch.autograd.set_detect_anomaly(True)
 torch.cuda.empty_cache()
 
@@ -263,7 +260,7 @@ classes = trainset.classes
 plot_images(batch[0], batch[1], classes)
 
 # Load and modify model
-from LNL import LNL_Ti as small
+from MiM import MiM_Ti as small
 
 model = small(pretrained=False)
 model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True)
@@ -329,7 +326,7 @@ plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_lis
 torch.cuda.empty_cache()
 
 # Train with MoEx
-from LNL_MoEx import LNL_MoEx_Ti as small
+from MiM_MoEx import MiM_MoEx_Ti as small
 import torch
 import torch.nn as nn
 import torch.optim as optim
