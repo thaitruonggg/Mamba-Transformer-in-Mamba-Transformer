@@ -26,7 +26,6 @@ print("Torchattacks", torchattacks.__version__)
 print("Numpy", np.__version__)
 print("------------------------------------------------")
 
-
 def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, num_epochs, train_on_gpu=True,
                    display_per_class=False):
     test_loss = 0.0
@@ -57,7 +56,6 @@ def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, nu
     overall_accuracy = 100. * np.sum(class_correct) / np.sum(class_total)
 
     # Print summary
-    # Only display per-class accuracy if display_per_class is True
     if display_per_class:
         print("Per-Class Accuracy:")
         for i in range(num_classes):
@@ -72,7 +70,6 @@ def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, nu
 
     model.train()  # Switch back to training mode
     return test_loss, overall_accuracy
-
 
 def track_highest_accuracy(accuracy_list):
     """
@@ -89,7 +86,6 @@ def track_highest_accuracy(accuracy_list):
 
     print(f"Highest accuracy: {highest_accuracy:.2f}% achieved at epoch {epoch_with_highest}")
     return highest_accuracy, epoch_with_highest
-
 
 def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model_name):
     """
@@ -125,7 +121,7 @@ def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model
 
     plt.tight_layout()
     plt.savefig(f'{model_name}_training_progress.png')
-    plt.show()
+    #plt.show()
 
 # GTSRB
 # Organize test data
@@ -172,8 +168,8 @@ test_loader = torch.utils.data.DataLoader(dataset=testset,
                                           batch_size=batch_size,
                                           shuffle=True
                                           )
-'''
-# GTSRB class names (43 classes)
+
+# GTSRB class names
 gtsrb_class_names = [
     "Speed limit (20km/h)", "Speed limit (30km/h)", "Speed limit (50km/h)",
     "Speed limit (60km/h)", "Speed limit (80km/h)", "End of speed limit (80km/h)",
@@ -199,18 +195,15 @@ def get_class_distribution(dataset, name="Dataset"):
     for _, label in dataset.samples:
         class_counts[label] = class_counts.get(label, 0) + 1
     return class_counts
-# Get class distributions
 train_class_counts = get_class_distribution(trainset, "Training Set")
 test_class_counts = get_class_distribution(testset, "Test Set")
-# Prepare data for plotting
-num_classes = len(gtsrb_class_names)  # Should be 43
+num_classes = len(gtsrb_class_names)
 train_counts = [train_class_counts.get(i, 0) for i in range(num_classes)]
 test_counts = [test_class_counts.get(i, 0) for i in range(num_classes)]
 # Plotting
-fig, ax = plt.subplots(figsize=(15, 8))  # Increased height to accommodate vertical labels
+fig, ax = plt.subplots(figsize=(15, 8))
 x = np.arange(num_classes)
-width = 0.35  # Width of the bars
-# Plot bars for train and test sets
+width = 0.35
 ax.bar(x - width/2, train_counts, width, label='Training Set', color='skyblue')
 ax.bar(x + width/2, test_counts, width, label='Test Set', color='salmon')
 # Customize the plot
@@ -220,11 +213,8 @@ ax.set_title('Number of Images per Class in GTSRB Dataset')
 ax.set_xticks(x)
 ax.set_xticklabels(gtsrb_class_names, rotation=90, ha='center', fontsize=8)  # Vertical labels
 ax.legend()
-# Adjust layout to prevent label cutoff
 plt.tight_layout()
-# Display the plot
 plt.show()
-'''
 
 def normalize_image(image):
     image_min = image.min()
@@ -232,7 +222,6 @@ def normalize_image(image):
     image.clamp_(min=image_min, max=image_max)
     image.add_(-image_min).div_(image_max - image_min + 1e-5)
     return image
-
 
 def plot_images(images, labels, classes, normalize=True):
     n_images = len(images)
@@ -263,10 +252,10 @@ plot_images(batch[0], batch[1], classes)
 from MiM import MiM_Ti as small
 
 model = small(pretrained=False)
-model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True)
+model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True) # out_features = 43 classes for GTSRB
 model = model.cuda()
 
-# Train Locality-iN-Locality
+# Train Mamba-Transformer in Mamba-Transformer
 num_epochs = 100
 loss = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.007, momentum=0.9)
@@ -305,7 +294,7 @@ for epoch in range(num_epochs):
     avg_train_loss = running_loss / len(train_loader)
     lnl_train_loss_list.append(avg_train_loss)
 
-    # Add evaluation after each epoch (without per-class accuracy)
+    # Add evaluation after each epoch
     test_loss, test_accuracy = evaluate_model(
         model, test_loader, loss, testset.classes, batch_size, epoch, num_epochs, display_per_class=False)
     lnl_test_loss_list.append(test_loss)
@@ -314,15 +303,12 @@ for epoch in range(num_epochs):
 
 print("--------------------------------------------------------------------")
 print("Final Evaluation of Locality-iN-Locality Model")
-# Final evaluation with per-class accuracy
 final_loss, final_accuracy = evaluate_model(
     model, test_loader, loss, testset.classes, batch_size, num_epochs - 1, num_epochs, display_per_class=True)
 highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
 print("--------------------------------------------------------------------")
 
-# Plot training progress for LNL model
 plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_list, "MiM")
-
 torch.cuda.empty_cache()
 
 # Train with MoEx
@@ -333,7 +319,7 @@ import torch.optim as optim
 
 # Initialize model
 model = small(pretrained=False)
-model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True)  # 43 classes for GTSRB
+model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True)  # out_features = 43 classes for GTSRB
 model = model.cuda()
 
 # Hyperparameters
@@ -389,7 +375,7 @@ for epoch in range(num_epochs):
     avg_train_loss = running_loss / len(train_loader)
     moex_train_loss_list.append(avg_train_loss)
 
-    # Add evaluation after each epoch (without per-class accuracy)
+    # Add evaluation after each epoch
     test_loss, test_accuracy = evaluate_model(
         model, test_loader, loss, testset.classes, batch_size, epoch, num_epochs, display_per_class=False
     )
@@ -401,16 +387,13 @@ for epoch in range(num_epochs):
 print("--------------------------------------------------------------------")
 print("After applying MoEx")
 print("Final Evaluation of LNL-MoEx Model")
-# Final evaluation with per-class accuracy
 final_loss, final_accuracy = evaluate_model(
     model, test_loader, loss, testset.classes, batch_size, num_epochs - 1, num_epochs, display_per_class=True)
 moex_highest_acc, moex_best_epoch = track_highest_accuracy(moex_accuracy_list)
 print("--------------------------------------------------------------------")
 
-# Plot training progress for LNL-MoEx model
 plot_training_progress(moex_train_loss_list, moex_test_loss_list, moex_accuracy_list, "MiM-MoEx")
 
-# Plot comparison between the two models
 plt.figure(figsize=(15, 6))
 
 # Accuracy comparison
@@ -433,11 +416,9 @@ plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.grid(True, linestyle='--', alpha=0.7)
 plt.legend()
-
 plt.tight_layout()
 plt.savefig('model_comparison.png')
-plt.show()
-
+#plt.show()
 torch.cuda.empty_cache()
 
 # Model complexity
