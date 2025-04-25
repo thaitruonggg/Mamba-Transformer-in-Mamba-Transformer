@@ -238,7 +238,7 @@ testset = TT100KDataset(
 )
 
 # Create data loaders
-batch_size = 50
+batch_size = 32
 
 train_loader = DataLoader(
     dataset=trainset,
@@ -299,7 +299,7 @@ model.head = torch.nn.Linear(in_features=192, out_features=232, bias=True)
 model = model.cuda()
 
 # Train Locality-iN-Locality
-num_epochs = 200
+num_epochs = 100
 loss = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.003, momentum=0.9)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
@@ -365,11 +365,11 @@ import torch.optim as optim
 
 # Initialize model
 model = small(pretrained=False)
-model.head = torch.nn.Linear(in_features=192, out_features=232, bias=True)  # 43 classes for GTSRB
+model.head = torch.nn.Linear(in_features=192, out_features=232, bias=True)
 model = model.cuda()
 
 # Hyperparameters
-num_epochs = 200
+num_epochs = 100
 moex_lam = .9
 moex_prob = .7
 
