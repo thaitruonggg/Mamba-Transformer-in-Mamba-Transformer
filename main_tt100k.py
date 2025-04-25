@@ -213,7 +213,7 @@ transform = transforms.Compose([
 ])
 
 # Define paths
-data_dir = 'tt100k_2021'  # Base directory for TT100K dataset
+data_dir = 'TT100K'  # Base directory for TT100K dataset
 annotation_file = os.path.join(data_dir, 'annotations_all.json')
 
 # Create datasets
@@ -246,8 +246,112 @@ test_loader = DataLoader(
     shuffle=False
 )
 
+
+def plot_class_distribution(trainset, testset, classes, min_count=1, figsize=(20, 10), save_path=None):
+    """
+    Plot the distribution of classes in train and test sets, skipping empty classes.
+
+    Args:
+        trainset (TT100KDataset): The training dataset
+        testset (TT100KDataset): The test dataset
+        classes (list): List of class names
+        min_count (int): Minimum count to include a class in the plot
+        figsize (tuple): Figure size (width, height)
+        save_path (str, optional): Path to save the figure. If None, the figure is displayed.
+
+    Returns:
+        dict: Dictionary with class counts for train and test sets
+    """
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import pandas as pd
+    from collections import Counter
+
+    # Count instances of each class in train and test sets
+    train_labels = [label for label in trainset.labels]
+    test_labels = [label for label in testset.labels]
+
+    train_counter = Counter(train_labels)
+    test_counter = Counter(test_labels)
+
+    # Create a dictionary with all classes
+    class_counts = {}
+    for i, class_name in enumerate(classes):
+        train_count = train_counter.get(i, 0)
+        test_count = test_counter.get(i, 0)
+        total_count = train_count + test_count
+
+        if total_count >= min_count:  # Skip classes with fewer than min_count instances
+            class_counts[class_name] = {
+                'train': train_count,
+                'test': test_count,
+                'total': total_count
+            }
+
+    # Sort classes by total count (descending)
+    sorted_classes = sorted(class_counts.keys(), key=lambda x: class_counts[x]['total'], reverse=True)
+
+    # Create dataframe for plotting
+    df_data = []
+    for class_name in sorted_classes:
+        df_data.append({
+            'class': class_name,
+            'train': class_counts[class_name]['train'],
+            'test': class_counts[class_name]['test']
+        })
+
+    df = pd.DataFrame(df_data)
+
+    # Plot
+    plt.figure(figsize=figsize)
+
+    # Create grouped bar chart
+    bar_width = 0.4
+    index = np.arange(len(sorted_classes))
+
+    plt.bar(index - bar_width / 2, df['train'], bar_width, label='Train', color='#3498db')
+    plt.bar(index + bar_width / 2, df['test'], bar_width, label='Test', color='#e74c3c')
+
+    # Add counts above bars
+    for i, v in enumerate(df['train']):
+        if v > 0:
+            plt.text(i - bar_width / 2, v + max(df['train']) * 0.01, str(v),
+                     color='black', fontweight='bold', ha='center')
+
+    for i, v in enumerate(df['test']):
+        if v > 0:
+            plt.text(i + bar_width / 2, v + max(df['test']) * 0.01, str(v),
+                     color='black', fontweight='bold', ha='center')
+
+    # Add labels and legend
+    plt.xlabel('Traffic Sign Classes', fontsize=12)
+    plt.ylabel('Number of Instances', fontsize=12)
+    plt.title('Distribution of Traffic Sign Classes in TT100K Dataset', fontsize=16)
+    plt.xticks(index, df['class'], rotation=90, fontsize=8)
+    plt.legend()
+
+    # Add grid for easier reading
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+    # Adjust layout
+    plt.tight_layout()
+
+    plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    print(f"Figure saved to {save_path}")
+    plt.show()
+
+    # Print summary statistics
+    print(f"Total classes: {len(classes)}")
+    print(f"Classes with at least {min_count} instance(s): {len(sorted_classes)}")
+    print(f"Empty classes: {len(classes) - len(sorted_classes)}")
+    print(f"Total instances - Train: {sum(train_counter.values())}, Test: {sum(test_counter.values())}")
+
+    # Return the counts for further analysis if needed
+    return class_counts
+
 # Get classes from the dataset
 classes = trainset.classes
+class_distribution = plot_class_distribution(trainset, testset, classes, min_count=100, save_path="class_distribution.png")
 print(f"Number of classes: {len(classes)}")
 print(f"Training set size: {len(trainset)}")
 print(f"Test set size: {len(testset)}")
