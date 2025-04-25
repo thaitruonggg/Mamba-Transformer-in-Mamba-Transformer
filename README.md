@@ -1,6 +1,6 @@
 # MiM: Mamba-Transformer in Mamba-Transformer
 
-Official implementation of
+Official implementation of Mamba-Transformer in Mamba-Transformer
 
 ## Authors
 
