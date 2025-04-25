@@ -34,7 +34,6 @@ print("Torchattacks", torchattacks.__version__)
 print("Numpy", np.__version__)
 print("------------------------------------------------")
 
-
 def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, num_epochs, train_on_gpu=True,
                    display_per_class=False):
     test_loss = 0.0
@@ -65,7 +64,6 @@ def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, nu
     overall_accuracy = 100. * np.sum(class_correct) / np.sum(class_total)
 
     # Print summary
-    # Only display per-class accuracy if display_per_class is True
     if display_per_class:
         print("Per-Class Accuracy:")
         for i in range(num_classes):
@@ -80,7 +78,6 @@ def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, nu
 
     model.train()  # Switch back to training mode
     return test_loss, overall_accuracy
-
 
 def track_highest_accuracy(accuracy_list):
     """
@@ -97,7 +94,6 @@ def track_highest_accuracy(accuracy_list):
 
     print(f"Highest accuracy: {highest_accuracy:.2f}% achieved at epoch {epoch_with_highest}")
     return highest_accuracy, epoch_with_highest
-
 
 def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model_name):
     """
@@ -208,9 +204,7 @@ class TT100KDataset(Dataset):
             cropped_image = self.transform(cropped_image)
 
         label = self.labels[idx]
-
         return cropped_image, label
-
 
 # Define data transformations
 transform = transforms.Compose([
