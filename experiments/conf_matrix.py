@@ -20,49 +20,51 @@ def draw_confusion_matrix(data=None):
     if data is None:
         # Parse the provided data
         data = {
-            0: (60, 60),  # Class 0 (0000): 100.00% (60/60)
-            1: (719, 720),  # Class 1 (0001): 99.86% (719/720)
-            2: (748, 750),  # Class 2 (0002): 99.73% (748/750)
-            3: (432, 450),  # Class 3 (0003): 96.00% (432/450)
-            4: (655, 660),  # Class 4 (0004): 99.24% (655/660)
-            5: (628, 630),  # Class 5 (0005): 99.68% (628/630)
-            6: (135, 150),  # Class 6 (0006): 90.00% (135/150)
-            7: (450, 450),  # Class 7 (0007): 100.00% (450/450)
-            8: (419, 450),  # Class 8 (0008): 93.11% (419/450)
-            9: (480, 480),  # Class 9 (0009): 100.00% (480/480)
-            10: (659, 660),  # Class 10 (0010): 99.85% (659/660)
-            11: (420, 420),  # Class 11 (0011): 100.00% (420/420)
-            12: (678, 690),  # Class 12 (0012): 98.26% (678/690)
-            13: (718, 720),  # Class 13 (0013): 99.72% (718/720)
-            14: (270, 270),  # Class 14 (0014): 100.00% (270/270)
-            15: (210, 210),  # Class 15 (0015): 100.00% (210/210)
-            16: (150, 150),  # Class 16 (0016): 100.00% (150/150)
-            17: (348, 360),  # Class 17 (0017): 96.67% (348/360)
-            18: (357, 390),  # Class 18 (0018): 91.54% (357/390)
-            19: (59, 60),  # Class 19 (0019): 98.33% (59/60)
-            20: (90, 90),  # Class 20 (0020): 100.00% (90/90)
-            21: (80, 90),  # Class 21 (0021): 88.89% (80/90)
-            22: (110, 120),  # Class 22 (0022): 91.67% (110/120)
-            23: (150, 150),  # Class 23 (0023): 100.00% (150/150)
-            24: (87, 90),  # Class 24 (0024): 96.67% (87/90)
-            25: (463, 480),  # Class 25 (0025): 96.46% (463/480)
-            26: (170, 180),  # Class 26 (0026): 94.44% (170/180)
-            27: (51, 60),  # Class 27 (0027): 85.00% (51/60)
-            28: (150, 150),  # Class 28 (0028): 100.00% (150/150)
-            29: (90, 90),  # Class 29 (0029): 100.00% (90/90)
-            30: (145, 150),  # Class 30 (0030): 96.67% (145/150)
-            31: (270, 270),  # Class 31 (0031): 100.00% (270/270)
-            32: (60, 60),  # Class 32 (0032): 100.00% (60/60)
-            33: (209, 210),  # Class 33 (0033): 99.52% (209/210)
-            34: (120, 120),  # Class 34 (0034): 100.00% (120/120)
-            35: (390, 390),  # Class 35 (0035): 100.00% (390/390)
-            36: (116, 120),  # Class 36 (0036): 96.67% (116/120)
-            37: (60, 60),  # Class 37 (0037): 100.00% (60/60)
-            38: (686, 690),  # Class 38 (0038): 99.42% (686/690)
-            39: (88, 90),  # Class 39 (0039): 97.78% (88/90)
-            40: (86, 90),  # Class 40 (0040): 95.56% (86/90)
-            41: (60, 60),  # Class 41 (0041): 100.00% (60/60)
-            42: (85, 90),  # Class 42 (0042): 94.44% (85/90)
+            0: (276, 278),  # Class 0 (pl80): 99.28% (276/278),
+            2: (38, 39),  # Class 2 (p6): 97.44% (38/39),
+            12: (125, 125),  # Class 12 (p5): 100.00% (125/125),
+            13: (39, 39),  # Class 13 (pm55): 100.00% (39/39),
+            14: (279, 281),  # Class 14 (pl60): 99.29% (279/281),
+            15: (133, 136),  # Class 15 (ip): 97.79% (133/136),
+            16: (515, 520),  # Class 16 (p11): 99.04% (515/520),
+            19: (130, 134),  # Class 19 (i2r): 97.01% (130/134),
+            22: (110, 110),  # Class 22 (p23): 100.00% (110/110),
+            39: (46, 46),  # Class 39 (pg): 100.00% (46/46),
+            42: (97, 97),  # Class 42 (il80): 100.00% (97/97),
+            50: (36, 37),  # Class 50 (ph4): 97.30% (36/37),
+            52: (237, 237),  # Class 52 (i4): 100.00% (237/237),
+            55: (45, 45),  # Class 55 (pl70): 100.00% (45/45),
+            61: (671, 673),  # Class 61 (pne): 99.70% (671/673),
+            64: (60, 63),  # Class 64 (ph4.5): 95.24% (60/63),
+            65: (68, 69),  # Class 65 (p12): 98.55% (68/69),
+            66: (58, 61),  # Class 66 (p3): 95.08% (58/61),
+            68: (204, 208),  # Class 68 (pl5): 98.08% (204/208),
+            69: (31, 31),  # Class 69 (w13): 100.00% (31/31),
+            72: (99, 100),  # Class 72 (i4l): 99.00% (99/100),
+            85: (211, 212),  # Class 85 (pl30): 99.53% (211/212),
+            110: (95, 98),  # Class 110 (p10): 96.94% (95/98),
+            111: (1006, 1007),  # Class 111 (pn): 99.90% (1006/1007),
+            118: (63, 63),  # Class 118 (w55): 100.00% (63/63),
+            128: (258, 262),  # Class 128 (p26): 98.47% (258/262),
+            134: (101, 110),  # Class 134 (p13): 91.82% (101/110),
+            135: (63, 63),  # Class 135 (pr40): 100.00% (63/63),
+            138: (57, 57),  # Class 138 (pl20): 100.00% (57/57),
+            145: (31, 32),  # Class 145 (pm30): 96.88% (31/32),
+            148: (450, 455),  # Class 148 (pl40): 98.90% (450/455),
+            158: (135, 137),  # Class 158 (i2): 98.54% (135/137),
+            162: (85, 87),  # Class 162 (pl120): 97.70% (85/87),
+            168: (37, 37),  # Class 168 (w32): 100.00% (37/37),
+            170: (42, 43),  # Class 170 (ph5): 97.67% (42/43),
+            175: (138, 141),  # Class 175 (il60): 97.87% (138/141),
+            176: (124, 125),  # Class 176 (w57): 99.20% (124/125),
+            179: (214, 215),  # Class 179 (pl100): 99.53% (214/215),
+            183: (62, 63),  # Class 183 (w59): 98.41% (62/63),
+            188: (39, 39),  # Class 188 (il100): 100.00% (39/39),
+            193: (34, 34),  # Class 193 (p19): 100.00% (34/34),
+            216: (46, 49),  # Class 216 (pm20): 93.88% (46/49),
+            220: (512, 515),  # Class 220 (i5): 99.42% (512/515),
+            223: (47, 47),  # Class 223 (p27): 100.00% (47/47),
+            224: (354, 355),  # Class 224 (pl50): 99.72% (354/355)
         }
 
     # Calculate total number of samples and overall accuracy
@@ -70,15 +72,24 @@ def draw_confusion_matrix(data=None):
     total_samples = sum(total for _, total in data.values())
     overall_accuracy = total_correct / total_samples * 100
 
-    num_classes = len(data)
+    # Get the actual class indices from the data dictionary
+    class_indices = sorted(data.keys())
+    num_classes = len(class_indices)
 
-    # Create confusion matrix
+    # Create a mapping from actual class indices to sequential indices (0 to num_classes-1)
+    class_to_idx = {cls: i for i, cls in enumerate(class_indices)}
+    idx_to_class = {i: cls for cls, i in class_to_idx.items()}
+
+    # Create confusion matrix with the correct dimensions
     cm = np.zeros((num_classes, num_classes))
 
     for cls in data:
         correct, total = data[cls]
+        # Get the sequential index for this class
+        seq_idx = class_to_idx[cls]
+
         # Place correct predictions on diagonal
-        cm[cls, cls] = correct
+        cm[seq_idx, seq_idx] = correct
 
         # Since we don't know how the remaining samples were misclassified,
         # we'll just note that they were incorrect but not specify where they went
@@ -87,18 +98,18 @@ def draw_confusion_matrix(data=None):
         # For visualization purposes, we'll distribute the errors evenly
         # Uncomment this code if you want to visualize misclassifications
         # if incorrect > 0:
-        #     indices = [i for i in range(num_classes) if i != cls]
+        #     indices = [i for i in range(num_classes) if i != seq_idx]
         #     for idx in indices:
-        #         cm[cls, idx] = incorrect / (num_classes - 1)
+        #         cm[seq_idx, idx] = incorrect / (num_classes - 1)
 
     # Create a plot with a size that scales with the number of classes
     plt.figure(figsize=(min(20, num_classes * 0.3 + 5), min(18, num_classes * 0.3 + 4)))
 
     # Create a heatmap for the confusion matrix
-    # Using a logarithmic normalization to see smaller values better
+    # Using original class labels for the axis
     sns.heatmap(cm, cmap="Blues", annot=True, fmt='.0f',
-                xticklabels=range(num_classes),
-                yticklabels=range(num_classes))
+                xticklabels=[idx_to_class[i] for i in range(num_classes)],
+                yticklabels=[idx_to_class[i] for i in range(num_classes)])
 
     plt.title(f'Confusion Matrix (Diagonal Values)\nOverall Accuracy: {overall_accuracy:.2f}%')
     plt.ylabel('True Class')
