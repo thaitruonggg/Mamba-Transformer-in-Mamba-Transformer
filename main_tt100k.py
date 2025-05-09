@@ -336,9 +336,9 @@ def plot_class_distribution(trainset, testset, classes, min_count=1, figsize=(20
     # Adjust layout
     plt.tight_layout()
 
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    print(f"Figure saved to {save_path}")
-    plt.show()
+    # plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    # print(f"Figure saved to {save_path}")
+    # plt.show()
 
     # Print summary statistics
     print(f"Total classes: {len(classes)}")
