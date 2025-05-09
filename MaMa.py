@@ -242,12 +242,12 @@ class Block(nn.Module):
         self.cross_attn = CrossAttention(query_dim=in_dim, context_dim=dim, heads=in_num_head)
 
     def forward(self, pixel_embed, patch_embed):
-        # inner transformer
+        # Inner transformer
         x, _ = self.attn_in(self.norm_in(pixel_embed))
         pixel_embed = pixel_embed + self.drop_path(x)
         pixel_embed = pixel_embed + self.drop_path(self.mlp_in(self.norm_mlp_in(pixel_embed)))
 
-        # outer transformer
+        # Outer transformer
         B, N, C = patch_embed.size()
         Nsqrt = int(math.sqrt(N))
         patch_embed[:, 1:] = patch_embed[:, 1:] + self.proj(self.norm1_proj(pixel_embed).reshape(B, N - 1, -1))
@@ -289,7 +289,7 @@ class LocalViT_TNT(TNT):
         self.apply(self._init_weights)
 
 @register_model
-def MiM_Ti(pretrained=False, **kwargs):
+def MaMa_Ti(pretrained=False, **kwargs):
     model = LocalViT_TNT(patch_size=16, embed_dim=192, in_dim=12, depth=12, num_heads=3, in_num_head=3,
                          qkv_bias=False, **kwargs)
     model.default_cfg = default_cfgs['tnt_t_conv_patch16_224']
@@ -299,7 +299,7 @@ def MiM_Ti(pretrained=False, **kwargs):
     return model
 
 @register_model
-def MiM_S(pretrained=False, **kwargs):
+def MaMa_S(pretrained=False, **kwargs):
     model = LocalViT_TNT(patch_size=16, embed_dim=384, in_dim=24, depth=12, num_heads=6, in_num_head=4,
                          qkv_bias=False, **kwargs)
     model.default_cfg = default_cfgs['tnt_s_conv_patch16_224']

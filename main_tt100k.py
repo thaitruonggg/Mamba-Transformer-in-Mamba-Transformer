@@ -336,9 +336,9 @@ def plot_class_distribution(trainset, testset, classes, min_count=1, figsize=(20
     # Adjust layout
     plt.tight_layout()
 
-    # plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    # print(f"Figure saved to {save_path}")
-    # plt.show()
+    plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    print(f"Figure saved to {save_path}")
+    plt.show()
 
     # Print summary statistics
     print(f"Total classes: {len(classes)}")
@@ -390,7 +390,7 @@ classes = trainset.classes
 plot_images(batch[0], batch[1], classes)
 
 # Load and modify model
-from MaMa import MiM_Ti as small
+from LNL_test import LNL_Ti as small
 
 model = small(pretrained=False)
 model.head = torch.nn.Linear(in_features=192, out_features=232, bias=True)
@@ -456,10 +456,7 @@ plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_lis
 torch.cuda.empty_cache()
 
 # Train with MoEx
-from MaMa_MoEx import MiM_MoEx_Ti as small
-import torch
-import torch.nn as nn
-import torch.optim as optim
+from LNL_MoEx_test import LNL_MoEx_Ti as small
 
 # Initialize model
 model = small(pretrained=False)

@@ -68,7 +68,7 @@ def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, nu
     print("--------------------------------------------------------------------")
     print(f'Epoch [{epoch + 1}/{num_epochs}], Test Loss: {test_loss:.6f}, Overall Accuracy: {overall_accuracy:.2f}%')
 
-    model.train()  # Switch back to training mode
+    model.train()
     return test_loss, overall_accuracy
 
 def track_highest_accuracy(accuracy_list):
@@ -77,7 +77,6 @@ def track_highest_accuracy(accuracy_list):
 
     Args:
         accuracy_list: List of accuracy values collected during training
-
     Returns:
         tuple: (highest_accuracy, epoch_with_highest_accuracy)
     """
@@ -120,8 +119,8 @@ def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model
     ax2.legend()
 
     plt.tight_layout()
-    plt.savefig(f'{model_name}_training_progress.png')
-    #plt.show()
+    #plt.savefig(f'{model_name}_training_progress.png')
+    plt.show()
 
 # GTSRB
 # Organize test data
@@ -249,7 +248,8 @@ classes = trainset.classes
 plot_images(batch[0], batch[1], classes)
 
 # Load and modify model
-from MaMa import MiM_Ti as small
+#from MaMa import MiM_Ti as small
+from LNL_test import LNL_Ti as small
 
 model = small(pretrained=False)
 model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True) # out_features = 43 classes for GTSRB
@@ -312,10 +312,8 @@ plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_lis
 torch.cuda.empty_cache()
 
 # Train with MoEx
-from MaMa_MoEx import MiM_MoEx_Ti as small
-import torch
-import torch.nn as nn
-import torch.optim as optim
+#from MaMa_MoEx import MiM_MoEx_Ti as small
+from LNL_MoEx_test import LNL_MoEx_Ti as small
 
 # Initialize model
 model = small(pretrained=False)

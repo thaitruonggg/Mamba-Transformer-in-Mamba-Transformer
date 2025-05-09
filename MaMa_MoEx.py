@@ -314,12 +314,12 @@ class Block(nn.Module):
         self.cross_attn = CrossAttention(query_dim=in_dim, context_dim=dim, heads=in_num_head)
 
     def forward(self, pixel_embed, patch_embed):
-        # inner
+        # Inner transformer
         x, _ = self.attn_in(self.norm_in(pixel_embed))
         pixel_embed = pixel_embed + self.drop_path(x)
         pixel_embed = pixel_embed + self.drop_path(self.mlp_in(self.norm_mlp_in(pixel_embed)))
 
-        # outer
+        # Outer transformer
         B, N, C = patch_embed.size()
         Nsqrt = int(math.sqrt(N))
 
@@ -345,7 +345,6 @@ class Block(nn.Module):
 
 class LocalViT_TNT(TNT):
     # Transformer in Transformer - https://arxiv.org/abs/2103.00112
-
     def __init__(self, img_size=224, patch_size=32, in_chans=3, num_classes=1000, embed_dim=768, in_dim=48, depth=12,
                  num_heads=12, in_num_head=4, mlp_ratio=4., qkv_bias=False, drop_rate=0., attn_drop_rate=0.,
                  drop_path_rate=0., norm_layer=nn.LayerNorm, first_stride=8):
@@ -366,7 +365,7 @@ class LocalViT_TNT(TNT):
         self.apply(self._init_weights)
 
 @register_model
-def MiM_MoEx_Ti(pretrained=False, **kwargs):
+def MaMa_MoEx_Ti(pretrained=False, **kwargs):
     model = LocalViT_TNT(patch_size=16, embed_dim=192, in_dim=12, depth=12, num_heads=3, in_num_head=3,
                          qkv_bias=False, **kwargs)
     model.default_cfg = default_cfgs['tnt_t_conv_patch16_224']
@@ -376,7 +375,7 @@ def MiM_MoEx_Ti(pretrained=False, **kwargs):
     return model
 
 @register_model
-def MiM_MoEx_S(pretrained=False, **kwargs):
+def MaMa_MoEx_S(pretrained=False, **kwargs):
     model = LocalViT_TNT(patch_size=16, embed_dim=384, in_dim=24, depth=12, num_heads=6, in_num_head=4,
                          qkv_bias=False, **kwargs)
     model.default_cfg = default_cfgs['tnt_s_conv_patch16_224']
