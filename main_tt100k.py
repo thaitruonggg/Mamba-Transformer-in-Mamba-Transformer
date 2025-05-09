@@ -384,7 +384,7 @@ from MaMa import MaMa_Ti as small
 
 # Initialize model
 model = small(pretrained=False)
-model.head = torch.nn.Linear(in_features=192, out_features=232, bias=True)
+model.head = torch.nn.Linear(in_features=192, out_features=232, bias=True) # out_features = 232 classes for TT100K
 model = model.cuda()
 
 # Hyperparameters
@@ -436,17 +436,17 @@ for epoch in range(num_epochs):
     highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
     print("--------------------------------------------------------------------")
 
-print("Final Evaluation of Locality-iN-Locality Model")
+print("Final Evaluation of MaMa Model")
 # Final evaluation with per-class accuracy
 final_loss, final_accuracy = evaluate_model(
     model, test_loader, loss, testset.classes, batch_size, num_epochs - 1, num_epochs, display_per_class=True)
 highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
 print("--------------------------------------------------------------------")
-plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_list, "MiM")
+plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_list, "MaMa")
 torch.cuda.empty_cache()
 
 # Train with MoEx
-from LNL_MoEx_test import LNL_MoEx_Ti as small
+from MaMa_MoEx import MaMa_MoEx_Ti as small
 
 # Initialize model
 model = small(pretrained=False)
@@ -457,12 +457,12 @@ model = model.cuda()
 num_epochs = 100
 moex_lam = .9
 moex_prob = .7
-
 # Loss and optimizer
 loss = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.003, momentum=0.9)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 
+# Train Mamba-Transformer in Mamba-Transformer
 moex_accuracy_list = []
 moex_train_loss_list = []
 moex_test_loss_list = []
@@ -517,24 +517,20 @@ for epoch in range(num_epochs):
     print("--------------------------------------------------------------------")
 
 print("After applying MoEx")
-print("Final Evaluation of LNL-MoEx Model")
+print("Final Evaluation of MaMa-MoEx Model")
 # Final evaluation with per-class accuracy
 final_loss, final_accuracy = evaluate_model(
     model, test_loader, loss, testset.classes, batch_size, num_epochs - 1, num_epochs, display_per_class=True)
 moex_highest_acc, moex_best_epoch = track_highest_accuracy(moex_accuracy_list)
 print("--------------------------------------------------------------------")
-
-# Plot training progress for LNL-MoEx model
-plot_training_progress(moex_train_loss_list, moex_test_loss_list, moex_accuracy_list, "MiM-MoEx")
-
-# Plot comparison between the two models
+plot_training_progress(moex_train_loss_list, moex_test_loss_list, moex_accuracy_list, "MaMa-MoEx")
 plt.figure(figsize=(15, 6))
 
 # Accuracy comparison
 plt.subplot(1, 2, 1)
 epochs = range(1, num_epochs + 1)
-plt.plot(epochs, lnl_accuracy_list, 'b-', label='LNL')
-plt.plot(epochs, moex_accuracy_list, 'r-', label='LNL-MoEx')
+plt.plot(epochs, lnl_accuracy_list, 'b-', label='MaMa')
+plt.plot(epochs, moex_accuracy_list, 'r-', label='MaMa-MoEx')
 plt.title('Model Comparison - Accuracy')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy (%)')
@@ -543,18 +539,16 @@ plt.legend()
 
 # Test Loss comparison
 plt.subplot(1, 2, 2)
-plt.plot(epochs, lnl_test_loss_list, 'b-', label='LNL')
-plt.plot(epochs, moex_test_loss_list, 'r-', label='LNL-MoEx')
+plt.plot(epochs, lnl_test_loss_list, 'b-', label='MaMa')
+plt.plot(epochs, moex_test_loss_list, 'r-', label='MaMa-MoEx')
 plt.title('Model Comparison - Test Loss')
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.grid(True, linestyle='--', alpha=0.7)
 plt.legend()
-
 plt.tight_layout()
-plt.savefig('model_comparison.png')
-#plt.show()
-
+#plt.savefig('model_comparison.png')
+plt.show()
 torch.cuda.empty_cache()
 
 # Model complexity
