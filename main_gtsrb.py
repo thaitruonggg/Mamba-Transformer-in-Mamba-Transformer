@@ -253,16 +253,19 @@ plot_images(batch[0], batch[1], classes)
 # Load and modify model
 from MaMa import MaMa_Ti as small
 
+# Initialize model
 model = small(pretrained=False)
 model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True) # out_features = 43 classes for GTSRB
 model = model.cuda()
 
-# Train Mamba-Transformer in Mamba-Transformer
+# Hyperparameters
 num_epochs = 100
+# Loss and optimizer
 loss = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.007, momentum=0.9)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 
+# Train Mamba-Transformer in Mamba-Transformer
 lnl_accuracy_list = []
 lnl_train_loss_list = []
 lnl_test_loss_list = []
@@ -309,7 +312,6 @@ final_loss, final_accuracy = evaluate_model(
     model, test_loader, loss, testset.classes, batch_size, num_epochs - 1, num_epochs, display_per_class=True)
 highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
 print("--------------------------------------------------------------------")
-
 plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_list, "MaMa")
 torch.cuda.empty_cache()
 
@@ -325,12 +327,12 @@ model = model.cuda()
 num_epochs = 100
 moex_lam = .9
 moex_prob = .7
-
 # Loss and optimizer
 loss = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.007, momentum=0.9)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 
+# Train Mamba-Transformer in Mamba-Transformer
 moex_accuracy_list = []
 moex_train_loss_list = []
 moex_test_loss_list = []
@@ -390,9 +392,7 @@ final_loss, final_accuracy = evaluate_model(
     model, test_loader, loss, testset.classes, batch_size, num_epochs - 1, num_epochs, display_per_class=True)
 moex_highest_acc, moex_best_epoch = track_highest_accuracy(moex_accuracy_list)
 print("--------------------------------------------------------------------")
-
 plot_training_progress(moex_train_loss_list, moex_test_loss_list, moex_accuracy_list, "MaMa-MoEx")
-
 plt.figure(figsize=(15, 6))
 
 # Accuracy comparison
