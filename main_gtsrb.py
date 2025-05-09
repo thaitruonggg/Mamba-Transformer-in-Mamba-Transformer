@@ -307,7 +307,7 @@ for epoch in range(num_epochs):
     highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
 
 print("--------------------------------------------------------------------")
-print("Final Evaluation of Locality-iN-Locality Model")
+print("Final Evaluation of MaMa Model")
 final_loss, final_accuracy = evaluate_model(
     model, test_loader, loss, testset.classes, batch_size, num_epochs - 1, num_epochs, display_per_class=True)
 highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
@@ -387,7 +387,7 @@ for epoch in range(num_epochs):
 
 print("--------------------------------------------------------------------")
 print("After applying MoEx")
-print("Final Evaluation of LNL-MoEx Model")
+print("Final Evaluation of MaMa-MoEx Model")
 final_loss, final_accuracy = evaluate_model(
     model, test_loader, loss, testset.classes, batch_size, num_epochs - 1, num_epochs, display_per_class=True)
 moex_highest_acc, moex_best_epoch = track_highest_accuracy(moex_accuracy_list)

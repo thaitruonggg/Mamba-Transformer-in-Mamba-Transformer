@@ -77,16 +77,16 @@ def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, nu
     print("--------------------------------------------------------------------")
     print(f'Epoch [{epoch + 1}/{num_epochs}], Test Loss: {test_loss:.6f}, Overall Accuracy: {overall_accuracy:.2f}%')
 
-    model.train()  # Switch back to training mode
+    model.train()
     return test_loss, overall_accuracy
 
+# Function to track the highest accuracy
 def track_highest_accuracy(accuracy_list):
     """
     Tracks the highest accuracy from a list of accuracy values.
 
     Args:
         accuracy_list: List of accuracy values collected during training
-
     Returns:
         tuple: (highest_accuracy, epoch_with_highest_accuracy)
     """
@@ -96,6 +96,7 @@ def track_highest_accuracy(accuracy_list):
     print(f"Highest accuracy: {highest_accuracy:.2f}% achieved at epoch {epoch_with_highest}")
     return highest_accuracy, epoch_with_highest
 
+# Function to plot the training process
 def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model_name):
     """
     Plot training progress showing accuracy vs epoch and loss vs epoch
@@ -129,10 +130,10 @@ def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model
     ax2.legend()
 
     plt.tight_layout()
-    plt.savefig(f'{model_name}_training_progress.png')
-    #plt.show()
+    #plt.savefig(f'{model_name}_training_progress.png')
+    plt.show()
 
-# TT100K
+# TT100K dataset
 class TT100KDataset(Dataset):
     def __init__(self, data_dir, annotation_file, split='train', transform=None):
         """
@@ -167,7 +168,7 @@ class TT100KDataset(Dataset):
                 # For each image, get all objects and their categories
                 for obj in img_info['objects']:
                     category = obj['category']
-                    # We only care about images that have traffic signs
+                    # We only count the images that have traffic signs
                     if category in self.classes:
                         bbox = obj['bbox']
                         self.images.append({
@@ -195,12 +196,10 @@ class TT100KDataset(Dataset):
         x_max, y_max = min(image.width, int(x_max)), min(image.height, int(y_max))
 
         if x_min >= x_max or y_min >= y_max:
-            # If the bounding box is invalid, use the whole image
             cropped_image = image
         else:
             cropped_image = image.crop((x_min, y_min, x_max, y_max))
 
-        # Apply transformations
         if self.transform:
             cropped_image = self.transform(cropped_image)
 
@@ -214,7 +213,7 @@ transform = transforms.Compose([
 ])
 
 # Define paths
-data_dir = 'TT100K'  # Base directory for TT100K dataset
+data_dir = 'TT100K'
 annotation_file = os.path.join(data_dir, 'annotations_all.json')
 
 # Create datasets
@@ -232,7 +231,6 @@ testset = TT100KDataset(
     transform=transform
 )
 
-# Create data loaders
 batch_size = 32
 
 train_loader = DataLoader(
@@ -247,7 +245,7 @@ test_loader = DataLoader(
     shuffle=False
 )
 
-
+# Function to plot the class contribution
 def plot_class_distribution(trainset, testset, classes, min_count=1, figsize=(20, 10), save_path=None):
     """
     Plot the distribution of classes in train and test sets, skipping empty classes.
@@ -259,7 +257,6 @@ def plot_class_distribution(trainset, testset, classes, min_count=1, figsize=(20
         min_count (int): Minimum count to include a class in the plot
         figsize (tuple): Figure size (width, height)
         save_path (str, optional): Path to save the figure. If None, the figure is displayed.
-
     Returns:
         dict: Dictionary with class counts for train and test sets
     """
@@ -289,7 +286,6 @@ def plot_class_distribution(trainset, testset, classes, min_count=1, figsize=(20
                 'total': total_count
             }
 
-    # Sort classes by total count (descending)
     sorted_classes = sorted(class_counts.keys(), key=lambda x: class_counts[x]['total'], reverse=True)
 
     # Create dataframe for plotting
@@ -303,10 +299,7 @@ def plot_class_distribution(trainset, testset, classes, min_count=1, figsize=(20
 
     df = pd.DataFrame(df_data)
 
-    # Plot
     plt.figure(figsize=figsize)
-
-    # Create grouped bar chart
     bar_width = 0.4
     index = np.arange(len(sorted_classes))
 
@@ -333,12 +326,9 @@ def plot_class_distribution(trainset, testset, classes, min_count=1, figsize=(20
 
     # Add grid for easier reading
     plt.grid(axis='y', linestyle='--', alpha=0.7)
-
-    # Adjust layout
     plt.tight_layout()
-
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')
-    print(f"Figure saved to {save_path}")
+    #plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    #print(f"Figure saved to {save_path}")
     plt.show()
 
     # Print summary statistics
@@ -346,8 +336,6 @@ def plot_class_distribution(trainset, testset, classes, min_count=1, figsize=(20
     print(f"Classes with at least {min_count} instance(s): {len(sorted_classes)}")
     print(f"Empty classes: {len(classes) - len(sorted_classes)}")
     print(f"Total instances - Train: {sum(train_counter.values())}, Test: {sum(test_counter.values())}")
-
-    # Return the counts for further analysis if needed
     return class_counts
 
 # Get classes from the dataset
@@ -358,6 +346,7 @@ print(f"Training set size: {len(trainset)}")
 print(f"Test set size: {len(testset)}")
 print("--------------------------------------------------------------------")
 
+# Function to normalize and plot image
 def normalize_image(image):
     image_min = image.min()
     image_max = image.max()
@@ -391,18 +380,21 @@ classes = trainset.classes
 plot_images(batch[0], batch[1], classes)
 
 # Load and modify model
-from LNL_test import LNL_Ti as small
+from MaMa import MaMa_Ti as small
 
+# Initialize model
 model = small(pretrained=False)
 model.head = torch.nn.Linear(in_features=192, out_features=232, bias=True)
 model = model.cuda()
 
-# Train Locality-iN-Locality
+# Hyperparameters
 num_epochs = 100
+# Loss and optimizer
 loss = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.003, momentum=0.9)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 
+# Train Mamba-Transformer in Mamba-Transformer
 lnl_accuracy_list = []
 lnl_train_loss_list = []
 lnl_test_loss_list = []
@@ -450,10 +442,7 @@ final_loss, final_accuracy = evaluate_model(
     model, test_loader, loss, testset.classes, batch_size, num_epochs - 1, num_epochs, display_per_class=True)
 highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
 print("--------------------------------------------------------------------")
-
-# Plot training progress for LNL model
 plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_list, "MiM")
-
 torch.cuda.empty_cache()
 
 # Train with MoEx
