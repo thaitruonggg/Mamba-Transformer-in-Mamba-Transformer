@@ -395,9 +395,9 @@ optimizer = optim.SGD(model.parameters(), lr=0.003, momentum=0.9)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 
 # Train Mamba-Transformer in Mamba-Transformer
-lnl_accuracy_list = []
-lnl_train_loss_list = []
-lnl_test_loss_list = []
+mama_accuracy_list = []
+mama_train_loss_list = []
+mama_test_loss_list = []
 
 for epoch in range(num_epochs):
     total_batch = len(trainset) // batch_size
@@ -426,23 +426,23 @@ for epoch in range(num_epochs):
 
     # Calculate average training loss for this epoch
     avg_train_loss = running_loss / len(train_loader)
-    lnl_train_loss_list.append(avg_train_loss)
+    mama_train_loss_list.append(avg_train_loss)
 
     # Add evaluation after each epoch (without per-class accuracy)
     test_loss, test_accuracy = evaluate_model(
         model, test_loader, loss, testset.classes, batch_size, epoch, num_epochs, display_per_class=False)
-    lnl_test_loss_list.append(test_loss)
-    lnl_accuracy_list.append(test_accuracy)
-    highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
+    mama_test_loss_list.append(test_loss)
+    mama_accuracy_list.append(test_accuracy)
+    highest_acc, best_epoch = track_highest_accuracy(mama_accuracy_list)
     print("--------------------------------------------------------------------")
 
 print("Final Evaluation of MaMa Model")
 # Final evaluation with per-class accuracy
 final_loss, final_accuracy = evaluate_model(
     model, test_loader, loss, testset.classes, batch_size, num_epochs - 1, num_epochs, display_per_class=True)
-highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
+highest_acc, best_epoch = track_highest_accuracy(mama_accuracy_list)
 print("--------------------------------------------------------------------")
-plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_list, "MaMa")
+plot_training_progress(mama_train_loss_list, mama_test_loss_list, mama_accuracy_list, "MaMa")
 torch.cuda.empty_cache()
 
 # Train with MoEx
@@ -529,7 +529,7 @@ plt.figure(figsize=(15, 6))
 # Accuracy comparison
 plt.subplot(1, 2, 1)
 epochs = range(1, num_epochs + 1)
-plt.plot(epochs, lnl_accuracy_list, 'b-', label='MaMa')
+plt.plot(epochs, mama_accuracy_list, 'b-', label='MaMa')
 plt.plot(epochs, moex_accuracy_list, 'r-', label='MaMa-MoEx')
 plt.title('Model Comparison - Accuracy')
 plt.xlabel('Epoch')
@@ -539,7 +539,7 @@ plt.legend()
 
 # Test Loss comparison
 plt.subplot(1, 2, 2)
-plt.plot(epochs, lnl_test_loss_list, 'b-', label='MaMa')
+plt.plot(epochs, mama_test_loss_list, 'b-', label='MaMa')
 plt.plot(epochs, moex_test_loss_list, 'r-', label='MaMa-MoEx')
 plt.title('Model Comparison - Test Loss')
 plt.xlabel('Epoch')
