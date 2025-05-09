@@ -26,6 +26,7 @@ print("Torchattacks", torchattacks.__version__)
 print("Numpy", np.__version__)
 print("------------------------------------------------")
 
+# Function to evaluate model
 def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, num_epochs, train_on_gpu=True,
                    display_per_class=False):
     test_loss = 0.0
@@ -71,6 +72,7 @@ def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, nu
     model.train()
     return test_loss, overall_accuracy
 
+# Function to track the highest accuracy
 def track_highest_accuracy(accuracy_list):
     """
     Tracks the highest accuracy from a list of accuracy values.
@@ -86,6 +88,7 @@ def track_highest_accuracy(accuracy_list):
     print(f"Highest accuracy: {highest_accuracy:.2f}% achieved at epoch {epoch_with_highest}")
     return highest_accuracy, epoch_with_highest
 
+# Function to plot the training process
 def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model_name):
     """
     Plot training progress showing accuracy vs epoch and loss vs epoch
@@ -122,8 +125,7 @@ def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model
     #plt.savefig(f'{model_name}_training_progress.png')
     plt.show()
 
-# GTSRB
-# Organize test data
+# GTSRB dataset
 data_dir = 'GTSRB/GTSRB_Final_Test_Images/GTSRB'
 images_dir = os.path.join(data_dir, 'Final_Test/Images')
 test_dir = os.path.join(data_dir, 'test')
@@ -215,6 +217,7 @@ ax.legend()
 plt.tight_layout()
 plt.show()
 
+# Function to normalize and plot image
 def normalize_image(image):
     image_min = image.min()
     image_max = image.max()

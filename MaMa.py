@@ -269,9 +269,9 @@ class Block(nn.Module):
 
 class LocalViT_TNT(TNT):
     # Transformer in Transformer - https://arxiv.org/abs/2103.00112
-    def __init__(self, img_size=224, patch_size=32, in_chans=3, num_classes=1000, embed_dim=768, in_dim=48, depth=12,
+    def __init__(self, img_size=224, patch_size=16, in_chans=3, num_classes=1000, embed_dim=768, in_dim=48, depth=12,
                  num_heads=12, in_num_head=4, mlp_ratio=4., qkv_bias=False, drop_rate=0., attn_drop_rate=0.,
-                 drop_path_rate=0., norm_layer=nn.LayerNorm, first_stride=8): #Old patch_size=16, first_stride=4
+                 drop_path_rate=0., norm_layer=nn.LayerNorm, first_stride=8):
         super().__init__(img_size, patch_size, in_chans, num_classes, embed_dim, in_dim, depth,
                          num_heads, in_num_head, mlp_ratio, qkv_bias, drop_rate, attn_drop_rate,
                          drop_path_rate, norm_layer, first_stride)

@@ -34,6 +34,7 @@ print("Torchattacks", torchattacks.__version__)
 print("Numpy", np.__version__)
 print("------------------------------------------------")
 
+# Function to evaluate model
 def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, num_epochs, train_on_gpu=True,
                    display_per_class=False):
     test_loss = 0.0
