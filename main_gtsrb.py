@@ -249,7 +249,7 @@ classes = trainset.classes
 plot_images(batch[0], batch[1], classes)
 
 # Load and modify model
-from MiM import MiM_Ti as small
+from MaMa import MiM_Ti as small
 
 model = small(pretrained=False)
 model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True) # out_features = 43 classes for GTSRB
@@ -312,7 +312,7 @@ plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_lis
 torch.cuda.empty_cache()
 
 # Train with MoEx
-from MiM_MoEx import MiM_MoEx_Ti as small
+from MaMa_MoEx import MiM_MoEx_Ti as small
 import torch
 import torch.nn as nn
 import torch.optim as optim
