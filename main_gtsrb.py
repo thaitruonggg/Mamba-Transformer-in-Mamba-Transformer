@@ -248,8 +248,7 @@ classes = trainset.classes
 plot_images(batch[0], batch[1], classes)
 
 # Load and modify model
-#from MaMa import MiM_Ti as small
-from LNL_test import LNL_Ti as small
+from MaMa import MaMa_Ti as small
 
 model = small(pretrained=False)
 model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True) # out_features = 43 classes for GTSRB
@@ -308,12 +307,11 @@ final_loss, final_accuracy = evaluate_model(
 highest_acc, best_epoch = track_highest_accuracy(lnl_accuracy_list)
 print("--------------------------------------------------------------------")
 
-plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_list, "MiM")
+plot_training_progress(lnl_train_loss_list, lnl_test_loss_list, lnl_accuracy_list, "MaMa")
 torch.cuda.empty_cache()
 
 # Train with MoEx
-#from MaMa_MoEx import MiM_MoEx_Ti as small
-from LNL_MoEx_test import LNL_MoEx_Ti as small
+from MaMa_MoEx import MaMa_MoEx_Ti as small
 
 # Initialize model
 model = small(pretrained=False)
@@ -390,7 +388,7 @@ final_loss, final_accuracy = evaluate_model(
 moex_highest_acc, moex_best_epoch = track_highest_accuracy(moex_accuracy_list)
 print("--------------------------------------------------------------------")
 
-plot_training_progress(moex_train_loss_list, moex_test_loss_list, moex_accuracy_list, "MiM-MoEx")
+plot_training_progress(moex_train_loss_list, moex_test_loss_list, moex_accuracy_list, "MaMa-MoEx")
 
 plt.figure(figsize=(15, 6))
 
