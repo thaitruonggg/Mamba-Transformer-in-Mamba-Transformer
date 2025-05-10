@@ -232,380 +232,380 @@ Highest accuracy: 97.48% achieved at epoch 36
 Epoch [38/100], Iter [200/523], Loss: 0.000401
 Epoch [38/100], Iter [400/523], Loss: 0.000991
 --------------------------------------------------------------------
-Epoch [38/100], Test Loss: 0.128005, Overall Accuracy: 97.49%
-Highest accuracy: 97.49% achieved at epoch 38
+Epoch [38/100], Test Loss: 0.128005, Overall Accuracy: 97.50%
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [39/100], Iter [200/523], Loss: 0.001229
 Epoch [39/100], Iter [400/523], Loss: 0.001625
 --------------------------------------------------------------------
 Epoch [39/100], Test Loss: 0.127597, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [40/100], Iter [200/523], Loss: 0.001092
 Epoch [40/100], Iter [400/523], Loss: 0.001207
 --------------------------------------------------------------------
 Epoch [40/100], Test Loss: 0.127473, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [41/100], Iter [200/523], Loss: 0.000601
 Epoch [41/100], Iter [400/523], Loss: 0.000430
 --------------------------------------------------------------------
 Epoch [41/100], Test Loss: 0.127586, Overall Accuracy: 97.41%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [42/100], Iter [200/523], Loss: 0.000482
 Epoch [42/100], Iter [400/523], Loss: 0.001466
 --------------------------------------------------------------------
 Epoch [42/100], Test Loss: 0.126269, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [43/100], Iter [200/523], Loss: 0.001706
 Epoch [43/100], Iter [400/523], Loss: 0.000985
 --------------------------------------------------------------------
 Epoch [43/100], Test Loss: 0.126550, Overall Accuracy: 97.49%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [44/100], Iter [200/523], Loss: 0.000437
 Epoch [44/100], Iter [400/523], Loss: 0.000387
 --------------------------------------------------------------------
 Epoch [44/100], Test Loss: 0.127130, Overall Accuracy: 97.48%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [45/100], Iter [200/523], Loss: 0.000896
 Epoch [45/100], Iter [400/523], Loss: 0.000675
 --------------------------------------------------------------------
 Epoch [45/100], Test Loss: 0.127838, Overall Accuracy: 97.42%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [46/100], Iter [200/523], Loss: 0.000380
 Epoch [46/100], Iter [400/523], Loss: 0.002285
 --------------------------------------------------------------------
 Epoch [46/100], Test Loss: 0.127946, Overall Accuracy: 97.48%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [47/100], Iter [200/523], Loss: 0.001323
 Epoch [47/100], Iter [400/523], Loss: 0.001384
 --------------------------------------------------------------------
 Epoch [47/100], Test Loss: 0.127966, Overall Accuracy: 97.49%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [48/100], Iter [200/523], Loss: 0.000469
 Epoch [48/100], Iter [400/523], Loss: 0.000670
 --------------------------------------------------------------------
 Epoch [48/100], Test Loss: 0.128719, Overall Accuracy: 97.43%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [49/100], Iter [200/523], Loss: 0.001393
 Epoch [49/100], Iter [400/523], Loss: 0.001087
 --------------------------------------------------------------------
 Epoch [49/100], Test Loss: 0.128124, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [50/100], Iter [200/523], Loss: 0.001448
 Epoch [50/100], Iter [400/523], Loss: 0.001053
 --------------------------------------------------------------------
 Epoch [50/100], Test Loss: 0.127653, Overall Accuracy: 97.49%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [51/100], Iter [200/523], Loss: 0.000468
 Epoch [51/100], Iter [400/523], Loss: 0.000860
 --------------------------------------------------------------------
 Epoch [51/100], Test Loss: 0.127874, Overall Accuracy: 97.47%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [52/100], Iter [200/523], Loss: 0.001075
 Epoch [52/100], Iter [400/523], Loss: 0.000676
 --------------------------------------------------------------------
 Epoch [52/100], Test Loss: 0.127911, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [53/100], Iter [200/523], Loss: 0.002330
 Epoch [53/100], Iter [400/523], Loss: 0.001033
 --------------------------------------------------------------------
 Epoch [53/100], Test Loss: 0.126651, Overall Accuracy: 97.48%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [54/100], Iter [200/523], Loss: 0.000334
 Epoch [54/100], Iter [400/523], Loss: 0.000767
 --------------------------------------------------------------------
 Epoch [54/100], Test Loss: 0.128616, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [55/100], Iter [200/523], Loss: 0.001666
 Epoch [55/100], Iter [400/523], Loss: 0.001961
 --------------------------------------------------------------------
 Epoch [55/100], Test Loss: 0.129145, Overall Accuracy: 97.43%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [56/100], Iter [200/523], Loss: 0.000477
 Epoch [56/100], Iter [400/523], Loss: 0.000525
 --------------------------------------------------------------------
 Epoch [56/100], Test Loss: 0.128285, Overall Accuracy: 97.49%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [57/100], Iter [200/523], Loss: 0.001483
 Epoch [57/100], Iter [400/523], Loss: 0.000267
 --------------------------------------------------------------------
 Epoch [57/100], Test Loss: 0.128068, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [58/100], Iter [200/523], Loss: 0.000329
 Epoch [58/100], Iter [400/523], Loss: 0.000743
 --------------------------------------------------------------------
 Epoch [58/100], Test Loss: 0.129597, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [59/100], Iter [200/523], Loss: 0.000264
 Epoch [59/100], Iter [400/523], Loss: 0.000578
 --------------------------------------------------------------------
 Epoch [59/100], Test Loss: 0.128152, Overall Accuracy: 97.49%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [60/100], Iter [200/523], Loss: 0.000410
 Epoch [60/100], Iter [400/523], Loss: 0.000461
 --------------------------------------------------------------------
 Epoch [60/100], Test Loss: 0.128104, Overall Accuracy: 97.48%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [61/100], Iter [200/523], Loss: 0.000924
 Epoch [61/100], Iter [400/523], Loss: 0.000508
 --------------------------------------------------------------------
 Epoch [61/100], Test Loss: 0.129817, Overall Accuracy: 97.47%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [62/100], Iter [200/523], Loss: 0.000268
 Epoch [62/100], Iter [400/523], Loss: 0.000328
 --------------------------------------------------------------------
 Epoch [62/100], Test Loss: 0.127703, Overall Accuracy: 97.48%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [63/100], Iter [200/523], Loss: 0.000378
 Epoch [63/100], Iter [400/523], Loss: 0.000451
 --------------------------------------------------------------------
 Epoch [63/100], Test Loss: 0.128601, Overall Accuracy: 97.47%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [64/100], Iter [200/523], Loss: 0.002339
 Epoch [64/100], Iter [400/523], Loss: 0.000636
 --------------------------------------------------------------------
 Epoch [64/100], Test Loss: 0.128229, Overall Accuracy: 97.47%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [65/100], Iter [200/523], Loss: 0.000317
 Epoch [65/100], Iter [400/523], Loss: 0.000729
 --------------------------------------------------------------------
 Epoch [65/100], Test Loss: 0.129213, Overall Accuracy: 97.47%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [66/100], Iter [200/523], Loss: 0.000259
 Epoch [66/100], Iter [400/523], Loss: 0.001242
 --------------------------------------------------------------------
 Epoch [66/100], Test Loss: 0.129520, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [67/100], Iter [200/523], Loss: 0.000889
 Epoch [67/100], Iter [400/523], Loss: 0.000610
 --------------------------------------------------------------------
 Epoch [67/100], Test Loss: 0.129013, Overall Accuracy: 97.48%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [68/100], Iter [200/523], Loss: 0.000269
 Epoch [68/100], Iter [400/523], Loss: 0.000676
 --------------------------------------------------------------------
 Epoch [68/100], Test Loss: 0.127827, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [69/100], Iter [200/523], Loss: 0.000641
 Epoch [69/100], Iter [400/523], Loss: 0.000582
 --------------------------------------------------------------------
 Epoch [69/100], Test Loss: 0.128546, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [70/100], Iter [200/523], Loss: 0.000300
 Epoch [70/100], Iter [400/523], Loss: 0.000498
 --------------------------------------------------------------------
 Epoch [70/100], Test Loss: 0.129312, Overall Accuracy: 97.43%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [71/100], Iter [200/523], Loss: 0.000569
 Epoch [71/100], Iter [400/523], Loss: 0.000868
 --------------------------------------------------------------------
 Epoch [71/100], Test Loss: 0.129572, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [72/100], Iter [200/523], Loss: 0.000246
 Epoch [72/100], Iter [400/523], Loss: 0.000299
 --------------------------------------------------------------------
 Epoch [72/100], Test Loss: 0.129483, Overall Accuracy: 97.47%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [73/100], Iter [200/523], Loss: 0.000307
 Epoch [73/100], Iter [400/523], Loss: 0.001130
 --------------------------------------------------------------------
 Epoch [73/100], Test Loss: 0.129030, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [74/100], Iter [200/523], Loss: 0.000905
 Epoch [74/100], Iter [400/523], Loss: 0.000280
 --------------------------------------------------------------------
 Epoch [74/100], Test Loss: 0.129114, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [75/100], Iter [200/523], Loss: 0.000259
 Epoch [75/100], Iter [400/523], Loss: 0.000788
 --------------------------------------------------------------------
 Epoch [75/100], Test Loss: 0.130040, Overall Accuracy: 97.43%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [76/100], Iter [200/523], Loss: 0.001049
 Epoch [76/100], Iter [400/523], Loss: 0.000317
 --------------------------------------------------------------------
 Epoch [76/100], Test Loss: 0.129250, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [77/100], Iter [200/523], Loss: 0.000878
 Epoch [77/100], Iter [400/523], Loss: 0.000574
 --------------------------------------------------------------------
 Epoch [77/100], Test Loss: 0.129818, Overall Accuracy: 97.48%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [78/100], Iter [200/523], Loss: 0.000531
 Epoch [78/100], Iter [400/523], Loss: 0.001420
 --------------------------------------------------------------------
 Epoch [78/100], Test Loss: 0.129493, Overall Accuracy: 97.42%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [79/100], Iter [200/523], Loss: 0.000287
 Epoch [79/100], Iter [400/523], Loss: 0.000294
 --------------------------------------------------------------------
 Epoch [79/100], Test Loss: 0.128662, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [80/100], Iter [200/523], Loss: 0.000706
 Epoch [80/100], Iter [400/523], Loss: 0.000305
 --------------------------------------------------------------------
 Epoch [80/100], Test Loss: 0.130179, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [81/100], Iter [200/523], Loss: 0.000371
 Epoch [81/100], Iter [400/523], Loss: 0.000385
 --------------------------------------------------------------------
 Epoch [81/100], Test Loss: 0.129514, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [82/100], Iter [200/523], Loss: 0.001669
 Epoch [82/100], Iter [400/523], Loss: 0.000609
 --------------------------------------------------------------------
 Epoch [82/100], Test Loss: 0.129555, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [83/100], Iter [200/523], Loss: 0.000549
 Epoch [83/100], Iter [400/523], Loss: 0.000380
 --------------------------------------------------------------------
 Epoch [83/100], Test Loss: 0.130187, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [84/100], Iter [200/523], Loss: 0.000362
 Epoch [84/100], Iter [400/523], Loss: 0.000277
 --------------------------------------------------------------------
 Epoch [84/100], Test Loss: 0.129385, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [85/100], Iter [200/523], Loss: 0.000333
 Epoch [85/100], Iter [400/523], Loss: 0.000446
 --------------------------------------------------------------------
 Epoch [85/100], Test Loss: 0.129737, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [86/100], Iter [200/523], Loss: 0.000297
 Epoch [86/100], Iter [400/523], Loss: 0.000537
 --------------------------------------------------------------------
 Epoch [86/100], Test Loss: 0.130594, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [87/100], Iter [200/523], Loss: 0.000133
 Epoch [87/100], Iter [400/523], Loss: 0.000159
 --------------------------------------------------------------------
 Epoch [87/100], Test Loss: 0.130423, Overall Accuracy: 97.43%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [88/100], Iter [200/523], Loss: 0.000263
 Epoch [88/100], Iter [400/523], Loss: 0.000170
 --------------------------------------------------------------------
 Epoch [88/100], Test Loss: 0.131062, Overall Accuracy: 97.47%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [89/100], Iter [200/523], Loss: 0.000241
 Epoch [89/100], Iter [400/523], Loss: 0.000805
 --------------------------------------------------------------------
 Epoch [89/100], Test Loss: 0.130190, Overall Accuracy: 97.49%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [90/100], Iter [200/523], Loss: 0.000602
 Epoch [90/100], Iter [400/523], Loss: 0.001168
 --------------------------------------------------------------------
 Epoch [90/100], Test Loss: 0.129894, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [91/100], Iter [200/523], Loss: 0.000624
 Epoch [91/100], Iter [400/523], Loss: 0.000380
 --------------------------------------------------------------------
 Epoch [91/100], Test Loss: 0.129685, Overall Accuracy: 97.47%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [92/100], Iter [200/523], Loss: 0.000259
 Epoch [92/100], Iter [400/523], Loss: 0.000163
 --------------------------------------------------------------------
 Epoch [92/100], Test Loss: 0.130483, Overall Accuracy: 97.42%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [93/100], Iter [200/523], Loss: 0.001130
 Epoch [93/100], Iter [400/523], Loss: 0.000876
 --------------------------------------------------------------------
 Epoch [93/100], Test Loss: 0.129482, Overall Accuracy: 97.43%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [94/100], Iter [200/523], Loss: 0.000154
 Epoch [94/100], Iter [400/523], Loss: 0.000609
 --------------------------------------------------------------------
 Epoch [94/100], Test Loss: 0.129998, Overall Accuracy: 97.45%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [95/100], Iter [200/523], Loss: 0.000170
 Epoch [95/100], Iter [400/523], Loss: 0.000126
 --------------------------------------------------------------------
 Epoch [95/100], Test Loss: 0.129741, Overall Accuracy: 97.48%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [96/100], Iter [200/523], Loss: 0.000454
 Epoch [96/100], Iter [400/523], Loss: 0.000181
 --------------------------------------------------------------------
 Epoch [96/100], Test Loss: 0.130928, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [97/100], Iter [200/523], Loss: 0.000136
 Epoch [97/100], Iter [400/523], Loss: 0.000340
 --------------------------------------------------------------------
 Epoch [97/100], Test Loss: 0.130915, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [98/100], Iter [200/523], Loss: 0.000396
 Epoch [98/100], Iter [400/523], Loss: 0.001045
 --------------------------------------------------------------------
 Epoch [98/100], Test Loss: 0.130203, Overall Accuracy: 97.46%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [99/100], Iter [200/523], Loss: 0.000466
 Epoch [99/100], Iter [400/523], Loss: 0.000237
 --------------------------------------------------------------------
 Epoch [99/100], Test Loss: 0.130042, Overall Accuracy: 97.47%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [100/100], Iter [200/523], Loss: 0.000486
 Epoch [100/100], Iter [400/523], Loss: 0.000263
 --------------------------------------------------------------------
 Epoch [100/100], Test Loss: 0.130156, Overall Accuracy: 97.49%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Final Evaluation of MaMa Model
 Per-Class Accuracy:
@@ -843,7 +843,7 @@ Class 230 (pa18): No samples
 Class 231 (pw4): 33.33% (1/3)
 --------------------------------------------------------------------
 Epoch [100/100], Test Loss: 0.130156, Overall Accuracy: 97.49%
-Highest accuracy: 97.49% achieved at epoch 38
+Highest accuracy: 97.50% achieved at epoch 38
 --------------------------------------------------------------------
 Epoch [1/100], Iter [200/523], Loss: 2.993955
 Epoch [1/100], Iter [400/523], Loss: 2.359123

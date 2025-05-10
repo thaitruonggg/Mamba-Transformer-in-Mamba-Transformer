@@ -637,8 +637,8 @@ Epoch [91/100], Iter [200/784], Loss: 0.000049
 Epoch [91/100], Iter [400/784], Loss: 0.000050
 Epoch [91/100], Iter [600/784], Loss: 0.000037
 --------------------------------------------------------------------
-Epoch [91/100], Test Loss: 0.085752, Overall Accuracy: 98.27%
-Highest accuracy: 98.27% achieved at epoch 91
+Epoch [91/100], Test Loss: 0.085752, Overall Accuracy: 98.30%
+Highest accuracy: 98.30% achieved at epoch 91
 --------------------------------------------------------------------
 Epoch [92/100], Iter [200/784], Loss: 0.000036
 Epoch [92/100], Iter [400/784], Loss: 0.000054
@@ -701,7 +701,7 @@ Epoch [100/100], Iter [400/784], Loss: 0.000045
 Epoch [100/100], Iter [600/784], Loss: 0.000056
 --------------------------------------------------------------------
 Epoch [100/100], Test Loss: 0.087085, Overall Accuracy: 98.27%
-Highest accuracy: 98.27% achieved at epoch 91
+Highest accuracy: 98.30% achieved at epoch 91
 --------------------------------------------------------------------
 Final Evaluation of MaMa Model
 Per-Class Accuracy:
@@ -750,7 +750,7 @@ Class 41 (0041): 100.00% (60/60)
 Class 42 (0042): 94.44% (85/90)
 --------------------------------------------------------------------
 Epoch [100/100], Test Loss: 0.087085, Overall Accuracy: 98.27%
-Highest accuracy: 98.27% achieved at epoch 91
+Highest accuracy: 98.30% achieved at epoch 91
 --------------------------------------------------------------------
 Epoch [1/100], Iter [200/784], Loss: 3.106877
 Epoch [1/100], Iter [400/784], Loss: 2.128691
@@ -1442,15 +1442,15 @@ Epoch [99/100], Iter [200/784], Loss: 0.333273
 Epoch [99/100], Iter [400/784], Loss: 0.317763
 Epoch [99/100], Iter [600/784], Loss: 0.331780
 --------------------------------------------------------------------
-Epoch [99/100], Test Loss: 0.040841, Overall Accuracy: 98.95%
-Highest accuracy: 98.95% achieved at epoch 99
+Epoch [99/100], Test Loss: 0.040841, Overall Accuracy: 99.00%
+Highest accuracy: 99.00% achieved at epoch 99
 --------------------------------------------------------------------
 Epoch [100/100], Iter [200/784], Loss: 0.348698
 Epoch [100/100], Iter [400/784], Loss: 0.382531
 Epoch [100/100], Iter [600/784], Loss: 0.347344
 --------------------------------------------------------------------
 Epoch [100/100], Test Loss: 0.046406, Overall Accuracy: 98.73%
-Highest accuracy: 98.95% achieved at epoch 99
+Highest accuracy: 99.00% achieved at epoch 99
 --------------------------------------------------------------------
 After applying MoEx
 Final Evaluation of MaMa-MoEx Model
@@ -1500,7 +1500,7 @@ Class 41 (0041): 100.00% (60/60)
 Class 42 (0042): 90.00% (81/90)
 --------------------------------------------------------------------
 Epoch [100/100], Test Loss: 0.046406, Overall Accuracy: 98.73%
-Highest accuracy: 98.95% achieved at epoch 99
+Highest accuracy: 99.00% achieved at epoch 99
 --------------------------------------------------------------------
 Computational complexity:       1.71 GMac
 Number of parameters:           8.62 M  
