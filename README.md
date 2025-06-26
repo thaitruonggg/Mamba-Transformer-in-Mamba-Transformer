@@ -1,6 +1,4 @@
-# MaMa: Mamba-Transformer in Mamba-Transformer
-
-Official implementation of Mamba-Transformer in Mamba-Transformer
+# Mamba-Transformer in Mamba-Transformer
 
 ## Getting started
 ### Datasets
