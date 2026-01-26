@@ -16,6 +16,8 @@ from torchsummary import summary
 import shutil
 from ptflops import get_model_complexity_info
 import warnings
+from PIL import Image
+from trivial_augment import TrivialAugment
 
 warnings.filterwarnings("ignore")
 torch.autograd.set_detect_anomaly(True)
@@ -455,6 +457,7 @@ batch_size = 50
 trainset = torchvision.datasets.ImageFolder(root='GTSRB/GTSRB_Final_Training_Images/GTSRB/Final_Training/Images',
                                             transform=transforms.Compose([
                                                 transforms.Resize((224, 224)),
+                                                trivial_augment.TrivialAugment(),
                                                 transforms.ToTensor(),
                                             ]),
                                             )
