@@ -20,13 +20,14 @@ from PIL import Image
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from torchvision import datasets
-warnings.filterwarnings("ignore")
 import torch
-torch.autograd.set_detect_anomaly(True)
 import json
 from torch.utils.data import Dataset
+from trivial_augment import TrivialAugment
 
+warnings.filterwarnings("ignore")
 torch.cuda.empty_cache()
+torch.autograd.set_detect_anomaly(True)
 
 print("PyTorch", torch.__version__)
 print("Torchvision", torchvision.__version__)
@@ -515,7 +516,13 @@ class TT100KDataset(Dataset):
         return cropped_image, label
 
 # Define data transformations
-transform = transforms.Compose([
+train_transform = transforms.Compose([
+    transforms.Resize((224, 224)),
+    TrivialAugment(),
+    transforms.ToTensor(),
+])
+
+test_transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
 ])
@@ -529,14 +536,14 @@ trainset = TT100KDataset(
     data_dir=data_dir,
     annotation_file=annotation_file,
     split='train',
-    transform=transform
+    transform=train_transform
 )
 
 testset = TT100KDataset(
     data_dir=data_dir,
     annotation_file=annotation_file,
     split='test',
-    transform=transform
+    transform=test_transform
 )
 
 # Create data loaders
