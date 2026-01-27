@@ -16,7 +16,7 @@ class MinMax:
 class MinMaxVals:
     shear: MinMax = MinMax(.0, .3)
     translate: MinMax = MinMax(0, 10)  # different from uniaug: MinMax(0,14.4)
-    rotate: MinMax = MinMax(0, 5) #default value (0, 30)
+    rotate: MinMax = MinMax(0, 5) # default value (0, 30)
     solarize: MinMax = MinMax(0, 256)
     posterize: MinMax = MinMax(0, 4)  # different from uniaug: MinMax(4,8)
     enhancer: MinMax = MinMax(.1, 1.9)
