@@ -457,7 +457,7 @@ batch_size = 50
 trainset = torchvision.datasets.ImageFolder(root='GTSRB/GTSRB_Final_Training_Images/GTSRB/Final_Training/Images',
                                             transform=transforms.Compose([
                                                 transforms.Resize((224, 224)),
-                                                trivial_augment.TrivialAugment(),
+                                                TrivialAugment(),
                                                 transforms.ToTensor(),
                                             ]),
                                             )
