@@ -17,13 +17,13 @@ from MaMa_MoEx import MaMa_MoEx_Ti
 # ==========================================
 # ⚙️ EASY CONFIGURATION: CHANGE THESE PATHS
 # ==========================================
-DETECTOR_PATH = "best.pt"  # Your trained YOLOv8/11 weights
+DETECTOR_PATH = "YOLO11 model/v11best.pt"  # Your trained YOLOv8/11 weights
 CLASSIFIER_PATH = "mama_moex_model.pth"  # Your Stage 2 weights
 INPUT_VIDEO_PATH = "TestImages/1.mp4"  # Your input video
 OUTPUT_VIDEO_PATH = "result_video.mp4"  # Where to save the new video
 
 # Separate Thresholds
-DETECTION_CONFIDENCE = 0.2  # YOLO: Gatekeeper for finding boxes
+DETECTION_CONFIDENCE = 0.4  # YOLO: Gatekeeper for finding boxes
 CLASSIFIER_CONFIDENCE = 80.0  # MaMa-MoEx: Expert judge for saving to memory
 # ==========================================
 
@@ -47,10 +47,9 @@ gtsrb_class_names = [
     "End of no passing for vehicles over 3.5 metric tons"
 ]
 
-
 def load_detector(model_path, device):
     """Loads your custom-trained YOLO detector."""
-    print(f"🚀 Loading YOLO Detector from {model_path}...")
+    print(f"Loading YOLO Detector from {model_path}...")
     detector = YOLO(model_path)
     detector.to(device)
     return detector
@@ -58,7 +57,7 @@ def load_detector(model_path, device):
 
 def load_classifier(model_path, device, num_classes=43):
     """Loads your custom MaMa-MoEx classification model."""
-    print(f"🧠 Loading MaMa-MoEx Classifier from {model_path}...")
+    print(f"Loading MaMa-MoEx Classifier from {model_path}...")
     classifier = MaMa_MoEx_Ti(pretrained=False)
     classifier.head = torch.nn.Linear(in_features=192, out_features=num_classes, bias=True)
     classifier.load_state_dict(torch.load(model_path, map_location=device))
@@ -70,12 +69,12 @@ def load_classifier(model_path, device, num_classes=43):
 def process_video(input_path, output_path, detector, classifier, device, detect_thresh, classify_thresh):
     """Reads a video, runs tracking + classification with memory, and exports."""
     if not os.path.exists(input_path):
-        print(f"❌ Error: Video not found at {input_path}")
+        print(f"Error: Video not found at {input_path}")
         return
 
     cap = cv2.VideoCapture(input_path)
     if not cap.isOpened():
-        print(f"❌ Error: Could not open video file {input_path}")
+        print(f"Error: Could not open video file {input_path}")
         return
 
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -91,7 +90,7 @@ def process_video(input_path, output_path, detector, classifier, device, detect_
         T.ToTensor(),
     ])
 
-    print(f"\n🎬 Processing Video: {total_frames} frames at {fps} native FPS")
+    print(f"\nProcessing Video: {total_frames} frames at {fps} native FPS")
 
     # --- TRACKER MEMORY & ACADEMIC METRICS ---
     track_memory = {}
@@ -177,14 +176,14 @@ def process_video(input_path, output_path, detector, classifier, device, detect_
         avg_latency = total_latency_ms / valid_frames
         avg_fps = 1000.0 / avg_latency if avg_latency > 0 else 0.0
         print("\n" + "=" * 45)
-        print("📊 FINAL METRICS FOR YOUR GRADUATE THESIS:")
+        print("📊 FINAL METRICS:")
         print("=" * 45)
         print(f"Total Frames Analyzed: {valid_frames}")
         print(f"Average Latency:       {avg_latency:.2f} ms")
         print(f"Average FPS:           {avg_fps:.2f} FPS")
         print("=" * 45)
 
-    print(f"\n✅ Done! Video saved successfully to: {output_path}")
+    print(f"\nDone! Video saved successfully to: {output_path}")
 
 
 # ==========================================
@@ -193,7 +192,7 @@ def process_video(input_path, output_path, detector, classifier, device, detect_
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if device.type == 'cpu':
-        print("⚠️ Warning: Running on CPU. Video processing will be much slower.")
+        print("Warning: Running on CPU. Video processing will be much slower.")
 
     my_detector = load_detector(DETECTOR_PATH, device)
     my_classifier = load_classifier(CLASSIFIER_PATH, device, num_classes=43)
