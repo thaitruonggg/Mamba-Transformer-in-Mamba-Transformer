@@ -1,7 +1,20 @@
-# Mamba-Transformer in Mamba-Transformer
+# MaMa: Mamba-Transformer in Mamba-Transformer for Traffic Sign Recognition
 
-## Getting started
-### Datasets
+![MaMa architecture](result_plots/3.1.png)
+
+# Getting started
+
+## Installation
+
+To get started, clone the MaMa repository and navigate to the project directory:
+```
+git clone https://github.com/naofunyan/Mamba-Transformer-in-Mamba-Transformer.git
+cd Mamba-Transformer-in-Mamba-Transformer
+```
+> [!CAUTION]
+> We recommend running the project on Linux for easier Mamba wheel installation.
+
+## Datasets
 GTSRB and TT100K datasets can be downloaded at:
 
 - German Traffic Sign Recognition Benchmark - GTSRB: [![GTSRB](https://img.shields.io/badge/Kaggle-GTSRB-link?style=flat&logo=kaggle&color=blue&link=https%3A%2F%2Fwww.kaggle.com%2Fdatasets%2Fnaofunyannn%2Fmama-gtsrb)](https://www.kaggle.com/datasets/naofunyannn/mama-gtsrb)
@@ -80,4 +93,7 @@ GTSRB and TT100K datasets can be downloaded at:
     ├── report.pdf
     └── test_result.pkl
 
-
+# Results
+![Result1](result_plots/4.18.png)
+![Result2](result_plots/4.19.png)
+![Result3](result_plots/4.20.png)
