@@ -17,9 +17,9 @@ from MaMa_MoEx import MaMa_MoEx_Ti
 # ==========================================
 # EASY CONFIGURATION: CHANGE THESE PATHS
 # ==========================================
-DETECTOR_PATH = "YOLO11 model/v11best.pt"
+DETECTOR_PATH = "yolo11_model/v11best.pt"
 CLASSIFIER_PATH = "mama_moex_model.pth"
-IMAGE_PATH = "TestImages/"
+IMAGE_PATH = "test_images/"
 
 # Separate Thresholds
 DETECTION_CONFIDENCE = 0.5  # YOLO: How sure it's a sign (0.0 to 1.0)

@@ -17,7 +17,7 @@ from MaMa_MoEx import MaMa_MoEx_Ti
 # ==========================================
 # ⚙️ EASY CONFIGURATION: CHANGE THESE PATHS
 # ==========================================
-DETECTOR_PATH = "YOLO11 model/v11best.pt"  # Your trained YOLOv8/11 weights
+DETECTOR_PATH = "yolo11_model/v11best.pt"  # Your trained YOLOv8/11 weights
 CLASSIFIER_PATH = "mama_moex_model.pth"  # Your Stage 2 weights
 INPUT_VIDEO_PATH = "TestImages/1.mp4"  # Your input video
 OUTPUT_VIDEO_PATH = "result_video.mp4"  # Where to save the new video
