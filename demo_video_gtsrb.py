@@ -65,7 +65,6 @@ def load_classifier(model_path, device, num_classes=43):
     classifier.eval()
     return classifier
 
-
 def process_video(input_path, output_path, detector, classifier, device, detect_thresh, classify_thresh):
     """Reads a video, runs tracking + classification with memory, and exports."""
     if not os.path.exists(input_path):
@@ -88,6 +87,7 @@ def process_video(input_path, output_path, detector, classifier, device, detect_
     classify_transform = T.Compose([
         T.Resize((224, 224)),
         T.ToTensor(),
+        T.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
     ])
 
     print(f"\nProcessing Video: {total_frames} frames at {fps} native FPS")
@@ -113,31 +113,45 @@ def process_video(input_path, output_path, detector, classifier, device, detect_
             track_ids = results.boxes.id.int().cpu().tolist()
             boxes = results.boxes.xyxy.cpu().numpy()
 
+            EMA_ALPHA = 0.6  # Weight for new observation (0.6 new + 0.4 history)
+
             for box, track_id in zip(boxes, track_ids):
                 x1, y1, x2, y2 = map(int, box)
                 if x2 <= x1 or y2 <= y1: continue
-
-                # Stage 2: Classify with MaMa
-                cropped_img = Image.fromarray(cv2.cvtColor(frame[y1:y2, x1:x2], cv2.COLOR_BGR2RGB))
-                crop_tensor = classify_transform(cropped_img).unsqueeze(0).to(device)
-
-                with torch.no_grad():
-                    output = classifier(crop_tensor)
-                    probabilities = F.softmax(output[0], dim=0)
-                    conf_score, class_idx = torch.max(probabilities, dim=0)
-
+                # Filter out tiny detections
+                MIN_CROP_SIZE = 20
+                if (x2 - x1) < MIN_CROP_SIZE or (y2 - y1) < MIN_CROP_SIZE:
+                    continue
+                # Pad the YOLO crop
+                pad_ratio = 0.15
+                w, h = x2 - x1, y2 - y1
+                x1_pad = max(0, int(x1 - w * pad_ratio))
+                y1_pad = max(0, int(y1 - h * pad_ratio))
+                x2_pad = min(frame.shape[1], int(x2 + w * pad_ratio))
+                y2_pad = min(frame.shape[0], int(y2 + h * pad_ratio))
+                # Stage 2: Classify with multiscale TTA
+                cropped_img = Image.fromarray(cv2.cvtColor(frame[y1_pad:y2_pad, x1_pad:x2_pad], cv2.COLOR_BGR2RGB))
+                probabilities = classify_with_tta(classifier, cropped_img, device)
+                # Temporal smoothing: EMA over probability distributions
+                if track_id in track_memory:
+                    old_probs = track_memory[track_id]["probs"]
+                    smoothed_probs = EMA_ALPHA * probabilities + (1 - EMA_ALPHA) * old_probs
+                else:
+                    smoothed_probs = probabilities
+                conf_score, class_idx = torch.max(smoothed_probs, dim=0)
                 conf_percent = conf_score.item() * 100
                 class_name = gtsrb_class_names[class_idx.item()]
-
-                # Update memory if MaMa is highly confident
+                # Always update memory with smoothed probabilities
                 if conf_percent >= classify_thresh:
-                    track_memory[track_id] = {"name": class_name, "conf": conf_percent}
-
+                    track_memory[track_id] = {
+                        "name": class_name,
+                        "conf": conf_percent,
+                        "probs": smoothed_probs,
+                    }
                 # Draw the box IF the tracker remembers what it is
                 if track_id in track_memory:
                     mem = track_memory[track_id]
                     label_text = f"ID:{track_id} {mem['name']} ({mem['conf']:.1f}%)"
-
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 3)
                     (text_width, text_height), _ = cv2.getTextSize(label_text, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
                     cv2.rectangle(frame, (x1, y1 - text_height - 10), (x1 + text_width, y1), (0, 170, 0), -1)

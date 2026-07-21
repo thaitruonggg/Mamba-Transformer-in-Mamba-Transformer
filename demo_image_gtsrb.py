@@ -73,6 +73,7 @@ def run_pipeline(image_path, detector, classifier, device, detect_thresh, classi
     classify_transform = T.Compose([
         T.Resize((224, 224)),
         T.ToTensor(),
+        T.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
     ])
 
     # Stage 1: Detection (YOLOv8)
@@ -91,6 +92,17 @@ def run_pipeline(image_path, detector, classifier, device, detect_thresh, classi
 
     for box in results.boxes:
         x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
+        # Filter out tiny detections
+        MIN_CROP_SIZE = 20
+        if (x2 - x1) < MIN_CROP_SIZE or (y2 - y1) < MIN_CROP_SIZE:
+            continue
+        # Pad the YOLO crop to include context around the sign
+        pad_ratio = 0.15
+        w, h = x2 - x1, y2 - y1
+        x1 = max(0, x1 - w * pad_ratio)
+        y1 = max(0, y1 - h * pad_ratio)
+        x2 = min(original_image.width, x2 + w * pad_ratio)
+        y2 = min(original_image.height, y2 + h * pad_ratio)
 
         cropped_img = original_image.crop((x1, y1, x2, y2))
         crop_tensor = classify_transform(cropped_img).unsqueeze(0).to(device)

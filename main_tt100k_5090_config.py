@@ -599,9 +599,31 @@ class TT100KDataset(Dataset):
 
 # Define data transformations
 train_transform = transforms.Compose([
-    transforms.Resize((224, 224)),
+    transforms.Resize((256, 256)),
+    transforms.RandomCrop(224),
+    transforms.RandomAffine(
+        degrees=15,
+        translate=(0.1, 0.1),
+        scale=(0.8, 1.2),
+        shear=10,
+    ),
+    transforms.RandomPerspective(distortion_scale=0.2, p=0.3),
+    # -- Color/Lighting: simulate weather, time-of-day --
+    transforms.ColorJitter(
+        brightness=0.4,
+        contrast=0.4,
+        saturation=0.4,
+        hue=0.1,
+    ),
+    # -- Blur: simulate motion blur & out-of-focus --
+    transforms.GaussianBlur(kernel_size=5, sigma=(0.1, 2.0)),
+    # -- Existing augmentation (keep it) --
     TrivialAugment(),
+    # -- To tensor + normalize --
     transforms.ToTensor(),
+    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
+    # -- Occlusion: simulate partial sign obstruction --
+    transforms.RandomErasing(p=0.2, scale=(0.02, 0.15)),
 ])
 
 test_transform = transforms.Compose([
