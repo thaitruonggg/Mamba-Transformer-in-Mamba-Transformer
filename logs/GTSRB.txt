@@ -1,0 +1,2549 @@
+/home/user/Downloads/Mamba-Transformer-in-Mamba-Transformer-main/.venv/bin/python /home/user/Downloads/Mamba-Transformer-in-Mamba-Transformer-main/main_gtsrb_5090_config.py 
+PyTorch 2.13.0+cu130
+Torchvision 0.28.0+cu130
+Torchattacks 3.5.1
+Numpy 2.2.6
+------------------------------------------------
+Epoch [1/100], Iter [200/392], LR: 0.000500, Loss: 1.540262
+--------------------------------------------------------------------
+Epoch [1/100], Test Loss: 0.921417, Overall Accuracy: 94.62%
+INFO (MaMa): New best accuracy: 94.62% at epoch 1. Saving model state.
+INFO (MaMa): New best mAP: 86.5279% at epoch 1.
+INFO (MaMa): New best IoU: 84.8538% at epoch 1.
+Highest accuracy: 94.62% achieved at epoch 1
+Highest mAP: 86.5279% achieved at epoch 1
+Highest IoU: 84.8538% achieved at epoch 1
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [2/100], Iter [200/392], LR: 0.000500, Loss: 0.869243
+--------------------------------------------------------------------
+Epoch [2/100], Test Loss: 0.814071, Overall Accuracy: 97.24%
+INFO (MaMa): New best accuracy: 97.24% at epoch 2. Saving model state.
+INFO (MaMa): New best mAP: 95.1898% at epoch 2.
+INFO (MaMa): New best IoU: 93.8711% at epoch 2.
+Highest accuracy: 97.24% achieved at epoch 2
+Highest mAP: 95.1898% achieved at epoch 2
+Highest IoU: 93.8711% achieved at epoch 2
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [3/100], Iter [200/392], LR: 0.000500, Loss: 0.840068
+--------------------------------------------------------------------
+Epoch [3/100], Test Loss: 0.768976, Overall Accuracy: 98.13%
+INFO (MaMa): New best accuracy: 98.13% at epoch 3. Saving model state.
+INFO (MaMa): New best mAP: 95.3968% at epoch 3.
+INFO (MaMa): New best IoU: 94.0880% at epoch 3.
+Highest accuracy: 98.13% achieved at epoch 3
+Highest mAP: 95.3968% achieved at epoch 3
+Highest IoU: 94.0880% achieved at epoch 3
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [4/100], Iter [200/392], LR: 0.000499, Loss: 0.766069
+--------------------------------------------------------------------
+Epoch [4/100], Test Loss: 0.747390, Overall Accuracy: 98.65%
+INFO (MaMa): New best accuracy: 98.65% at epoch 4. Saving model state.
+INFO (MaMa): New best mAP: 96.6020% at epoch 4.
+INFO (MaMa): New best IoU: 96.1774% at epoch 4.
+Highest accuracy: 98.65% achieved at epoch 4
+Highest mAP: 96.6020% achieved at epoch 4
+Highest IoU: 96.1774% achieved at epoch 4
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [5/100], Iter [200/392], LR: 0.000498, Loss: 0.760885
+--------------------------------------------------------------------
+Epoch [5/100], Test Loss: 0.731626, Overall Accuracy: 99.11%
+INFO (MaMa): New best accuracy: 99.11% at epoch 5. Saving model state.
+INFO (MaMa): New best mAP: 97.3955% at epoch 5.
+INFO (MaMa): New best IoU: 97.0234% at epoch 5.
+Highest accuracy: 99.11% achieved at epoch 5
+Highest mAP: 97.3955% achieved at epoch 5
+Highest IoU: 97.0234% achieved at epoch 5
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [6/100], Iter [200/392], LR: 0.000498, Loss: 0.784613
+--------------------------------------------------------------------
+Epoch [6/100], Test Loss: 0.743484, Overall Accuracy: 98.61%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.11% at epoch 5.
+INFO (MaMa): Best mAP was 97.3955% at epoch 5.
+INFO (MaMa): Best IoU was 97.0234% at epoch 5.
+Highest accuracy: 99.11% achieved at epoch 5
+Highest mAP: 97.3955% achieved at epoch 5
+Highest IoU: 97.0234% achieved at epoch 5
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [7/100], Iter [200/392], LR: 0.000496, Loss: 0.822782
+--------------------------------------------------------------------
+Epoch [7/100], Test Loss: 0.726706, Overall Accuracy: 98.84%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.11% at epoch 5.
+INFO (MaMa): Best mAP was 97.3955% at epoch 5.
+INFO (MaMa): Best IoU was 97.0234% at epoch 5.
+Highest accuracy: 99.11% achieved at epoch 5
+Highest mAP: 97.3955% achieved at epoch 5
+Highest IoU: 97.0234% achieved at epoch 5
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [8/100], Iter [200/392], LR: 0.000495, Loss: 0.700903
+--------------------------------------------------------------------
+Epoch [8/100], Test Loss: 0.725840, Overall Accuracy: 98.95%
+INFO (MaMa): No improvement for 3 epochs. Best accuracy was 99.11% at epoch 5.
+INFO (MaMa): Best mAP was 97.3955% at epoch 5.
+INFO (MaMa): Best IoU was 97.0234% at epoch 5.
+Highest accuracy: 99.11% achieved at epoch 5
+Highest mAP: 97.3955% achieved at epoch 5
+Highest IoU: 97.0234% achieved at epoch 5
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [9/100], Iter [200/392], LR: 0.000494, Loss: 0.773417
+--------------------------------------------------------------------
+Epoch [9/100], Test Loss: 0.735127, Overall Accuracy: 98.73%
+INFO (MaMa): No improvement for 4 epochs. Best accuracy was 99.11% at epoch 5.
+INFO (MaMa): Best mAP was 97.3955% at epoch 5.
+INFO (MaMa): Best IoU was 97.0234% at epoch 5.
+Highest accuracy: 99.11% achieved at epoch 5
+Highest mAP: 97.3955% achieved at epoch 5
+Highest IoU: 97.0234% achieved at epoch 5
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [10/100], Iter [200/392], LR: 0.000492, Loss: 0.700831
+--------------------------------------------------------------------
+Epoch [10/100], Test Loss: 0.724496, Overall Accuracy: 98.90%
+INFO (MaMa): No improvement for 5 epochs. Best accuracy was 99.11% at epoch 5.
+INFO (MaMa): Best mAP was 97.3955% at epoch 5.
+INFO (MaMa): Best IoU was 97.0234% at epoch 5.
+Highest accuracy: 99.11% achieved at epoch 5
+Highest mAP: 97.3955% achieved at epoch 5
+Highest IoU: 97.0234% achieved at epoch 5
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [11/100], Iter [200/392], LR: 0.000490, Loss: 0.734582
+--------------------------------------------------------------------
+Epoch [11/100], Test Loss: 0.730545, Overall Accuracy: 98.64%
+INFO (MaMa): No improvement for 6 epochs. Best accuracy was 99.11% at epoch 5.
+INFO (MaMa): Best mAP was 97.3955% at epoch 5.
+INFO (MaMa): Best IoU was 97.0234% at epoch 5.
+Highest accuracy: 99.11% achieved at epoch 5
+Highest mAP: 97.3955% achieved at epoch 5
+Highest IoU: 97.0234% achieved at epoch 5
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [12/100], Iter [200/392], LR: 0.000488, Loss: 0.736828
+--------------------------------------------------------------------
+Epoch [12/100], Test Loss: 0.719066, Overall Accuracy: 99.00%
+INFO (MaMa): No improvement for 7 epochs. Best accuracy was 99.11% at epoch 5.
+INFO (MaMa): Best mAP was 97.3955% at epoch 5.
+INFO (MaMa): Best IoU was 97.0234% at epoch 5.
+Highest accuracy: 99.11% achieved at epoch 5
+Highest mAP: 97.3955% achieved at epoch 5
+Highest IoU: 97.0234% achieved at epoch 5
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [13/100], Iter [200/392], LR: 0.000486, Loss: 0.715203
+--------------------------------------------------------------------
+Epoch [13/100], Test Loss: 0.718282, Overall Accuracy: 99.21%
+INFO (MaMa): New best accuracy: 99.21% at epoch 13. Saving model state.
+INFO (MaMa): New best mAP: 98.1267% at epoch 13.
+INFO (MaMa): New best IoU: 97.5005% at epoch 13.
+Highest accuracy: 99.21% achieved at epoch 13
+Highest mAP: 98.1267% achieved at epoch 13
+Highest IoU: 97.5005% achieved at epoch 13
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [14/100], Iter [200/392], LR: 0.000484, Loss: 0.753241
+--------------------------------------------------------------------
+Epoch [14/100], Test Loss: 0.714438, Overall Accuracy: 99.31%
+INFO (MaMa): New best accuracy: 99.31% at epoch 14. Saving model state.
+INFO (MaMa): New best mAP: 98.2672% at epoch 14.
+INFO (MaMa): New best IoU: 98.0788% at epoch 14.
+Highest accuracy: 99.31% achieved at epoch 14
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [15/100], Iter [200/392], LR: 0.000481, Loss: 0.712666
+--------------------------------------------------------------------
+Epoch [15/100], Test Loss: 0.719671, Overall Accuracy: 99.00%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.31% at epoch 14.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.31% achieved at epoch 14
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [16/100], Iter [200/392], LR: 0.000478, Loss: 0.696827
+--------------------------------------------------------------------
+Epoch [16/100], Test Loss: 0.712408, Overall Accuracy: 99.19%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.31% at epoch 14.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.31% achieved at epoch 14
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [17/100], Iter [200/392], LR: 0.000475, Loss: 0.706311
+--------------------------------------------------------------------
+Epoch [17/100], Test Loss: 0.722206, Overall Accuracy: 98.84%
+INFO (MaMa): No improvement for 3 epochs. Best accuracy was 99.31% at epoch 14.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.31% achieved at epoch 14
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [18/100], Iter [200/392], LR: 0.000472, Loss: 0.727682
+--------------------------------------------------------------------
+Epoch [18/100], Test Loss: 0.727723, Overall Accuracy: 98.58%
+INFO (MaMa): No improvement for 4 epochs. Best accuracy was 99.31% at epoch 14.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.31% achieved at epoch 14
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [19/100], Iter [200/392], LR: 0.000469, Loss: 0.702352
+--------------------------------------------------------------------
+Epoch [19/100], Test Loss: 0.717912, Overall Accuracy: 99.01%
+INFO (MaMa): No improvement for 5 epochs. Best accuracy was 99.31% at epoch 14.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.31% achieved at epoch 14
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [20/100], Iter [200/392], LR: 0.000465, Loss: 0.694264
+--------------------------------------------------------------------
+Epoch [20/100], Test Loss: 0.711510, Overall Accuracy: 99.17%
+INFO (MaMa): No improvement for 6 epochs. Best accuracy was 99.31% at epoch 14.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.31% achieved at epoch 14
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [21/100], Iter [200/392], LR: 0.000462, Loss: 0.745918
+--------------------------------------------------------------------
+Epoch [21/100], Test Loss: 0.716404, Overall Accuracy: 99.13%
+INFO (MaMa): No improvement for 7 epochs. Best accuracy was 99.31% at epoch 14.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.31% achieved at epoch 14
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [22/100], Iter [200/392], LR: 0.000458, Loss: 0.716147
+--------------------------------------------------------------------
+Epoch [22/100], Test Loss: 0.717351, Overall Accuracy: 98.99%
+INFO (MaMa): No improvement for 8 epochs. Best accuracy was 99.31% at epoch 14.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.31% achieved at epoch 14
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [23/100], Iter [200/392], LR: 0.000454, Loss: 0.705406
+--------------------------------------------------------------------
+Epoch [23/100], Test Loss: 0.717382, Overall Accuracy: 99.01%
+INFO (MaMa): No improvement for 9 epochs. Best accuracy was 99.31% at epoch 14.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.31% achieved at epoch 14
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [24/100], Iter [200/392], LR: 0.000450, Loss: 0.734606
+--------------------------------------------------------------------
+Epoch [24/100], Test Loss: 0.707589, Overall Accuracy: 99.33%
+INFO (MaMa): New best accuracy: 99.33% at epoch 24. Saving model state.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.33% achieved at epoch 24
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [25/100], Iter [200/392], LR: 0.000446, Loss: 0.692434
+--------------------------------------------------------------------
+Epoch [25/100], Test Loss: 0.707970, Overall Accuracy: 99.27%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.33% at epoch 24.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.33% achieved at epoch 24
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [26/100], Iter [200/392], LR: 0.000441, Loss: 0.869196
+--------------------------------------------------------------------
+Epoch [26/100], Test Loss: 0.715674, Overall Accuracy: 99.03%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.33% at epoch 24.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.33% achieved at epoch 24
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [27/100], Iter [200/392], LR: 0.000437, Loss: 0.699076
+--------------------------------------------------------------------
+Epoch [27/100], Test Loss: 0.705568, Overall Accuracy: 99.35%
+INFO (MaMa): New best accuracy: 99.35% at epoch 27. Saving model state.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.35% achieved at epoch 27
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [28/100], Iter [200/392], LR: 0.000432, Loss: 0.709433
+--------------------------------------------------------------------
+Epoch [28/100], Test Loss: 0.713568, Overall Accuracy: 99.18%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.35% at epoch 27.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.35% achieved at epoch 27
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [29/100], Iter [200/392], LR: 0.000427, Loss: 0.770770
+--------------------------------------------------------------------
+Epoch [29/100], Test Loss: 0.716267, Overall Accuracy: 99.00%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.35% at epoch 27.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.35% achieved at epoch 27
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [30/100], Iter [200/392], LR: 0.000423, Loss: 0.703203
+--------------------------------------------------------------------
+Epoch [30/100], Test Loss: 0.714142, Overall Accuracy: 99.03%
+INFO (MaMa): No improvement for 3 epochs. Best accuracy was 99.35% at epoch 27.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.35% achieved at epoch 27
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [31/100], Iter [200/392], LR: 0.000418, Loss: 0.756824
+--------------------------------------------------------------------
+Epoch [31/100], Test Loss: 0.714462, Overall Accuracy: 99.14%
+INFO (MaMa): No improvement for 4 epochs. Best accuracy was 99.35% at epoch 27.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.35% achieved at epoch 27
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [32/100], Iter [200/392], LR: 0.000412, Loss: 0.699064
+--------------------------------------------------------------------
+Epoch [32/100], Test Loss: 0.706736, Overall Accuracy: 99.37%
+INFO (MaMa): New best accuracy: 99.37% at epoch 32. Saving model state.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.37% achieved at epoch 32
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [33/100], Iter [200/392], LR: 0.000407, Loss: 0.691111
+--------------------------------------------------------------------
+Epoch [33/100], Test Loss: 0.711146, Overall Accuracy: 99.23%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.37% at epoch 32.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.37% achieved at epoch 32
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [34/100], Iter [200/392], LR: 0.000402, Loss: 0.715271
+--------------------------------------------------------------------
+Epoch [34/100], Test Loss: 0.711063, Overall Accuracy: 99.17%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.37% at epoch 32.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.37% achieved at epoch 32
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [35/100], Iter [200/392], LR: 0.000396, Loss: 0.695915
+--------------------------------------------------------------------
+Epoch [35/100], Test Loss: 0.721686, Overall Accuracy: 98.88%
+INFO (MaMa): No improvement for 3 epochs. Best accuracy was 99.37% at epoch 32.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.37% achieved at epoch 32
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [36/100], Iter [200/392], LR: 0.000391, Loss: 0.705016
+--------------------------------------------------------------------
+Epoch [36/100], Test Loss: 0.714435, Overall Accuracy: 99.04%
+INFO (MaMa): No improvement for 4 epochs. Best accuracy was 99.37% at epoch 32.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.37% achieved at epoch 32
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [37/100], Iter [200/392], LR: 0.000385, Loss: 0.700206
+--------------------------------------------------------------------
+Epoch [37/100], Test Loss: 0.702613, Overall Accuracy: 99.47%
+INFO (MaMa): New best accuracy: 99.47% at epoch 37. Saving model state.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.47% achieved at epoch 37
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [38/100], Iter [200/392], LR: 0.000379, Loss: 0.708815
+--------------------------------------------------------------------
+Epoch [38/100], Test Loss: 0.704776, Overall Accuracy: 99.35%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.47% at epoch 37.
+INFO (MaMa): Best mAP was 98.2672% at epoch 14.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.47% achieved at epoch 37
+Highest mAP: 98.2672% achieved at epoch 14
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [39/100], Iter [200/392], LR: 0.000374, Loss: 0.691771
+--------------------------------------------------------------------
+Epoch [39/100], Test Loss: 0.704703, Overall Accuracy: 99.41%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.47% at epoch 37.
+INFO (MaMa): New best mAP: 98.3327% at epoch 39.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.47% achieved at epoch 37
+Highest mAP: 98.3327% achieved at epoch 39
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [40/100], Iter [200/392], LR: 0.000368, Loss: 0.689170
+--------------------------------------------------------------------
+Epoch [40/100], Test Loss: 0.712909, Overall Accuracy: 99.12%
+INFO (MaMa): No improvement for 3 epochs. Best accuracy was 99.47% at epoch 37.
+INFO (MaMa): Best mAP was 98.3327% at epoch 39.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.47% achieved at epoch 37
+Highest mAP: 98.3327% achieved at epoch 39
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [41/100], Iter [200/392], LR: 0.000362, Loss: 0.700721
+--------------------------------------------------------------------
+Epoch [41/100], Test Loss: 0.706763, Overall Accuracy: 99.33%
+INFO (MaMa): No improvement for 4 epochs. Best accuracy was 99.47% at epoch 37.
+INFO (MaMa): Best mAP was 98.3327% at epoch 39.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.47% achieved at epoch 37
+Highest mAP: 98.3327% achieved at epoch 39
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [42/100], Iter [200/392], LR: 0.000356, Loss: 0.723978
+--------------------------------------------------------------------
+Epoch [42/100], Test Loss: 0.705817, Overall Accuracy: 99.33%
+INFO (MaMa): No improvement for 5 epochs. Best accuracy was 99.47% at epoch 37.
+INFO (MaMa): Best mAP was 98.3327% at epoch 39.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.47% achieved at epoch 37
+Highest mAP: 98.3327% achieved at epoch 39
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [43/100], Iter [200/392], LR: 0.000350, Loss: 0.691169
+--------------------------------------------------------------------
+Epoch [43/100], Test Loss: 0.705539, Overall Accuracy: 99.40%
+INFO (MaMa): No improvement for 6 epochs. Best accuracy was 99.47% at epoch 37.
+INFO (MaMa): Best mAP was 98.3327% at epoch 39.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.47% achieved at epoch 37
+Highest mAP: 98.3327% achieved at epoch 39
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [44/100], Iter [200/392], LR: 0.000344, Loss: 0.689239
+--------------------------------------------------------------------
+Epoch [44/100], Test Loss: 0.710077, Overall Accuracy: 99.23%
+INFO (MaMa): No improvement for 7 epochs. Best accuracy was 99.47% at epoch 37.
+INFO (MaMa): Best mAP was 98.3327% at epoch 39.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.47% achieved at epoch 37
+Highest mAP: 98.3327% achieved at epoch 39
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [45/100], Iter [200/392], LR: 0.000337, Loss: 0.687991
+--------------------------------------------------------------------
+Epoch [45/100], Test Loss: 0.707952, Overall Accuracy: 99.28%
+INFO (MaMa): No improvement for 8 epochs. Best accuracy was 99.47% at epoch 37.
+INFO (MaMa): Best mAP was 98.3327% at epoch 39.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.47% achieved at epoch 37
+Highest mAP: 98.3327% achieved at epoch 39
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [46/100], Iter [200/392], LR: 0.000331, Loss: 0.693892
+--------------------------------------------------------------------
+Epoch [46/100], Test Loss: 0.699193, Overall Accuracy: 99.49%
+INFO (MaMa): New best accuracy: 99.49% at epoch 46. Saving model state.
+INFO (MaMa): Best mAP was 98.3327% at epoch 39.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.49% achieved at epoch 46
+Highest mAP: 98.3327% achieved at epoch 39
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [47/100], Iter [200/392], LR: 0.000325, Loss: 0.694895
+--------------------------------------------------------------------
+Epoch [47/100], Test Loss: 0.701328, Overall Accuracy: 99.48%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.49% at epoch 46.
+INFO (MaMa): Best mAP was 98.3327% at epoch 39.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.49% achieved at epoch 46
+Highest mAP: 98.3327% achieved at epoch 39
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [48/100], Iter [200/392], LR: 0.000319, Loss: 0.711986
+--------------------------------------------------------------------
+Epoch [48/100], Test Loss: 0.702729, Overall Accuracy: 99.41%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.49% at epoch 46.
+INFO (MaMa): Best mAP was 98.3327% at epoch 39.
+INFO (MaMa): Best IoU was 98.0788% at epoch 14.
+Highest accuracy: 99.49% achieved at epoch 46
+Highest mAP: 98.3327% achieved at epoch 39
+Highest IoU: 98.0788% achieved at epoch 14
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [49/100], Iter [200/392], LR: 0.000313, Loss: 0.696554
+--------------------------------------------------------------------
+Epoch [49/100], Test Loss: 0.704093, Overall Accuracy: 99.38%
+INFO (MaMa): No improvement for 3 epochs. Best accuracy was 99.49% at epoch 46.
+INFO (MaMa): New best mAP: 98.6154% at epoch 49.
+INFO (MaMa): New best IoU: 98.1042% at epoch 49.
+Highest accuracy: 99.49% achieved at epoch 46
+Highest mAP: 98.6154% achieved at epoch 49
+Highest IoU: 98.1042% achieved at epoch 49
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [50/100], Iter [200/392], LR: 0.000306, Loss: 0.740231
+--------------------------------------------------------------------
+Epoch [50/100], Test Loss: 0.699365, Overall Accuracy: 99.55%
+INFO (MaMa): New best accuracy: 99.55% at epoch 50. Saving model state.
+INFO (MaMa): Best mAP was 98.6154% at epoch 49.
+INFO (MaMa): New best IoU: 98.3046% at epoch 50.
+Highest accuracy: 99.55% achieved at epoch 50
+Highest mAP: 98.6154% achieved at epoch 49
+Highest IoU: 98.3046% achieved at epoch 50
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [51/100], Iter [200/392], LR: 0.000300, Loss: 0.703569
+--------------------------------------------------------------------
+Epoch [51/100], Test Loss: 0.700530, Overall Accuracy: 99.49%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.55% at epoch 50.
+INFO (MaMa): New best mAP: 98.8499% at epoch 51.
+INFO (MaMa): Best IoU was 98.3046% at epoch 50.
+Highest accuracy: 99.55% achieved at epoch 50
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.3046% achieved at epoch 50
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [52/100], Iter [200/392], LR: 0.000294, Loss: 0.720591
+--------------------------------------------------------------------
+Epoch [52/100], Test Loss: 0.711936, Overall Accuracy: 99.20%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.55% at epoch 50.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): Best IoU was 98.3046% at epoch 50.
+Highest accuracy: 99.55% achieved at epoch 50
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.3046% achieved at epoch 50
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [53/100], Iter [200/392], LR: 0.000287, Loss: 0.717617
+--------------------------------------------------------------------
+Epoch [53/100], Test Loss: 0.701091, Overall Accuracy: 99.49%
+INFO (MaMa): No improvement for 3 epochs. Best accuracy was 99.55% at epoch 50.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): Best IoU was 98.3046% at epoch 50.
+Highest accuracy: 99.55% achieved at epoch 50
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.3046% achieved at epoch 50
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [54/100], Iter [200/392], LR: 0.000281, Loss: 0.716584
+--------------------------------------------------------------------
+Epoch [54/100], Test Loss: 0.704743, Overall Accuracy: 99.35%
+INFO (MaMa): No improvement for 4 epochs. Best accuracy was 99.55% at epoch 50.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): New best IoU: 98.3168% at epoch 54.
+Highest accuracy: 99.55% achieved at epoch 50
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.3168% achieved at epoch 54
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [55/100], Iter [200/392], LR: 0.000275, Loss: 0.686107
+--------------------------------------------------------------------
+Epoch [55/100], Test Loss: 0.703374, Overall Accuracy: 99.45%
+INFO (MaMa): No improvement for 5 epochs. Best accuracy was 99.55% at epoch 50.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): Best IoU was 98.3168% at epoch 54.
+Highest accuracy: 99.55% achieved at epoch 50
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.3168% achieved at epoch 54
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [56/100], Iter [200/392], LR: 0.000269, Loss: 0.714100
+--------------------------------------------------------------------
+Epoch [56/100], Test Loss: 0.708427, Overall Accuracy: 99.22%
+INFO (MaMa): No improvement for 6 epochs. Best accuracy was 99.55% at epoch 50.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): Best IoU was 98.3168% at epoch 54.
+Highest accuracy: 99.55% achieved at epoch 50
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.3168% achieved at epoch 54
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [57/100], Iter [200/392], LR: 0.000263, Loss: 0.701983
+--------------------------------------------------------------------
+Epoch [57/100], Test Loss: 0.714214, Overall Accuracy: 98.99%
+INFO (MaMa): No improvement for 7 epochs. Best accuracy was 99.55% at epoch 50.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): Best IoU was 98.3168% at epoch 54.
+Highest accuracy: 99.55% achieved at epoch 50
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.3168% achieved at epoch 54
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [58/100], Iter [200/392], LR: 0.000256, Loss: 0.686564
+--------------------------------------------------------------------
+Epoch [58/100], Test Loss: 0.701449, Overall Accuracy: 99.45%
+INFO (MaMa): No improvement for 8 epochs. Best accuracy was 99.55% at epoch 50.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): Best IoU was 98.3168% at epoch 54.
+Highest accuracy: 99.55% achieved at epoch 50
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.3168% achieved at epoch 54
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [59/100], Iter [200/392], LR: 0.000250, Loss: 0.705225
+--------------------------------------------------------------------
+Epoch [59/100], Test Loss: 0.702522, Overall Accuracy: 99.43%
+INFO (MaMa): No improvement for 9 epochs. Best accuracy was 99.55% at epoch 50.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): Best IoU was 98.3168% at epoch 54.
+Highest accuracy: 99.55% achieved at epoch 50
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.3168% achieved at epoch 54
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [60/100], Iter [200/392], LR: 0.000244, Loss: 0.702591
+--------------------------------------------------------------------
+Epoch [60/100], Test Loss: 0.703402, Overall Accuracy: 99.44%
+INFO (MaMa): No improvement for 10 epochs. Best accuracy was 99.55% at epoch 50.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): Best IoU was 98.3168% at epoch 54.
+Highest accuracy: 99.55% achieved at epoch 50
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.3168% achieved at epoch 54
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [61/100], Iter [200/392], LR: 0.000238, Loss: 0.735183
+--------------------------------------------------------------------
+Epoch [61/100], Test Loss: 0.697639, Overall Accuracy: 99.58%
+INFO (MaMa): New best accuracy: 99.58% at epoch 61. Saving model state.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): New best IoU: 98.5045% at epoch 61.
+Highest accuracy: 99.58% achieved at epoch 61
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.5045% achieved at epoch 61
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [62/100], Iter [200/392], LR: 0.000232, Loss: 0.704335
+--------------------------------------------------------------------
+Epoch [62/100], Test Loss: 0.706674, Overall Accuracy: 99.45%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.58% at epoch 61.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): Best IoU was 98.5045% at epoch 61.
+Highest accuracy: 99.58% achieved at epoch 61
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.5045% achieved at epoch 61
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [63/100], Iter [200/392], LR: 0.000226, Loss: 0.712123
+--------------------------------------------------------------------
+Epoch [63/100], Test Loss: 0.705367, Overall Accuracy: 99.34%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.58% at epoch 61.
+INFO (MaMa): Best mAP was 98.8499% at epoch 51.
+INFO (MaMa): Best IoU was 98.5045% at epoch 61.
+Highest accuracy: 99.58% achieved at epoch 61
+Highest mAP: 98.8499% achieved at epoch 51
+Highest IoU: 98.5045% achieved at epoch 61
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [64/100], Iter [200/392], LR: 0.000221, Loss: 0.693298
+--------------------------------------------------------------------
+Epoch [64/100], Test Loss: 0.697727, Overall Accuracy: 99.59%
+INFO (MaMa): New best accuracy: 99.59% at epoch 64. Saving model state.
+INFO (MaMa): New best mAP: 98.9531% at epoch 64.
+INFO (MaMa): New best IoU: 98.6614% at epoch 64.
+Highest accuracy: 99.59% achieved at epoch 64
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6614% achieved at epoch 64
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [65/100], Iter [200/392], LR: 0.000215, Loss: 0.710820
+--------------------------------------------------------------------
+Epoch [65/100], Test Loss: 0.697570, Overall Accuracy: 99.55%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.59% at epoch 64.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6614% at epoch 64.
+Highest accuracy: 99.59% achieved at epoch 64
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6614% achieved at epoch 64
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [66/100], Iter [200/392], LR: 0.000209, Loss: 0.725402
+--------------------------------------------------------------------
+Epoch [66/100], Test Loss: 0.704844, Overall Accuracy: 99.38%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.59% at epoch 64.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6614% at epoch 64.
+Highest accuracy: 99.59% achieved at epoch 64
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6614% achieved at epoch 64
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [67/100], Iter [200/392], LR: 0.000204, Loss: 0.693839
+--------------------------------------------------------------------
+Epoch [67/100], Test Loss: 0.703183, Overall Accuracy: 99.41%
+INFO (MaMa): No improvement for 3 epochs. Best accuracy was 99.59% at epoch 64.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6614% at epoch 64.
+Highest accuracy: 99.59% achieved at epoch 64
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6614% achieved at epoch 64
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [68/100], Iter [200/392], LR: 0.000198, Loss: 0.730379
+--------------------------------------------------------------------
+Epoch [68/100], Test Loss: 0.699785, Overall Accuracy: 99.52%
+INFO (MaMa): No improvement for 4 epochs. Best accuracy was 99.59% at epoch 64.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6614% at epoch 64.
+Highest accuracy: 99.59% achieved at epoch 64
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6614% achieved at epoch 64
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [69/100], Iter [200/392], LR: 0.000193, Loss: 0.689196
+--------------------------------------------------------------------
+Epoch [69/100], Test Loss: 0.698197, Overall Accuracy: 99.60%
+INFO (MaMa): New best accuracy: 99.60% at epoch 69. Saving model state.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): New best IoU: 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [70/100], Iter [200/392], LR: 0.000188, Loss: 0.706247
+--------------------------------------------------------------------
+Epoch [70/100], Test Loss: 0.698507, Overall Accuracy: 99.53%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [71/100], Iter [200/392], LR: 0.000182, Loss: 0.686731
+--------------------------------------------------------------------
+Epoch [71/100], Test Loss: 0.705682, Overall Accuracy: 99.38%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [72/100], Iter [200/392], LR: 0.000177, Loss: 0.686766
+--------------------------------------------------------------------
+Epoch [72/100], Test Loss: 0.704620, Overall Accuracy: 99.33%
+INFO (MaMa): No improvement for 3 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [73/100], Iter [200/392], LR: 0.000173, Loss: 0.693435
+--------------------------------------------------------------------
+Epoch [73/100], Test Loss: 0.707253, Overall Accuracy: 99.29%
+INFO (MaMa): No improvement for 4 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [74/100], Iter [200/392], LR: 0.000168, Loss: 0.688210
+--------------------------------------------------------------------
+Epoch [74/100], Test Loss: 0.705797, Overall Accuracy: 99.38%
+INFO (MaMa): No improvement for 5 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [75/100], Iter [200/392], LR: 0.000163, Loss: 0.708047
+--------------------------------------------------------------------
+Epoch [75/100], Test Loss: 0.703231, Overall Accuracy: 99.46%
+INFO (MaMa): No improvement for 6 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [76/100], Iter [200/392], LR: 0.000159, Loss: 0.685555
+--------------------------------------------------------------------
+Epoch [76/100], Test Loss: 0.702743, Overall Accuracy: 99.41%
+INFO (MaMa): No improvement for 7 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [77/100], Iter [200/392], LR: 0.000154, Loss: 0.743509
+--------------------------------------------------------------------
+Epoch [77/100], Test Loss: 0.698818, Overall Accuracy: 99.50%
+INFO (MaMa): No improvement for 8 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [78/100], Iter [200/392], LR: 0.000150, Loss: 0.713501
+--------------------------------------------------------------------
+Epoch [78/100], Test Loss: 0.702131, Overall Accuracy: 99.46%
+INFO (MaMa): No improvement for 9 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [79/100], Iter [200/392], LR: 0.000146, Loss: 0.685868
+--------------------------------------------------------------------
+Epoch [79/100], Test Loss: 0.700517, Overall Accuracy: 99.52%
+INFO (MaMa): No improvement for 10 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [80/100], Iter [200/392], LR: 0.000142, Loss: 0.698943
+--------------------------------------------------------------------
+Epoch [80/100], Test Loss: 0.701557, Overall Accuracy: 99.44%
+INFO (MaMa): No improvement for 11 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [81/100], Iter [200/392], LR: 0.000138, Loss: 0.687198
+--------------------------------------------------------------------
+Epoch [81/100], Test Loss: 0.697882, Overall Accuracy: 99.55%
+INFO (MaMa): No improvement for 12 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [82/100], Iter [200/392], LR: 0.000135, Loss: 0.686225
+--------------------------------------------------------------------
+Epoch [82/100], Test Loss: 0.703127, Overall Accuracy: 99.39%
+INFO (MaMa): No improvement for 13 epochs. Best accuracy was 99.60% at epoch 69.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.60% achieved at epoch 69
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [83/100], Iter [200/392], LR: 0.000131, Loss: 0.703785
+--------------------------------------------------------------------
+Epoch [83/100], Test Loss: 0.695730, Overall Accuracy: 99.61%
+INFO (MaMa): New best accuracy: 99.61% at epoch 83. Saving model state.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.61% achieved at epoch 83
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [84/100], Iter [200/392], LR: 0.000128, Loss: 0.685768
+--------------------------------------------------------------------
+Epoch [84/100], Test Loss: 0.698959, Overall Accuracy: 99.49%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.61% at epoch 83.
+INFO (MaMa): Best mAP was 98.9531% at epoch 64.
+INFO (MaMa): Best IoU was 98.6763% at epoch 69.
+Highest accuracy: 99.61% achieved at epoch 83
+Highest mAP: 98.9531% achieved at epoch 64
+Highest IoU: 98.6763% achieved at epoch 69
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [85/100], Iter [200/392], LR: 0.000125, Loss: 0.685535
+--------------------------------------------------------------------
+Epoch [85/100], Test Loss: 0.694673, Overall Accuracy: 99.71%
+INFO (MaMa): New best accuracy: 99.71% at epoch 85. Saving model state.
+INFO (MaMa): New best mAP: 99.2479% at epoch 85.
+INFO (MaMa): New best IoU: 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [86/100], Iter [200/392], LR: 0.000122, Loss: 0.685785
+--------------------------------------------------------------------
+Epoch [86/100], Test Loss: 0.700003, Overall Accuracy: 99.47%
+INFO (MaMa): No improvement for 1 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [87/100], Iter [200/392], LR: 0.000119, Loss: 0.687142
+--------------------------------------------------------------------
+Epoch [87/100], Test Loss: 0.699230, Overall Accuracy: 99.50%
+INFO (MaMa): No improvement for 2 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [88/100], Iter [200/392], LR: 0.000116, Loss: 0.685579
+--------------------------------------------------------------------
+Epoch [88/100], Test Loss: 0.694470, Overall Accuracy: 99.66%
+INFO (MaMa): No improvement for 3 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [89/100], Iter [200/392], LR: 0.000114, Loss: 0.733276
+--------------------------------------------------------------------
+Epoch [89/100], Test Loss: 0.696804, Overall Accuracy: 99.57%
+INFO (MaMa): No improvement for 4 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [90/100], Iter [200/392], LR: 0.000112, Loss: 0.685658
+--------------------------------------------------------------------
+Epoch [90/100], Test Loss: 0.699467, Overall Accuracy: 99.52%
+INFO (MaMa): No improvement for 5 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [91/100], Iter [200/392], LR: 0.000110, Loss: 0.730899
+--------------------------------------------------------------------
+Epoch [91/100], Test Loss: 0.701398, Overall Accuracy: 99.48%
+INFO (MaMa): No improvement for 6 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [92/100], Iter [200/392], LR: 0.000108, Loss: 0.714710
+--------------------------------------------------------------------
+Epoch [92/100], Test Loss: 0.700881, Overall Accuracy: 99.48%
+INFO (MaMa): No improvement for 7 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [93/100], Iter [200/392], LR: 0.000106, Loss: 0.729716
+--------------------------------------------------------------------
+Epoch [93/100], Test Loss: 0.700379, Overall Accuracy: 99.45%
+INFO (MaMa): No improvement for 8 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [94/100], Iter [200/392], LR: 0.000105, Loss: 0.687940
+--------------------------------------------------------------------
+Epoch [94/100], Test Loss: 0.700955, Overall Accuracy: 99.42%
+INFO (MaMa): No improvement for 9 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [95/100], Iter [200/392], LR: 0.000104, Loss: 0.726740
+--------------------------------------------------------------------
+Epoch [95/100], Test Loss: 0.705723, Overall Accuracy: 99.30%
+INFO (MaMa): No improvement for 10 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [96/100], Iter [200/392], LR: 0.000102, Loss: 0.685483
+--------------------------------------------------------------------
+Epoch [96/100], Test Loss: 0.697711, Overall Accuracy: 99.57%
+INFO (MaMa): No improvement for 11 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [97/100], Iter [200/392], LR: 0.000102, Loss: 0.690319
+--------------------------------------------------------------------
+Epoch [97/100], Test Loss: 0.698057, Overall Accuracy: 99.56%
+INFO (MaMa): No improvement for 12 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [98/100], Iter [200/392], LR: 0.000101, Loss: 0.688750
+--------------------------------------------------------------------
+Epoch [98/100], Test Loss: 0.698228, Overall Accuracy: 99.57%
+INFO (MaMa): No improvement for 13 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [99/100], Iter [200/392], LR: 0.000100, Loss: 0.696485
+--------------------------------------------------------------------
+Epoch [99/100], Test Loss: 0.698861, Overall Accuracy: 99.51%
+INFO (MaMa): No improvement for 14 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [100/100], Iter [200/392], LR: 0.000100, Loss: 0.685484
+--------------------------------------------------------------------
+Epoch [100/100], Test Loss: 0.696457, Overall Accuracy: 99.61%
+INFO (MaMa): No improvement for 15 epochs. Best accuracy was 99.71% at epoch 85.
+INFO (MaMa): Best mAP was 99.2479% at epoch 85.
+INFO (MaMa): Best IoU was 98.9846% at epoch 85.
+Highest accuracy: 99.71% achieved at epoch 85
+Highest mAP: 99.2479% achieved at epoch 85
+Highest IoU: 98.9846% achieved at epoch 85
+INFO: Checkpoint saved to mama_training_checkpoint.pth
+--------------------------------------------------------------------
+INFO (MaMa): Loading best model from epoch 85 with accuracy 99.71% for final evaluation.
+Final Evaluation of MaMa Model
+Per-Class Accuracy:
+Class 0 (0000): 100.00% (60/60)
+Class 1 (0001): 100.00% (720/720)
+Class 2 (0002): 99.87% (749/750)
+Class 3 (0003): 99.11% (446/450)
+Class 4 (0004): 99.70% (658/660)
+Class 5 (0005): 100.00% (630/630)
+Class 6 (0006): 98.00% (147/150)
+Class 7 (0007): 100.00% (450/450)
+Class 8 (0008): 100.00% (450/450)
+Class 9 (0009): 100.00% (480/480)
+Class 10 (0010): 100.00% (660/660)
+Class 11 (0011): 99.76% (419/420)
+Class 12 (0012): 100.00% (690/690)
+Class 13 (0013): 99.72% (718/720)
+Class 14 (0014): 100.00% (270/270)
+Class 15 (0015): 99.05% (208/210)
+Class 16 (0016): 100.00% (150/150)
+Class 17 (0017): 100.00% (360/360)
+Class 18 (0018): 96.92% (378/390)
+Class 19 (0019): 100.00% (60/60)
+Class 20 (0020): 100.00% (90/90)
+Class 21 (0021): 100.00% (90/90)
+Class 22 (0022): 98.33% (118/120)
+Class 23 (0023): 100.00% (150/150)
+Class 24 (0024): 100.00% (90/90)
+Class 25 (0025): 99.79% (479/480)
+Class 26 (0026): 100.00% (180/180)
+Class 27 (0027): 100.00% (60/60)
+Class 28 (0028): 100.00% (150/150)
+Class 29 (0029): 100.00% (90/90)
+Class 30 (0030): 100.00% (150/150)
+Class 31 (0031): 100.00% (270/270)
+Class 32 (0032): 100.00% (60/60)
+Class 33 (0033): 100.00% (210/210)
+Class 34 (0034): 100.00% (120/120)
+Class 35 (0035): 100.00% (390/390)
+Class 36 (0036): 100.00% (120/120)
+Class 37 (0037): 98.33% (59/60)
+Class 38 (0038): 100.00% (690/690)
+Class 39 (0039): 100.00% (90/90)
+Class 40 (0040): 90.00% (81/90)
+Class 41 (0041): 100.00% (60/60)
+Class 42 (0042): 90.00% (81/90)
+--------------------------------------------------------------------
+Epoch [85/100], Test Loss: 0.696457, Overall Accuracy: 99.61%
+Final accuracy of loaded MaMa model (from epoch 85): 99.61%
+Final mAP of loaded MaMa model (from epoch 85): 98.8332%
+Final IoU of loaded MaMa model (from epoch 85): 98.5042%
+Macro F1 Score: 0.9923
+Weighted F1 Score: 0.9961
+Macro Precision Score: 0.9923
+Weighted Precision Score: 0.9963
+Macro Recall Score: 0.9927
+Weighted Recall Score: 0.9961
+--------------------------------------------------------------------
+
+Confusion Matrix for MaMa:
+Pred ->  Spe   Spe   Spe   Spe   Spe   Spe   End   Spe   Spe   No    No    Rig   Pri   Yie   Sto   No    Veh   No    Gen   Dan   Dan   Dou   Bum   Sli   Roa   Roa   Tra   Ped   Chi   Bic   Bew   Wil   End   Tur   Tur   Ahe   Go    Go    Kee   Kee   Rou   End   End
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Speed |   60     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0   720     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0     1   749     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0     0     0   446     0     3     0     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0     0     0     0   658     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0     0     0     0     0   630     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+End o |    0     0     0     0     0     1   147     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     2     0     0     0     0     0     0     0     0     0     0
+Speed |    0     0     0     0     0     0     0   450     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0     0     0     0     0     0     0     0   450     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+No pa |    0     0     0     0     0     0     0     0     0   480     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+No pa |    0     0     0     0     0     0     0     0     0     0   660     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Right |    0     0     0     0     0     0     0     0     0     0     0   419     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Prior |    0     0     0     0     0     0     0     0     0     0     0     0   690     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Yield |    0     0     0     0     0     0     0     0     0     0     0     0     0   718     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0     0     0     0     0     0     0     0
+Stop  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0   270     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+No ve |    0     0     0     0     0     0     0     0     0     0     0     0     0     2     0   208     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Vehic |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   150     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+No en |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   360     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Gener |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   378     0     1     2     0     0     0     0     1     0     0     1     0     7     0     0     0     0     0     0     0     0     0     0     0
+Dange |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    60     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Dange |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    90     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Doubl |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    90     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Bumpy |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   118     0     0     1     0     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0
+Slipp |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   150     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Road  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    90     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Road  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   479     0     0     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0
+Traff |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   180     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Pedes |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    60     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Child |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   150     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Bicyc |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    90     0     0     0     0     0     0     0     0     0     0     0     0     0
+Bewar |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   150     0     0     0     0     0     0     0     0     0     0     0     0
+Wild  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   270     0     0     0     0     0     0     0     0     0     0     0
+End o |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    60     0     0     0     0     0     0     0     0     0     0
+Turn  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   210     0     0     0     0     0     0     0     0     0
+Turn  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   120     0     0     0     0     0     0     0     0
+Ahead |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   390     0     0     0     0     0     0     0
+Go st |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   120     0     0     0     0     0     0
+Go st |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     1     0    59     0     0     0     0     0
+Keep  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   690     0     0     0     0
+Keep  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    90     0     0     0
+Round |    0     1     0     0     0     4     1     0     0     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     1     1     0     0     0    81     0     0
+End o |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    60     0
+End o |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     9    81
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Epoch [1/100], Iter [200/392], LR: 0.000500, Loss: 2.184628
+--------------------------------------------------------------------
+Epoch [1/100], Test Loss: 0.949918, Overall Accuracy: 93.27%
+INFO (MaMa-MoEx): New best accuracy: 93.27% at epoch 1. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 83.8918% at epoch 1.
+INFO (MaMa-MoEx): New best IoU: 82.0982% at epoch 1.
+Highest accuracy: 93.27% achieved at epoch 1
+Highest mAP: 83.8918% achieved at epoch 1
+Highest IoU: 82.0982% achieved at epoch 1
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [2/100], Iter [200/392], LR: 0.000500, Loss: 0.863306
+--------------------------------------------------------------------
+Epoch [2/100], Test Loss: 0.809272, Overall Accuracy: 97.47%
+INFO (MaMa-MoEx): New best accuracy: 97.47% at epoch 2. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 94.9125% at epoch 2.
+INFO (MaMa-MoEx): New best IoU: 93.0913% at epoch 2.
+Highest accuracy: 97.47% achieved at epoch 2
+Highest mAP: 94.9125% achieved at epoch 2
+Highest IoU: 93.0913% achieved at epoch 2
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [3/100], Iter [200/392], LR: 0.000500, Loss: 1.268820
+--------------------------------------------------------------------
+Epoch [3/100], Test Loss: 0.774119, Overall Accuracy: 97.60%
+INFO (MaMa-MoEx): New best accuracy: 97.60% at epoch 3. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 95.6473% at epoch 3.
+INFO (MaMa-MoEx): New best IoU: 94.6002% at epoch 3.
+Highest accuracy: 97.60% achieved at epoch 3
+Highest mAP: 95.6473% achieved at epoch 3
+Highest IoU: 94.6002% achieved at epoch 3
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [4/100], Iter [200/392], LR: 0.000499, Loss: 1.255379
+--------------------------------------------------------------------
+Epoch [4/100], Test Loss: 0.757628, Overall Accuracy: 98.18%
+INFO (MaMa-MoEx): New best accuracy: 98.18% at epoch 4. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 95.8788% at epoch 4.
+INFO (MaMa-MoEx): New best IoU: 94.7706% at epoch 4.
+Highest accuracy: 98.18% achieved at epoch 4
+Highest mAP: 95.8788% achieved at epoch 4
+Highest IoU: 94.7706% achieved at epoch 4
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [5/100], Iter [200/392], LR: 0.000498, Loss: 1.279740
+--------------------------------------------------------------------
+Epoch [5/100], Test Loss: 0.745348, Overall Accuracy: 98.56%
+INFO (MaMa-MoEx): New best accuracy: 98.56% at epoch 5. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 97.4566% at epoch 5.
+INFO (MaMa-MoEx): New best IoU: 96.4333% at epoch 5.
+Highest accuracy: 98.56% achieved at epoch 5
+Highest mAP: 97.4566% achieved at epoch 5
+Highest IoU: 96.4333% achieved at epoch 5
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [6/100], Iter [200/392], LR: 0.000498, Loss: 1.305652
+--------------------------------------------------------------------
+Epoch [6/100], Test Loss: 0.738130, Overall Accuracy: 98.61%
+INFO (MaMa-MoEx): New best accuracy: 98.61% at epoch 6. Saving model state.
+INFO (MaMa-MoEx): Best mAP was 97.4566% at epoch 5.
+INFO (MaMa-MoEx): Best IoU was 96.4333% at epoch 5.
+Highest accuracy: 98.61% achieved at epoch 6
+Highest mAP: 97.4566% achieved at epoch 5
+Highest IoU: 96.4333% achieved at epoch 5
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [7/100], Iter [200/392], LR: 0.000496, Loss: 1.168207
+--------------------------------------------------------------------
+Epoch [7/100], Test Loss: 0.731232, Overall Accuracy: 98.86%
+INFO (MaMa-MoEx): New best accuracy: 98.86% at epoch 7. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 97.5143% at epoch 7.
+INFO (MaMa-MoEx): New best IoU: 96.8014% at epoch 7.
+Highest accuracy: 98.86% achieved at epoch 7
+Highest mAP: 97.5143% achieved at epoch 7
+Highest IoU: 96.8014% achieved at epoch 7
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [8/100], Iter [200/392], LR: 0.000495, Loss: 1.258639
+--------------------------------------------------------------------
+Epoch [8/100], Test Loss: 0.725098, Overall Accuracy: 99.02%
+INFO (MaMa-MoEx): New best accuracy: 99.02% at epoch 8. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 97.5286% at epoch 8.
+INFO (MaMa-MoEx): New best IoU: 96.8248% at epoch 8.
+Highest accuracy: 99.02% achieved at epoch 8
+Highest mAP: 97.5286% achieved at epoch 8
+Highest IoU: 96.8248% achieved at epoch 8
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [9/100], Iter [200/392], LR: 0.000494, Loss: 1.190675
+--------------------------------------------------------------------
+Epoch [9/100], Test Loss: 0.730245, Overall Accuracy: 98.79%
+INFO (MaMa-MoEx): No improvement for 1 epochs. Best accuracy was 99.02% at epoch 8.
+INFO (MaMa-MoEx): Best mAP was 97.5286% at epoch 8.
+INFO (MaMa-MoEx): Best IoU was 96.8248% at epoch 8.
+Highest accuracy: 99.02% achieved at epoch 8
+Highest mAP: 97.5286% achieved at epoch 8
+Highest IoU: 96.8248% achieved at epoch 8
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [10/100], Iter [200/392], LR: 0.000492, Loss: 1.186089
+--------------------------------------------------------------------
+Epoch [10/100], Test Loss: 0.723560, Overall Accuracy: 98.95%
+INFO (MaMa-MoEx): No improvement for 2 epochs. Best accuracy was 99.02% at epoch 8.
+INFO (MaMa-MoEx): Best mAP was 97.5286% at epoch 8.
+INFO (MaMa-MoEx): Best IoU was 96.8248% at epoch 8.
+Highest accuracy: 99.02% achieved at epoch 8
+Highest mAP: 97.5286% achieved at epoch 8
+Highest IoU: 96.8248% achieved at epoch 8
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [11/100], Iter [200/392], LR: 0.000490, Loss: 1.160747
+--------------------------------------------------------------------
+Epoch [11/100], Test Loss: 0.723112, Overall Accuracy: 98.97%
+INFO (MaMa-MoEx): No improvement for 3 epochs. Best accuracy was 99.02% at epoch 8.
+INFO (MaMa-MoEx): New best mAP: 97.5770% at epoch 11.
+INFO (MaMa-MoEx): New best IoU: 97.0994% at epoch 11.
+Highest accuracy: 99.02% achieved at epoch 8
+Highest mAP: 97.5770% achieved at epoch 11
+Highest IoU: 97.0994% achieved at epoch 11
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [12/100], Iter [200/392], LR: 0.000488, Loss: 1.211219
+--------------------------------------------------------------------
+Epoch [12/100], Test Loss: 0.717691, Overall Accuracy: 99.17%
+INFO (MaMa-MoEx): New best accuracy: 99.17% at epoch 12. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 97.5812% at epoch 12.
+INFO (MaMa-MoEx): Best IoU was 97.0994% at epoch 11.
+Highest accuracy: 99.17% achieved at epoch 12
+Highest mAP: 97.5812% achieved at epoch 12
+Highest IoU: 97.0994% achieved at epoch 11
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [13/100], Iter [200/392], LR: 0.000486, Loss: 1.143595
+--------------------------------------------------------------------
+Epoch [13/100], Test Loss: 0.721416, Overall Accuracy: 98.92%
+INFO (MaMa-MoEx): No improvement for 1 epochs. Best accuracy was 99.17% at epoch 12.
+INFO (MaMa-MoEx): New best mAP: 98.0474% at epoch 13.
+INFO (MaMa-MoEx): New best IoU: 97.2960% at epoch 13.
+Highest accuracy: 99.17% achieved at epoch 12
+Highest mAP: 98.0474% achieved at epoch 13
+Highest IoU: 97.2960% achieved at epoch 13
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [14/100], Iter [200/392], LR: 0.000484, Loss: 0.713844
+--------------------------------------------------------------------
+Epoch [14/100], Test Loss: 0.709041, Overall Accuracy: 99.46%
+INFO (MaMa-MoEx): New best accuracy: 99.46% at epoch 14. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 98.7615% at epoch 14.
+INFO (MaMa-MoEx): New best IoU: 98.4298% at epoch 14.
+Highest accuracy: 99.46% achieved at epoch 14
+Highest mAP: 98.7615% achieved at epoch 14
+Highest IoU: 98.4298% achieved at epoch 14
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [15/100], Iter [200/392], LR: 0.000481, Loss: 0.761324
+--------------------------------------------------------------------
+Epoch [15/100], Test Loss: 0.714012, Overall Accuracy: 99.16%
+INFO (MaMa-MoEx): No improvement for 1 epochs. Best accuracy was 99.46% at epoch 14.
+INFO (MaMa-MoEx): Best mAP was 98.7615% at epoch 14.
+INFO (MaMa-MoEx): Best IoU was 98.4298% at epoch 14.
+Highest accuracy: 99.46% achieved at epoch 14
+Highest mAP: 98.7615% achieved at epoch 14
+Highest IoU: 98.4298% achieved at epoch 14
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [16/100], Iter [200/392], LR: 0.000478, Loss: 1.143914
+--------------------------------------------------------------------
+Epoch [16/100], Test Loss: 0.716121, Overall Accuracy: 99.21%
+INFO (MaMa-MoEx): No improvement for 2 epochs. Best accuracy was 99.46% at epoch 14.
+INFO (MaMa-MoEx): Best mAP was 98.7615% at epoch 14.
+INFO (MaMa-MoEx): Best IoU was 98.4298% at epoch 14.
+Highest accuracy: 99.46% achieved at epoch 14
+Highest mAP: 98.7615% achieved at epoch 14
+Highest IoU: 98.4298% achieved at epoch 14
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [17/100], Iter [200/392], LR: 0.000475, Loss: 1.165805
+--------------------------------------------------------------------
+Epoch [17/100], Test Loss: 0.712878, Overall Accuracy: 99.14%
+INFO (MaMa-MoEx): No improvement for 3 epochs. Best accuracy was 99.46% at epoch 14.
+INFO (MaMa-MoEx): Best mAP was 98.7615% at epoch 14.
+INFO (MaMa-MoEx): Best IoU was 98.4298% at epoch 14.
+Highest accuracy: 99.46% achieved at epoch 14
+Highest mAP: 98.7615% achieved at epoch 14
+Highest IoU: 98.4298% achieved at epoch 14
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [18/100], Iter [200/392], LR: 0.000472, Loss: 1.147272
+--------------------------------------------------------------------
+Epoch [18/100], Test Loss: 0.712908, Overall Accuracy: 99.26%
+INFO (MaMa-MoEx): No improvement for 4 epochs. Best accuracy was 99.46% at epoch 14.
+INFO (MaMa-MoEx): Best mAP was 98.7615% at epoch 14.
+INFO (MaMa-MoEx): Best IoU was 98.4298% at epoch 14.
+Highest accuracy: 99.46% achieved at epoch 14
+Highest mAP: 98.7615% achieved at epoch 14
+Highest IoU: 98.4298% achieved at epoch 14
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [19/100], Iter [200/392], LR: 0.000469, Loss: 0.734996
+--------------------------------------------------------------------
+Epoch [19/100], Test Loss: 0.705905, Overall Accuracy: 99.47%
+INFO (MaMa-MoEx): New best accuracy: 99.47% at epoch 19. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 98.9906% at epoch 19.
+INFO (MaMa-MoEx): New best IoU: 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [20/100], Iter [200/392], LR: 0.000465, Loss: 1.203453
+--------------------------------------------------------------------
+Epoch [20/100], Test Loss: 0.717577, Overall Accuracy: 98.98%
+INFO (MaMa-MoEx): No improvement for 1 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [21/100], Iter [200/392], LR: 0.000462, Loss: 1.115524
+--------------------------------------------------------------------
+Epoch [21/100], Test Loss: 0.710746, Overall Accuracy: 99.19%
+INFO (MaMa-MoEx): No improvement for 2 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [22/100], Iter [200/392], LR: 0.000458, Loss: 1.143257
+--------------------------------------------------------------------
+Epoch [22/100], Test Loss: 0.711736, Overall Accuracy: 99.18%
+INFO (MaMa-MoEx): No improvement for 3 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [23/100], Iter [200/392], LR: 0.000454, Loss: 1.139550
+--------------------------------------------------------------------
+Epoch [23/100], Test Loss: 0.706041, Overall Accuracy: 99.37%
+INFO (MaMa-MoEx): No improvement for 4 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [24/100], Iter [200/392], LR: 0.000450, Loss: 1.160401
+--------------------------------------------------------------------
+Epoch [24/100], Test Loss: 0.711345, Overall Accuracy: 99.19%
+INFO (MaMa-MoEx): No improvement for 5 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [25/100], Iter [200/392], LR: 0.000446, Loss: 1.165790
+--------------------------------------------------------------------
+Epoch [25/100], Test Loss: 0.717582, Overall Accuracy: 98.87%
+INFO (MaMa-MoEx): No improvement for 6 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [26/100], Iter [200/392], LR: 0.000441, Loss: 1.189133
+--------------------------------------------------------------------
+Epoch [26/100], Test Loss: 0.706603, Overall Accuracy: 99.33%
+INFO (MaMa-MoEx): No improvement for 7 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [27/100], Iter [200/392], LR: 0.000437, Loss: 1.135516
+--------------------------------------------------------------------
+Epoch [27/100], Test Loss: 0.720294, Overall Accuracy: 99.03%
+INFO (MaMa-MoEx): No improvement for 8 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [28/100], Iter [200/392], LR: 0.000432, Loss: 0.752581
+--------------------------------------------------------------------
+Epoch [28/100], Test Loss: 0.714919, Overall Accuracy: 99.07%
+INFO (MaMa-MoEx): No improvement for 9 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [29/100], Iter [200/392], LR: 0.000427, Loss: 1.139292
+--------------------------------------------------------------------
+Epoch [29/100], Test Loss: 0.712016, Overall Accuracy: 99.14%
+INFO (MaMa-MoEx): No improvement for 10 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [30/100], Iter [200/392], LR: 0.000423, Loss: 1.188998
+--------------------------------------------------------------------
+Epoch [30/100], Test Loss: 0.706763, Overall Accuracy: 99.30%
+INFO (MaMa-MoEx): No improvement for 11 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [31/100], Iter [200/392], LR: 0.000418, Loss: 1.169859
+--------------------------------------------------------------------
+Epoch [31/100], Test Loss: 0.707439, Overall Accuracy: 99.37%
+INFO (MaMa-MoEx): No improvement for 12 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [32/100], Iter [200/392], LR: 0.000412, Loss: 0.695416
+--------------------------------------------------------------------
+Epoch [32/100], Test Loss: 0.707467, Overall Accuracy: 99.30%
+INFO (MaMa-MoEx): No improvement for 13 epochs. Best accuracy was 99.47% at epoch 19.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.47% achieved at epoch 19
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [33/100], Iter [200/392], LR: 0.000407, Loss: 1.133492
+--------------------------------------------------------------------
+Epoch [33/100], Test Loss: 0.703360, Overall Accuracy: 99.51%
+INFO (MaMa-MoEx): New best accuracy: 99.51% at epoch 33. Saving model state.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.51% achieved at epoch 33
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [34/100], Iter [200/392], LR: 0.000402, Loss: 1.090102
+--------------------------------------------------------------------
+Epoch [34/100], Test Loss: 0.703827, Overall Accuracy: 99.43%
+INFO (MaMa-MoEx): No improvement for 1 epochs. Best accuracy was 99.51% at epoch 33.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.51% achieved at epoch 33
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [35/100], Iter [200/392], LR: 0.000396, Loss: 1.109679
+--------------------------------------------------------------------
+Epoch [35/100], Test Loss: 0.701581, Overall Accuracy: 99.49%
+INFO (MaMa-MoEx): No improvement for 2 epochs. Best accuracy was 99.51% at epoch 33.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.51% achieved at epoch 33
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [36/100], Iter [200/392], LR: 0.000391, Loss: 1.142470
+--------------------------------------------------------------------
+Epoch [36/100], Test Loss: 0.710228, Overall Accuracy: 99.13%
+INFO (MaMa-MoEx): No improvement for 3 epochs. Best accuracy was 99.51% at epoch 33.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.51% achieved at epoch 33
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [37/100], Iter [200/392], LR: 0.000385, Loss: 1.145158
+--------------------------------------------------------------------
+Epoch [37/100], Test Loss: 0.708750, Overall Accuracy: 99.19%
+INFO (MaMa-MoEx): No improvement for 4 epochs. Best accuracy was 99.51% at epoch 33.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.51% achieved at epoch 33
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [38/100], Iter [200/392], LR: 0.000379, Loss: 0.687507
+--------------------------------------------------------------------
+Epoch [38/100], Test Loss: 0.703682, Overall Accuracy: 99.40%
+INFO (MaMa-MoEx): No improvement for 5 epochs. Best accuracy was 99.51% at epoch 33.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.51% achieved at epoch 33
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [39/100], Iter [200/392], LR: 0.000374, Loss: 1.119619
+--------------------------------------------------------------------
+Epoch [39/100], Test Loss: 0.700430, Overall Accuracy: 99.53%
+INFO (MaMa-MoEx): New best accuracy: 99.53% at epoch 39. Saving model state.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [40/100], Iter [200/392], LR: 0.000368, Loss: 1.118721
+--------------------------------------------------------------------
+Epoch [40/100], Test Loss: 0.709517, Overall Accuracy: 99.11%
+INFO (MaMa-MoEx): No improvement for 1 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [41/100], Iter [200/392], LR: 0.000362, Loss: 0.712364
+--------------------------------------------------------------------
+Epoch [41/100], Test Loss: 0.701108, Overall Accuracy: 99.50%
+INFO (MaMa-MoEx): No improvement for 2 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [42/100], Iter [200/392], LR: 0.000356, Loss: 1.091779
+--------------------------------------------------------------------
+Epoch [42/100], Test Loss: 0.704101, Overall Accuracy: 99.37%
+INFO (MaMa-MoEx): No improvement for 3 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [43/100], Iter [200/392], LR: 0.000350, Loss: 1.102196
+--------------------------------------------------------------------
+Epoch [43/100], Test Loss: 0.702850, Overall Accuracy: 99.49%
+INFO (MaMa-MoEx): No improvement for 4 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [44/100], Iter [200/392], LR: 0.000344, Loss: 0.719095
+--------------------------------------------------------------------
+Epoch [44/100], Test Loss: 0.700697, Overall Accuracy: 99.53%
+INFO (MaMa-MoEx): No improvement for 5 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [45/100], Iter [200/392], LR: 0.000337, Loss: 0.691799
+--------------------------------------------------------------------
+Epoch [45/100], Test Loss: 0.700699, Overall Accuracy: 99.53%
+INFO (MaMa-MoEx): No improvement for 6 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [46/100], Iter [200/392], LR: 0.000331, Loss: 1.082572
+--------------------------------------------------------------------
+Epoch [46/100], Test Loss: 0.702274, Overall Accuracy: 99.52%
+INFO (MaMa-MoEx): No improvement for 7 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [47/100], Iter [200/392], LR: 0.000325, Loss: 1.079590
+--------------------------------------------------------------------
+Epoch [47/100], Test Loss: 0.701629, Overall Accuracy: 99.45%
+INFO (MaMa-MoEx): No improvement for 8 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [48/100], Iter [200/392], LR: 0.000319, Loss: 1.115083
+--------------------------------------------------------------------
+Epoch [48/100], Test Loss: 0.702189, Overall Accuracy: 99.36%
+INFO (MaMa-MoEx): No improvement for 9 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [49/100], Iter [200/392], LR: 0.000313, Loss: 1.080535
+--------------------------------------------------------------------
+Epoch [49/100], Test Loss: 0.706122, Overall Accuracy: 99.26%
+INFO (MaMa-MoEx): No improvement for 10 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [50/100], Iter [200/392], LR: 0.000306, Loss: 1.073705
+--------------------------------------------------------------------
+Epoch [50/100], Test Loss: 0.703207, Overall Accuracy: 99.39%
+INFO (MaMa-MoEx): No improvement for 11 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [51/100], Iter [200/392], LR: 0.000300, Loss: 1.116578
+--------------------------------------------------------------------
+Epoch [51/100], Test Loss: 0.700075, Overall Accuracy: 99.48%
+INFO (MaMa-MoEx): No improvement for 12 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [52/100], Iter [200/392], LR: 0.000294, Loss: 0.736138
+--------------------------------------------------------------------
+Epoch [52/100], Test Loss: 0.707178, Overall Accuracy: 99.27%
+INFO (MaMa-MoEx): No improvement for 13 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [53/100], Iter [200/392], LR: 0.000287, Loss: 1.077146
+--------------------------------------------------------------------
+Epoch [53/100], Test Loss: 0.699395, Overall Accuracy: 99.48%
+INFO (MaMa-MoEx): No improvement for 14 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [54/100], Iter [200/392], LR: 0.000281, Loss: 1.115599
+--------------------------------------------------------------------
+Epoch [54/100], Test Loss: 0.702866, Overall Accuracy: 99.50%
+INFO (MaMa-MoEx): No improvement for 15 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [55/100], Iter [200/392], LR: 0.000275, Loss: 1.111861
+--------------------------------------------------------------------
+Epoch [55/100], Test Loss: 0.700822, Overall Accuracy: 99.51%
+INFO (MaMa-MoEx): No improvement for 16 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [56/100], Iter [200/392], LR: 0.000269, Loss: 0.732035
+--------------------------------------------------------------------
+Epoch [56/100], Test Loss: 0.700843, Overall Accuracy: 99.49%
+INFO (MaMa-MoEx): No improvement for 17 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [57/100], Iter [200/392], LR: 0.000263, Loss: 0.687794
+--------------------------------------------------------------------
+Epoch [57/100], Test Loss: 0.700677, Overall Accuracy: 99.48%
+INFO (MaMa-MoEx): No improvement for 18 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [58/100], Iter [200/392], LR: 0.000256, Loss: 1.077283
+--------------------------------------------------------------------
+Epoch [58/100], Test Loss: 0.701073, Overall Accuracy: 99.49%
+INFO (MaMa-MoEx): No improvement for 19 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [59/100], Iter [200/392], LR: 0.000250, Loss: 1.065309
+--------------------------------------------------------------------
+Epoch [59/100], Test Loss: 0.701651, Overall Accuracy: 99.42%
+INFO (MaMa-MoEx): No improvement for 20 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [60/100], Iter [200/392], LR: 0.000244, Loss: 0.741798
+--------------------------------------------------------------------
+Epoch [60/100], Test Loss: 0.698958, Overall Accuracy: 99.52%
+INFO (MaMa-MoEx): No improvement for 21 epochs. Best accuracy was 99.53% at epoch 39.
+INFO (MaMa-MoEx): Best mAP was 98.9906% at epoch 19.
+INFO (MaMa-MoEx): Best IoU was 98.6067% at epoch 19.
+Highest accuracy: 99.53% achieved at epoch 39
+Highest mAP: 98.9906% achieved at epoch 19
+Highest IoU: 98.6067% achieved at epoch 19
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [61/100], Iter [200/392], LR: 0.000238, Loss: 1.082365
+--------------------------------------------------------------------
+Epoch [61/100], Test Loss: 0.695823, Overall Accuracy: 99.69%
+INFO (MaMa-MoEx): New best accuracy: 99.69% at epoch 61. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 99.2572% at epoch 61.
+INFO (MaMa-MoEx): New best IoU: 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [62/100], Iter [200/392], LR: 0.000232, Loss: 1.077981
+--------------------------------------------------------------------
+Epoch [62/100], Test Loss: 0.701159, Overall Accuracy: 99.46%
+INFO (MaMa-MoEx): No improvement for 1 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [63/100], Iter [200/392], LR: 0.000226, Loss: 1.074843
+--------------------------------------------------------------------
+Epoch [63/100], Test Loss: 0.700902, Overall Accuracy: 99.54%
+INFO (MaMa-MoEx): No improvement for 2 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [64/100], Iter [200/392], LR: 0.000221, Loss: 1.056918
+--------------------------------------------------------------------
+Epoch [64/100], Test Loss: 0.701673, Overall Accuracy: 99.44%
+INFO (MaMa-MoEx): No improvement for 3 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [65/100], Iter [200/392], LR: 0.000215, Loss: 1.062035
+--------------------------------------------------------------------
+Epoch [65/100], Test Loss: 0.700618, Overall Accuracy: 99.40%
+INFO (MaMa-MoEx): No improvement for 4 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [66/100], Iter [200/392], LR: 0.000209, Loss: 1.066264
+--------------------------------------------------------------------
+Epoch [66/100], Test Loss: 0.702858, Overall Accuracy: 99.36%
+INFO (MaMa-MoEx): No improvement for 5 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [67/100], Iter [200/392], LR: 0.000204, Loss: 0.698478
+--------------------------------------------------------------------
+Epoch [67/100], Test Loss: 0.700940, Overall Accuracy: 99.45%
+INFO (MaMa-MoEx): No improvement for 6 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [68/100], Iter [200/392], LR: 0.000198, Loss: 1.081370
+--------------------------------------------------------------------
+Epoch [68/100], Test Loss: 0.697172, Overall Accuracy: 99.62%
+INFO (MaMa-MoEx): No improvement for 7 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [69/100], Iter [200/392], LR: 0.000193, Loss: 1.077948
+--------------------------------------------------------------------
+Epoch [69/100], Test Loss: 0.700271, Overall Accuracy: 99.52%
+INFO (MaMa-MoEx): No improvement for 8 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [70/100], Iter [200/392], LR: 0.000188, Loss: 1.090537
+--------------------------------------------------------------------
+Epoch [70/100], Test Loss: 0.698061, Overall Accuracy: 99.52%
+INFO (MaMa-MoEx): No improvement for 9 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [71/100], Iter [200/392], LR: 0.000182, Loss: 1.082458
+--------------------------------------------------------------------
+Epoch [71/100], Test Loss: 0.696821, Overall Accuracy: 99.68%
+INFO (MaMa-MoEx): No improvement for 10 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [72/100], Iter [200/392], LR: 0.000177, Loss: 1.081612
+--------------------------------------------------------------------
+Epoch [72/100], Test Loss: 0.695596, Overall Accuracy: 99.59%
+INFO (MaMa-MoEx): No improvement for 11 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [73/100], Iter [200/392], LR: 0.000173, Loss: 0.686207
+--------------------------------------------------------------------
+Epoch [73/100], Test Loss: 0.695333, Overall Accuracy: 99.66%
+INFO (MaMa-MoEx): No improvement for 12 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [74/100], Iter [200/392], LR: 0.000168, Loss: 1.080151
+--------------------------------------------------------------------
+Epoch [74/100], Test Loss: 0.700500, Overall Accuracy: 99.50%
+INFO (MaMa-MoEx): No improvement for 13 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [75/100], Iter [200/392], LR: 0.000163, Loss: 1.075250
+--------------------------------------------------------------------
+Epoch [75/100], Test Loss: 0.697115, Overall Accuracy: 99.61%
+INFO (MaMa-MoEx): No improvement for 14 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [76/100], Iter [200/392], LR: 0.000159, Loss: 1.076088
+--------------------------------------------------------------------
+Epoch [76/100], Test Loss: 0.698347, Overall Accuracy: 99.60%
+INFO (MaMa-MoEx): No improvement for 15 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [77/100], Iter [200/392], LR: 0.000154, Loss: 1.063674
+--------------------------------------------------------------------
+Epoch [77/100], Test Loss: 0.696296, Overall Accuracy: 99.66%
+INFO (MaMa-MoEx): No improvement for 16 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [78/100], Iter [200/392], LR: 0.000150, Loss: 1.088791
+--------------------------------------------------------------------
+Epoch [78/100], Test Loss: 0.699909, Overall Accuracy: 99.49%
+INFO (MaMa-MoEx): No improvement for 17 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [79/100], Iter [200/392], LR: 0.000146, Loss: 0.687447
+--------------------------------------------------------------------
+Epoch [79/100], Test Loss: 0.697359, Overall Accuracy: 99.61%
+INFO (MaMa-MoEx): No improvement for 18 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [80/100], Iter [200/392], LR: 0.000142, Loss: 1.066900
+--------------------------------------------------------------------
+Epoch [80/100], Test Loss: 0.696535, Overall Accuracy: 99.64%
+INFO (MaMa-MoEx): No improvement for 19 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [81/100], Iter [200/392], LR: 0.000138, Loss: 1.085032
+--------------------------------------------------------------------
+Epoch [81/100], Test Loss: 0.700850, Overall Accuracy: 99.47%
+INFO (MaMa-MoEx): No improvement for 20 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [82/100], Iter [200/392], LR: 0.000135, Loss: 1.056332
+--------------------------------------------------------------------
+Epoch [82/100], Test Loss: 0.700056, Overall Accuracy: 99.42%
+INFO (MaMa-MoEx): No improvement for 21 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [83/100], Iter [200/392], LR: 0.000131, Loss: 0.709468
+--------------------------------------------------------------------
+Epoch [83/100], Test Loss: 0.695909, Overall Accuracy: 99.64%
+INFO (MaMa-MoEx): No improvement for 22 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9231% at epoch 61.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9231% achieved at epoch 61
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [84/100], Iter [200/392], LR: 0.000128, Loss: 1.061215
+--------------------------------------------------------------------
+Epoch [84/100], Test Loss: 0.695563, Overall Accuracy: 99.67%
+INFO (MaMa-MoEx): No improvement for 23 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): New best IoU: 98.9773% at epoch 84.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9773% achieved at epoch 84
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [85/100], Iter [200/392], LR: 0.000125, Loss: 0.688020
+--------------------------------------------------------------------
+Epoch [85/100], Test Loss: 0.695410, Overall Accuracy: 99.64%
+INFO (MaMa-MoEx): No improvement for 24 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9773% at epoch 84.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9773% achieved at epoch 84
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [86/100], Iter [200/392], LR: 0.000122, Loss: 1.054875
+--------------------------------------------------------------------
+Epoch [86/100], Test Loss: 0.696573, Overall Accuracy: 99.58%
+INFO (MaMa-MoEx): No improvement for 25 epochs. Best accuracy was 99.69% at epoch 61.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9773% at epoch 84.
+Highest accuracy: 99.69% achieved at epoch 61
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9773% achieved at epoch 84
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [87/100], Iter [200/392], LR: 0.000119, Loss: 1.068876
+--------------------------------------------------------------------
+Epoch [87/100], Test Loss: 0.694569, Overall Accuracy: 99.73%
+INFO (MaMa-MoEx): New best accuracy: 99.73% at epoch 87. Saving model state.
+INFO (MaMa-MoEx): Best mAP was 99.2572% at epoch 61.
+INFO (MaMa-MoEx): Best IoU was 98.9773% at epoch 84.
+Highest accuracy: 99.73% achieved at epoch 87
+Highest mAP: 99.2572% achieved at epoch 61
+Highest IoU: 98.9773% achieved at epoch 84
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [88/100], Iter [200/392], LR: 0.000116, Loss: 1.071558
+--------------------------------------------------------------------
+Epoch [88/100], Test Loss: 0.694239, Overall Accuracy: 99.74%
+INFO (MaMa-MoEx): New best accuracy: 99.74% at epoch 88. Saving model state.
+INFO (MaMa-MoEx): New best mAP: 99.3762% at epoch 88.
+INFO (MaMa-MoEx): New best IoU: 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [89/100], Iter [200/392], LR: 0.000114, Loss: 1.074303
+--------------------------------------------------------------------
+Epoch [89/100], Test Loss: 0.694864, Overall Accuracy: 99.74%
+INFO (MaMa-MoEx): No improvement for 1 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [90/100], Iter [200/392], LR: 0.000112, Loss: 1.063447
+--------------------------------------------------------------------
+Epoch [90/100], Test Loss: 0.696111, Overall Accuracy: 99.62%
+INFO (MaMa-MoEx): No improvement for 2 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [91/100], Iter [200/392], LR: 0.000110, Loss: 1.063141
+--------------------------------------------------------------------
+Epoch [91/100], Test Loss: 0.699008, Overall Accuracy: 99.51%
+INFO (MaMa-MoEx): No improvement for 3 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [92/100], Iter [200/392], LR: 0.000108, Loss: 1.067346
+--------------------------------------------------------------------
+Epoch [92/100], Test Loss: 0.696164, Overall Accuracy: 99.67%
+INFO (MaMa-MoEx): No improvement for 4 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [93/100], Iter [200/392], LR: 0.000106, Loss: 1.098567
+--------------------------------------------------------------------
+Epoch [93/100], Test Loss: 0.697819, Overall Accuracy: 99.55%
+INFO (MaMa-MoEx): No improvement for 5 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [94/100], Iter [200/392], LR: 0.000105, Loss: 0.701791
+--------------------------------------------------------------------
+Epoch [94/100], Test Loss: 0.698575, Overall Accuracy: 99.53%
+INFO (MaMa-MoEx): No improvement for 6 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [95/100], Iter [200/392], LR: 0.000104, Loss: 1.041292
+--------------------------------------------------------------------
+Epoch [95/100], Test Loss: 0.698989, Overall Accuracy: 99.60%
+INFO (MaMa-MoEx): No improvement for 7 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [96/100], Iter [200/392], LR: 0.000102, Loss: 0.685894
+--------------------------------------------------------------------
+Epoch [96/100], Test Loss: 0.696966, Overall Accuracy: 99.60%
+INFO (MaMa-MoEx): No improvement for 8 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [97/100], Iter [200/392], LR: 0.000102, Loss: 1.060818
+--------------------------------------------------------------------
+Epoch [97/100], Test Loss: 0.698567, Overall Accuracy: 99.52%
+INFO (MaMa-MoEx): No improvement for 9 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [98/100], Iter [200/392], LR: 0.000101, Loss: 1.101145
+--------------------------------------------------------------------
+Epoch [98/100], Test Loss: 0.697988, Overall Accuracy: 99.57%
+INFO (MaMa-MoEx): No improvement for 10 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [99/100], Iter [200/392], LR: 0.000100, Loss: 1.049115
+--------------------------------------------------------------------
+Epoch [99/100], Test Loss: 0.696337, Overall Accuracy: 99.68%
+INFO (MaMa-MoEx): No improvement for 11 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+Epoch [100/100], Iter [200/392], LR: 0.000100, Loss: 0.709217
+--------------------------------------------------------------------
+Epoch [100/100], Test Loss: 0.695450, Overall Accuracy: 99.71%
+INFO (MaMa-MoEx): No improvement for 12 epochs. Best accuracy was 99.74% at epoch 88.
+INFO (MaMa-MoEx): Best mAP was 99.3762% at epoch 88.
+INFO (MaMa-MoEx): Best IoU was 99.1677% at epoch 88.
+Highest accuracy: 99.74% achieved at epoch 88
+Highest mAP: 99.3762% achieved at epoch 88
+Highest IoU: 99.1677% achieved at epoch 88
+INFO: Checkpoint saved to mama_moex_training_checkpoint.pth
+--------------------------------------------------------------------
+INFO (MaMa-MoEx): Loading best model from epoch 88 with accuracy 99.74% for final evaluation.
+After applying MoEx
+Final Evaluation of MaMa-MoEx Model
+Per-Class Accuracy:
+Class 0 (0000): 100.00% (60/60)
+Class 1 (0001): 100.00% (720/720)
+Class 2 (0002): 100.00% (750/750)
+Class 3 (0003): 99.56% (448/450)
+Class 4 (0004): 99.24% (655/660)
+Class 5 (0005): 100.00% (630/630)
+Class 6 (0006): 99.33% (149/150)
+Class 7 (0007): 100.00% (450/450)
+Class 8 (0008): 100.00% (450/450)
+Class 9 (0009): 100.00% (480/480)
+Class 10 (0010): 100.00% (660/660)
+Class 11 (0011): 100.00% (420/420)
+Class 12 (0012): 99.71% (688/690)
+Class 13 (0013): 99.86% (719/720)
+Class 14 (0014): 100.00% (270/270)
+Class 15 (0015): 99.52% (209/210)
+Class 16 (0016): 100.00% (150/150)
+Class 17 (0017): 100.00% (360/360)
+Class 18 (0018): 97.44% (380/390)
+Class 19 (0019): 100.00% (60/60)
+Class 20 (0020): 100.00% (90/90)
+Class 21 (0021): 100.00% (90/90)
+Class 22 (0022): 97.50% (117/120)
+Class 23 (0023): 100.00% (150/150)
+Class 24 (0024): 100.00% (90/90)
+Class 25 (0025): 100.00% (480/480)
+Class 26 (0026): 100.00% (180/180)
+Class 27 (0027): 100.00% (60/60)
+Class 28 (0028): 99.33% (149/150)
+Class 29 (0029): 100.00% (90/90)
+Class 30 (0030): 98.67% (148/150)
+Class 31 (0031): 100.00% (270/270)
+Class 32 (0032): 100.00% (60/60)
+Class 33 (0033): 100.00% (210/210)
+Class 34 (0034): 100.00% (120/120)
+Class 35 (0035): 100.00% (390/390)
+Class 36 (0036): 100.00% (120/120)
+Class 37 (0037): 100.00% (60/60)
+Class 38 (0038): 100.00% (690/690)
+Class 39 (0039): 98.89% (89/90)
+Class 40 (0040): 94.44% (85/90)
+Class 41 (0041): 100.00% (60/60)
+Class 42 (0042): 96.67% (87/90)
+--------------------------------------------------------------------
+Epoch [88/100], Test Loss: 0.695450, Overall Accuracy: 99.71%
+Final accuracy of loaded MaMa-MoEx model (from epoch 88): 99.71%
+Final mAP of loaded MaMa-MoEx model (from epoch 88): 99.3177%
+Final IoU of loaded MaMa-MoEx model (from epoch 88): 98.9675%
+Macro F1 Score (MaMa-MoEx): 0.9948
+Weighted F1 Score (MaMa-MoEx): 0.9971
+Macro Precision Score (MaMa-MoEx): 0.9943
+Weighted Precision Score (MaMa-MoEx): 0.9971
+Macro Recall Score (MaMa-MoEx): 0.9954
+Weighted Recall Score (MaMa-MoEx): 0.9971
+--------------------------------------------------------------------
+
+Confusion Matrix for MaMa-MoEx:
+Pred ->  Spe   Spe   Spe   Spe   Spe   Spe   End   Spe   Spe   No    No    Rig   Pri   Yie   Sto   No    Veh   No    Gen   Dan   Dan   Dou   Bum   Sli   Roa   Roa   Tra   Ped   Chi   Bic   Bew   Wil   End   Tur   Tur   Ahe   Go    Go    Kee   Kee   Rou   End   End
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Speed |   60     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0   720     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0     0   750     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0     0     0   448     0     2     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0     4     0     0   655     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0     0     0     0     0   630     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+End o |    0     0     0     0     0     1   149     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0     0     0     0     0     0     0   450     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Speed |    0     0     0     0     0     0     0     0   450     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+No pa |    0     0     0     0     0     0     0     0     0   480     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+No pa |    0     0     0     0     0     0     0     0     0     0   660     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Right |    0     0     0     0     0     0     0     0     0     0     0   420     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Prior |    0     0     0     0     0     0     0     0     0     0     0     0   688     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     2     0     0     0     0     0     0     0     0     0     0
+Yield |    0     0     0     0     0     0     0     0     0     0     0     0     0   719     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0
+Stop  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0   270     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+No ve |    0     0     0     0     0     0     0     0     0     0     0     0     0     1     0   209     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Vehic |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   150     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+No en |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   360     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Gener |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   380     0     0     4     0     0     0     0     2     1     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0
+Dange |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    60     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Dange |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    90     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Doubl |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    90     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Bumpy |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   117     0     1     2     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Slipp |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   150     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Road  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    90     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Road  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   480     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Traff |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   180     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Pedes |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    60     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+Child |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   149     1     0     0     0     0     0     0     0     0     0     0     0     0     0
+Bicyc |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    90     0     0     0     0     0     0     0     0     0     0     0     0     0
+Bewar |    0     0     0     0     0     0     0     0     0     0     0     2     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   148     0     0     0     0     0     0     0     0     0     0     0     0
+Wild  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   270     0     0     0     0     0     0     0     0     0     0     0
+End o |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    60     0     0     0     0     0     0     0     0     0     0
+Turn  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   210     0     0     0     0     0     0     0     0     0
+Turn  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   120     0     0     0     0     0     0     0     0
+Ahead |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   390     0     0     0     0     0     0     0
+Go st |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   120     0     0     0     0     0     0
+Go st |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    60     0     0     0     0     0
+Keep  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0   690     0     0     0     0
+Keep  |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0     0     0     0    89     0     0     0
+Round |    0     0     0     0     0     2     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     1     1     0     0     0    85     0     0
+End o |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0    60     0
+End o |    0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     3    87
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Warning: module Unfold is treated as a zero-op.
+Warning: module PixelEmbed is treated as a zero-op.
+Warning: module Dropout is treated as a zero-op.
+Warning: module Attention is treated as a zero-op.
+Warning: module Identity is treated as a zero-op.
+Warning: module Mlp is treated as a zero-op.
+Warning: module MambaVisionMixer is treated as a zero-op.
+Warning: module h_sigmoid is treated as a zero-op.
+Warning: module h_swish is treated as a zero-op.
+Warning: module SELayer is treated as a zero-op.
+Warning: module LocalityFeedForward is treated as a zero-op.
+Warning: module CrossAttention is treated as a zero-op.
+Warning: module Block is treated as a zero-op.
+Warning: module LocalViT_TNT is treated as a zero-op.
+LocalViT_TNT(
+  8.55 M, 99.104% Params, 1.71 GMac, 99.815% MACs, 
+  (pixel_embed): PixelEmbed(
+    1.78 k, 0.021% Params, 1.39 MMac, 0.081% MACs, 
+    (proj): Conv2d(1.78 k, 0.021% Params, 1.39 MMac, 0.081% MACs, 3, 12, kernel_size=(7, 7), stride=(8, 8), padding=(3, 3))
+    (unfold): Unfold(0, 0.000% Params, 0.0 Mac, 0.000% MACs, kernel_size=2, dilation=1, padding=0, stride=2)
+  )
+  (norm1_proj): LayerNorm(96, 0.001% Params, 9.41 KMac, 0.001% MACs, (48,), eps=1e-05, elementwise_affine=True, bias=True)
+  (proj): Linear(9.41 k, 0.109% Params, 1.84 MMac, 0.108% MACs, in_features=48, out_features=192, bias=True)
+  (norm2_proj): LayerNorm(384, 0.004% Params, 37.63 KMac, 0.002% MACs, (192,), eps=1e-05, elementwise_affine=True, bias=True)
+  (pos_drop): Dropout(0, 0.000% Params, 0.0 Mac, 0.000% MACs, p=0.0, inplace=False)
+  (blocks): ModuleList(
+    (0-11): 12 x Block(
+      710.56 k, 8.239% Params, 142.17 MMac, 8.302% MACs, 
+      (norm_in): LayerNorm(24, 0.000% Params, 9.41 KMac, 0.001% MACs, (12,), eps=1e-05, elementwise_affine=True, bias=True)
+      (attn_in): Attention(
+        588, 0.007% Params, 460.99 KMac, 0.027% MACs, 
+        (qk): Linear(288, 0.003% Params, 225.79 KMac, 0.013% MACs, in_features=12, out_features=24, bias=False)
+        (v): Linear(144, 0.002% Params, 112.9 KMac, 0.007% MACs, in_features=12, out_features=12, bias=False)
+        (attn_drop): Dropout(0, 0.000% Params, 0.0 Mac, 0.000% MACs, p=0.0, inplace=True)
+        (proj): Linear(156, 0.002% Params, 122.3 KMac, 0.007% MACs, in_features=12, out_features=12, bias=True)
+        (proj_drop): Dropout(0, 0.000% Params, 0.0 Mac, 0.000% MACs, p=0.0, inplace=True)
+      )
+      (norm_mlp_in): LayerNorm(24, 0.000% Params, 9.41 KMac, 0.001% MACs, (12,), eps=1e-05, elementwise_affine=True, bias=True)
+      (mlp_in): Mlp(
+        1.21 k, 0.014% Params, 987.84 KMac, 0.058% MACs, 
+        (fc1): Linear(624, 0.007% Params, 489.22 KMac, 0.029% MACs, in_features=12, out_features=48, bias=True)
+        (act): GELU(0, 0.000% Params, 37.63 KMac, 0.002% MACs, approximate='none')
+        (drop1): Dropout(0, 0.000% Params, 0.0 Mac, 0.000% MACs, p=0.0, inplace=False)
+        (norm): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+        (fc2): Linear(588, 0.007% Params, 460.99 KMac, 0.027% MACs, in_features=48, out_features=12, bias=True)
+        (drop2): Dropout(0, 0.000% Params, 0.0 Mac, 0.000% MACs, p=0.0, inplace=False)
+      )
+      (norm1_proj): LayerNorm(24, 0.000% Params, 9.41 KMac, 0.001% MACs, (12,), eps=1e-05, elementwise_affine=True, bias=True)
+      (proj): Linear(9.41 k, 0.109% Params, 1.84 MMac, 0.108% MACs, in_features=48, out_features=192, bias=True)
+      (norm_mamba): LayerNorm(384, 0.004% Params, 37.82 KMac, 0.002% MACs, (192,), eps=1e-05, elementwise_affine=True, bias=True)
+      (mamba_mixer): MambaVisionMixer(
+        159.94 k, 1.854% Params, 31.2 MMac, 1.822% MACs, 
+        (in_proj): Linear(73.73 k, 0.855% Params, 14.52 MMac, 0.848% MACs, in_features=192, out_features=384, bias=False)
+        (x_proj): Linear(8.45 k, 0.098% Params, 1.66 MMac, 0.097% MACs, in_features=192, out_features=44, bias=False)
+        (dt_proj): Linear(2.5 k, 0.029% Params, 491.71 KMac, 0.029% MACs, in_features=12, out_features=192, bias=True)
+        (out_proj): Linear(73.73 k, 0.855% Params, 14.52 MMac, 0.848% MACs, in_features=384, out_features=192, bias=False)
+        (conv1d_x): Conv1d(768, 0.009% Params, 0.0 Mac, 0.000% MACs, 192, 192, kernel_size=(4,), stride=(1,), groups=192, bias=False)
+        (conv1d_z): Conv1d(768, 0.009% Params, 0.0 Mac, 0.000% MACs, 192, 192, kernel_size=(4,), stride=(1,), groups=192, bias=False)
+      )
+      (norm_out): LayerNorm(384, 0.004% Params, 37.82 KMac, 0.002% MACs, (192,), eps=1e-05, elementwise_affine=True, bias=True)
+      (attn_out): Attention(
+        147.65 k, 1.712% Params, 29.09 MMac, 1.698% MACs, 
+        (qk): Linear(73.73 k, 0.855% Params, 14.52 MMac, 0.848% MACs, in_features=192, out_features=384, bias=False)
+        (v): Linear(36.86 k, 0.427% Params, 7.26 MMac, 0.424% MACs, in_features=192, out_features=192, bias=False)
+        (attn_drop): Dropout(0, 0.000% Params, 0.0 Mac, 0.000% MACs, p=0.0, inplace=True)
+        (proj): Linear(37.06 k, 0.430% Params, 7.3 MMac, 0.426% MACs, in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(0, 0.000% Params, 0.0 Mac, 0.000% MACs, p=0.0, inplace=True)
+      )
+      (norm_conv): LayerNorm(384, 0.004% Params, 37.63 KMac, 0.002% MACs, (192,), eps=1e-05, elementwise_affine=True, bias=True)
+      (conv): LocalityFeedForward(
+        312.2 k, 3.620% Params, 60.29 MMac, 3.521% MACs, 
+        (conv): Sequential(
+          312.2 k, 3.620% Params, 60.29 MMac, 3.521% MACs, 
+          (0): Conv2d(147.46 k, 1.710% Params, 28.9 MMac, 1.688% MACs, 192, 768, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(1.54 k, 0.018% Params, 301.06 KMac, 0.018% MACs, 768, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+          (2): h_swish(
+            0, 0.000% Params, 150.53 KMac, 0.009% MACs, 
+            (sigmoid): h_sigmoid(
+              0, 0.000% Params, 150.53 KMac, 0.009% MACs, 
+              (relu): ReLU6(0, 0.000% Params, 150.53 KMac, 0.009% MACs, inplace=True)
+            )
+          )
+          (3): Conv2d(6.91 k, 0.080% Params, 1.35 MMac, 0.079% MACs, 768, 768, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=768, bias=False)
+          (4): BatchNorm2d(1.54 k, 0.018% Params, 301.06 KMac, 0.018% MACs, 768, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+          (5): h_swish(
+            0, 0.000% Params, 150.53 KMac, 0.009% MACs, 
+            (sigmoid): h_sigmoid(
+              0, 0.000% Params, 150.53 KMac, 0.009% MACs, 
+              (relu): ReLU6(0, 0.000% Params, 150.53 KMac, 0.009% MACs, inplace=True)
+            )
+          )
+          (6): SELayer(
+            6.92 k, 0.080% Params, 158.22 KMac, 0.009% MACs, 
+            (avg_pool): AdaptiveAvgPool2d(0, 0.000% Params, 150.53 KMac, 0.009% MACs, output_size=1)
+            (fc): Sequential(
+              6.92 k, 0.080% Params, 7.69 KMac, 0.000% MACs, 
+              (0): Linear(3.08 k, 0.036% Params, 3.08 KMac, 0.000% MACs, in_features=768, out_features=4, bias=True)
+              (1): ReLU(0, 0.000% Params, 4.0 Mac, 0.000% MACs, inplace=True)
+              (2): Linear(3.84 k, 0.045% Params, 3.84 KMac, 0.000% MACs, in_features=4, out_features=768, bias=True)
+              (3): h_sigmoid(
+                0, 0.000% Params, 768.0 Mac, 0.000% MACs, 
+                (relu): ReLU6(0, 0.000% Params, 768.0 Mac, 0.000% MACs, inplace=True)
+              )
+            )
+          )
+          (7): Conv2d(147.46 k, 1.710% Params, 28.9 MMac, 1.688% MACs, 768, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (8): BatchNorm2d(384, 0.004% Params, 75.26 KMac, 0.004% MACs, 192, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+        )
+      )
+      (drop_path): Identity(0, 0.000% Params, 0.0 Mac, 0.000% MACs, )
+      (cross_attn): CrossAttention(
+        78.35 k, 0.908% Params, 18.15 MMac, 1.060% MACs, 
+        (to_q): Linear(2.3 k, 0.027% Params, 1.81 MMac, 0.105% MACs, in_features=12, out_features=192, bias=False)
+        (to_k): Linear(36.86 k, 0.427% Params, 7.26 MMac, 0.424% MACs, in_features=192, out_features=192, bias=False)
+        (to_v): Linear(36.86 k, 0.427% Params, 7.26 MMac, 0.424% MACs, in_features=192, out_features=192, bias=False)
+        (to_out): Sequential(
+          2.32 k, 0.027% Params, 1.82 MMac, 0.106% MACs, 
+          (0): Linear(2.32 k, 0.027% Params, 1.82 MMac, 0.106% MACs, in_features=192, out_features=12, bias=True)
+          (1): Dropout(0, 0.000% Params, 0.0 Mac, 0.000% MACs, p=0.0, inplace=False)
+        )
+      )
+    )
+  )
+  (norm): LayerNorm(384, 0.004% Params, 37.82 KMac, 0.002% MACs, (192,), eps=1e-05, elementwise_affine=True, bias=True)
+  (head): Linear(8.3 k, 0.096% Params, 8.3 KMac, 0.000% MACs, in_features=192, out_features=43, bias=True)
+)
+Computational complexity:       1.71 GMac
+Number of parameters:           8.62 M  
+
+Process finished with exit code 0

@@ -5,12 +5,10 @@ import random
 from dataclasses import dataclass
 from typing import Union
 
-
 @dataclass
 class MinMax:
     min: Union[float, int]
     max: Union[float, int]
-
 
 @dataclass
 class MinMaxVals:
@@ -21,9 +19,6 @@ class MinMaxVals:
     posterize: MinMax = MinMax(0, 4)  # different from uniaug: MinMax(4,8)
     enhancer: MinMax = MinMax(.1, 1.9)
     cutout: MinMax = MinMax(.0, .2)
-
-
-
 
 def float_parameter(level, maxval):
     """Helper function to scale `val` between 0 and maxval .
@@ -38,7 +33,6 @@ def float_parameter(level, maxval):
   """
     return float(level) * maxval / PARAMETER_MAX
 
-
 def int_parameter(level, maxval):
     """Helper function to scale `val` between 0 and maxval .
 
@@ -52,7 +46,6 @@ def int_parameter(level, maxval):
   """
     return int(level * maxval / PARAMETER_MAX)
 
-
 class TransformFunction(object):
     """Wraps the Transform function for pretty printing options."""
 
@@ -65,7 +58,6 @@ class TransformFunction(object):
 
     def __call__(self, pil_img):
         return self.f(pil_img)
-
 
 class TransformT(object):
     """Each instance of this class represents a specific transform."""
@@ -85,7 +77,6 @@ class TransformT(object):
 
         name = self.name + '({:.1f},{})'.format(probability, level)
         return TransformFunction(return_function, name)
-
 
 ################## Transform Functions ##################
 identity = TransformT('identity', lambda pil_img, level: pil_img)
@@ -115,7 +106,6 @@ smooth = TransformT(
     'Smooth',
     lambda pil_img, level: pil_img.filter(ImageFilter.SMOOTH))
 
-
 def _rotate_impl(pil_img, level):
     """Rotates `pil_img` from -30 to 30 degrees depending on `level`."""
     degrees = int_parameter(level, min_max_vals.rotate.max)
@@ -126,7 +116,6 @@ def _rotate_impl(pil_img, level):
 
 rotate = TransformT('Rotate', _rotate_impl)
 
-
 def _posterize_impl(pil_img, level):
     """Applies PIL Posterize to `pil_img`."""
     level = int_parameter(level, min_max_vals.posterize.max - min_max_vals.posterize.min)
@@ -134,7 +123,6 @@ def _posterize_impl(pil_img, level):
 
 
 posterize = TransformT('Posterize', _posterize_impl)
-
 
 def _shear_x_impl(pil_img, level):
     """Applies PIL ShearX to `pil_img`.
@@ -158,7 +146,6 @@ def _shear_x_impl(pil_img, level):
 
 shear_x = TransformT('ShearX', _shear_x_impl)
 
-
 def _shear_y_impl(pil_img, level):
     """Applies PIL ShearY to `pil_img`.
 
@@ -180,7 +167,6 @@ def _shear_y_impl(pil_img, level):
 
 
 shear_y = TransformT('ShearY', _shear_y_impl)
-
 
 def _translate_x_impl(pil_img, level):
     """Applies PIL TranslateX to `pil_img`.
@@ -204,7 +190,6 @@ def _translate_x_impl(pil_img, level):
 
 translate_x = TransformT('TranslateX', _translate_x_impl)
 
-
 def _translate_y_impl(pil_img, level):
     """Applies PIL TranslateY to `pil_img`.
 
@@ -224,9 +209,7 @@ def _translate_y_impl(pil_img, level):
         level = -level
     return pil_img.transform(pil_img.size, Image.AFFINE, (1, 0, 0, 0, 1, level))
 
-
 translate_y = TransformT('TranslateY', _translate_y_impl)
-
 
 def _crop_impl(pil_img, level, interpolation=Image.BILINEAR):
     """Applies a crop to `pil_img` with the size depending on the `level`."""
@@ -239,7 +222,6 @@ def _crop_impl(pil_img, level, interpolation=Image.BILINEAR):
 
 
 crop_bilinear = TransformT('CropBilinear', _crop_impl)
-
 
 def _solarize_impl(pil_img, level):
     """Applies PIL Solarize to `pil_img`.
@@ -258,9 +240,7 @@ def _solarize_impl(pil_img, level):
     level = int_parameter(level, min_max_vals.solarize.max)
     return ImageOps.solarize(pil_img, 256 - level)
 
-
 solarize = TransformT('Solarize', _solarize_impl)
-
 
 def _enhancer_impl(enhancer, minimum=None, maximum=None):
     """Sets level to be between 0.1 and 1.8 for ImageEnhance transforms of PIL."""
@@ -272,7 +252,6 @@ def _enhancer_impl(enhancer, minimum=None, maximum=None):
         return enhancer(pil_img).enhance(v)
 
     return impl
-
 
 color = TransformT('Color', _enhancer_impl(ImageEnhance.Color))
 ohl_color = TransformT('Color', _enhancer_impl(ImageEnhance.Color, .3, .9))
@@ -297,8 +276,6 @@ median = TransformT(
 gaussian = TransformT(
     'Gaussian', lambda pil_img, level: pil_img.filter(ImageFilter.GaussianBlur))
 
-
-
 def _mirrored_enhancer_impl(enhancer, minimum=None, maximum=None):
     """Sets level to be between 0.1 and 1.8 for ImageEnhance transforms of PIL."""
 
@@ -313,13 +290,11 @@ def _mirrored_enhancer_impl(enhancer, minimum=None, maximum=None):
 
     return impl
 
-
 mirrored_color = TransformT('Color', _mirrored_enhancer_impl(ImageEnhance.Color))
 mirrored_contrast = TransformT('Contrast', _mirrored_enhancer_impl(ImageEnhance.Contrast))
 mirrored_brightness = TransformT('Brightness', _mirrored_enhancer_impl(
     ImageEnhance.Brightness))
 mirrored_sharpness = TransformT('Sharpness', _mirrored_enhancer_impl(ImageEnhance.Sharpness))
-
 
 def CutoutDefault(img, v):  # [0, 60] => percentage: [0, 0.2]
     # assert 0 <= v <= 20
@@ -340,15 +315,10 @@ def CutoutDefault(img, v):  # [0, 60] => percentage: [0, 0.2]
     ImageDraw.Draw(img).rectangle(xy, color)
     return img
 
-
 cutout = TransformT('Cutout',
                     lambda img, l: CutoutDefault(img, int_parameter(l, img.size[0] * min_max_vals.cutout.max)))
 
-
-
-
 blend_images = None
-
 
 def blend(img1, v):
     if blend_images is None:
@@ -360,7 +330,6 @@ def blend(img1, v):
 
 
 sample_pairing = TransformT('SamplePairing', blend)
-
 
 def set_augmentation_space(augmentation_space, num_strengths, custom_augmentation_space_augs=None):
     global ALL_TRANSFORMS, min_max_vals, PARAMETER_MAX
@@ -624,14 +593,11 @@ def set_augmentation_space(augmentation_space, num_strengths, custom_augmentatio
 
 set_augmentation_space('fixed_standard', 31)
 
-
 def apply_augmentation(aug_idx, m, img):
     return ALL_TRANSFORMS[aug_idx].pil_transformer(1., m)(img)
 
-
 def num_augmentations():
     return len(ALL_TRANSFORMS)
-
 
 class TrivialAugment:
     def __call__(self, img):
@@ -639,7 +605,6 @@ class TrivialAugment:
         level = random.randint(0, PARAMETER_MAX)
         img = op.pil_transformer(1., level)(img)
         return img
-
 
 class RandAugment:
     def __init__(self, n, m):
@@ -653,7 +618,6 @@ class RandAugment:
 
         return img
 
-
 class UniAugment:
     def __call__(self, img):
         ops = random.choices(ALL_TRANSFORMS, k=2)
@@ -661,7 +625,6 @@ class UniAugment:
             level = random.randint(0, PARAMETER_MAX)
             img = op.pil_transformer(0.5, level)(img)
         return img
-
 
 class UniAugmentWeighted:
     def __init__(self, n, probs):

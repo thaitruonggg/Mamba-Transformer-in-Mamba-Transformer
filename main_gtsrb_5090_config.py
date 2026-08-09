@@ -1,7 +1,9 @@
 import os
 import sys
+import copy
 import numpy as np
 import matplotlib.pyplot as plt
+import itertools
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -85,31 +87,16 @@ def evaluate_model(model, test_loader, criterion, classes, batch_size, epoch, nu
     model.train()
     return test_loss, overall_accuracy, all_targets_list, all_preds_list
 
-# Function to track the highest accuracy
+# Tracks the highest accuracy from a list of accuracy values.
 def track_highest_accuracy(accuracy_list):
-    """
-    Tracks the highest accuracy from a list of accuracy values.
-    Args:
-        accuracy_list: List of accuracy values collected during training
-    Returns:
-        tuple: (highest_accuracy, epoch_with_highest_accuracy)
-    """
     highest_accuracy = max(accuracy_list) if accuracy_list else 0.0
     epoch_with_highest = accuracy_list.index(highest_accuracy) + 1 if accuracy_list else 0
 
     print(f"Highest accuracy: {highest_accuracy:.2f}% achieved at epoch {epoch_with_highest}")
     return highest_accuracy, epoch_with_highest
 
-# Function to plot the training process
+# Plot training progress showing accuracy vs epoch and loss vs epoch
 def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model_name):
-    """
-    Plot training progress showing accuracy vs epoch and loss vs epoch
-    Args:
-        train_loss_list: List of training loss values per epoch
-        test_loss_list: List of test loss values per epoch
-        accuracy_list: List of accuracy values per epoch
-        model_name: Name of the model for plot titles
-    """
     epochs = range(1, len(accuracy_list) + 1)
 
     # Create a figure with two subplots
@@ -136,25 +123,8 @@ def plot_training_progress(train_loss_list, test_loss_list, accuracy_list, model
     plt.savefig(f'{model_name}_training_progress.png')
     # plt.show()
 
+# Calculates F1 score.
 def calculate_f1_scores(y_true, y_pred, num_classes, average='macro'):
-    """
-    Calculates F1 score.
-    Args:
-        y_true: List or array of true labels.
-        y_pred: List or array of predicted labels.
-        num_classes: The total number of classes.
-        average: Type of averaging to perform on the data:
-                 'micro': Calculate metrics globally by counting the total true positives,
-                          false negatives and false positives. (Note: often equals accuracy in multi-class)
-                 'macro': Calculate metrics for each label, and find their unweighted mean.
-                          This does not take label imbalance into account.
-                 'weighted': Calculate metrics for each label, and find their average,
-                             weighted by support (the number of true instances for each label).
-                 'per_class': Returns F1 score for each class as a list.
-
-    Returns:
-        F1 score (float or list of floats if 'per_class').
-    """
     if len(y_true) != len(y_pred):
         raise ValueError("y_true and y_pred must have the same length.")
     if not y_true:  # Handles empty list case
@@ -218,26 +188,8 @@ def calculate_f1_scores(y_true, y_pred, num_classes, average='macro'):
     else:
         raise ValueError("average parameter must be 'micro', 'macro', 'weighted', or 'per_class'")
 
+# Calculates Precision score.
 def calculate_precision_scores(y_true, y_pred, num_classes, average='macro'):
-    """
-    Calculates Precision score.
-
-    Args:
-        y_true: List or array of true labels.
-        y_pred: List or array of predicted labels.
-        num_classes: The total number of classes.
-        average: Type of averaging to perform on the data:
-                 'micro': Calculate metrics globally by counting the total true positives,
-                          and false positives.
-                 'macro': Calculate metrics for each label, and find their unweighted mean.
-                          This does not take label imbalance into account.
-                 'weighted': Calculate metrics for each label, and find their average,
-                             weighted by support (the number of true instances for each label).
-                 'per_class': Returns Precision score for each class as a list.
-
-    Returns:
-        Precision score (float or list of floats if 'per_class').
-    """
     if len(y_true) != len(y_pred):
         raise ValueError("y_true and y_pred must have the same length.")
     if not y_true:  # Handles empty list case
@@ -293,25 +245,8 @@ def calculate_precision_scores(y_true, y_pred, num_classes, average='macro'):
     else:
         raise ValueError("average parameter must be 'micro', 'macro', 'weighted', or 'per_class'")
 
+# Calculates Recall score.
 def calculate_recall_scores(y_true, y_pred, num_classes, average='macro'):
-    """
-    Calculates Recall score.
-    Args:
-        y_true: List or array of true labels.
-        y_pred: List or array of predicted labels.
-        num_classes: The total number of classes.
-        average: Type of averaging to perform on the data:
-                 'micro': Calculate metrics globally by counting the total true positives,
-                          and false negatives.
-                 'macro': Calculate metrics for each label, and find their unweighted mean.
-                          This does not take label imbalance into account.
-                 'weighted': Calculate metrics for each label, and find their average,
-                             weighted by support (the number of true instances for each label).
-                 'per_class': Returns Recall score for each class as a list.
-
-    Returns:
-        Recall score (float or list of floats if 'per_class').
-    """
     if len(y_true) != len(y_pred):
         raise ValueError("y_true and y_pred must have the same length.")
     if not y_true:
@@ -367,26 +302,16 @@ def calculate_recall_scores(y_true, y_pred, num_classes, average='macro'):
     else:
         raise ValueError("average parameter must be 'micro', 'macro', 'weighted', or 'per_class'")
 
+# Tracks the highest mAP from a list of mAP values.
 def track_highest_map(map_list):
-    """
-    Tracks the highest mAP from a list of mAP values.
-    Args:
-        map_list: List of mAP values collected during training
-    Returns:
-        tuple: (highest_map, epoch_with_highest_map)
-    """
     highest_map = max(map_list) if map_list else 0.0
     epoch_with_highest = map_list.index(highest_map) + 1 if map_list else 0
 
     print(f"Highest mAP: {highest_map:.4f}% achieved at epoch {epoch_with_highest}")
     return highest_map, epoch_with_highest
 
+# Calculates the mean Average Precision (mAP) score.
 def calculate_map_score(y_true, y_pred, num_classes):
-    """
-    Calculates the mean Average Precision (mAP) score.
-    Automatically handles hard integer labels by converting them to one-hot formats
-    to calculate the precision-recall area.
-    """
     y_true = np.array(y_true)
     y_pred = np.array(y_pred)
 
@@ -428,25 +353,16 @@ def calculate_map_score(y_true, y_pred, num_classes):
 
     return (np.mean(average_precisions) * 100) if average_precisions else 0.0
 
+# Tracks the highest mean IoU from a list of IoU values.
 def track_highest_iou(iou_list):
-    """
-    Tracks the highest mean IoU (Jaccard Index) from a list of IoU values.
-    Args:
-        iou_list: List of IoU values collected during training
-    Returns:
-        tuple: (highest_iou, epoch_with_highest_iou)
-    """
     highest_iou = max(iou_list) if iou_list else 0.0
     epoch_with_highest = iou_list.index(highest_iou) + 1 if iou_list else 0
 
     print(f"Highest IoU: {highest_iou:.4f}% achieved at epoch {epoch_with_highest}")
     return highest_iou, epoch_with_highest
 
+# Calculates the mean Intersection over Union (mIoU) score for classification.
 def calculate_iou_score(y_true, y_pred, num_classes):
-    """
-    Calculates the mean Intersection over Union (mIoU) score for classification.
-    IoU for a class is defined as TP / (TP + FP + FN).
-    """
     y_true = np.array(y_true)
     y_pred = np.array(y_pred)
 
@@ -473,17 +389,15 @@ def calculate_iou_score(y_true, y_pred, num_classes):
 
     return (np.mean(iou_list) * 100) if iou_list else 0.0
 
-
+# Saves the entire training state to disk.
 def save_checkpoint(state, filename="checkpoint.pth"):
-    """Saves the entire training state to disk."""
     torch.save(state, filename)
     print(f"INFO: Checkpoint saved to {filename}")
 
-
+# Loads the training state and restores all parameters.
 def load_checkpoint(checkpoint_path, model, optimizer, scheduler=None):
-    """Loads the training state and restores all parameters."""
     print(f"INFO: Loading checkpoint from '{checkpoint_path}'...")
-    checkpoint = torch.load(checkpoint_path)
+    checkpoint = torch.load(checkpoint_path, weights_only=False)
 
     model.load_state_dict(checkpoint['state_dict'])
     optimizer.load_state_dict(checkpoint['optimizer'])
@@ -494,23 +408,16 @@ def load_checkpoint(checkpoint_path, model, optimizer, scheduler=None):
     print(f"INFO: Successfully loaded checkpoint. Resuming from epoch {start_epoch}.")
     return start_epoch, checkpoint
 
+# Computes, prints, and plots the confusion matrix using the styled approach.
 def plot_confusion_matrix(y_true, y_pred, class_names, model_name="Model"):
-    """
-    Computes, prints, and plots the confusion matrix.
-    Args:
-        y_true: List or array of true labels.
-        y_pred: List or array of predicted labels.
-        class_names: List of names for each class.
-        model_name: Name of the model for the plot title.
-    """
     num_classes = len(class_names)
     cm = np.zeros((num_classes, num_classes), dtype=np.int64)
 
     for true_label, pred_label in zip(y_true, y_pred):
         cm[int(true_label), int(pred_label)] += 1
 
+    # Print the confusion matrix to console
     print(f"\nConfusion Matrix for {model_name}:")
-
     header = "Pred ->" + " ".join([f"{name[:3]:>5}" for name in class_names])
     print(header)
     print("-" * len(header))
@@ -519,45 +426,45 @@ def plot_confusion_matrix(y_true, y_pred, class_names, model_name="Model"):
         print(row_str)
     print("-" * len(header))
 
-    if num_classes > 20:
-        fig_size = (20, 20)
-        cell_fontsize = 10
-        tick_label_fontsize = 10
-    elif num_classes > 10:
-        fig_size = (18, 18)
-        cell_fontsize = 10
-        tick_label_fontsize = 12
-    else:
-        fig_size = (12, 12)
-        cell_fontsize = 12
-        tick_label_fontsize = 12
+    # Plot the confusion matrix with styled approach
+    title = f'Confusion Matrix - {model_name}'
+    cmap = plt.cm.Blues
 
-    axis_title_fontsize = 14
-    plot_title_fontsize = 16
+    plt.figure(figsize=(25, 25))
 
-    fig, ax = plt.subplots(figsize=fig_size)
-    im = ax.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
-    ax.figure.colorbar(im, ax=ax)
+    # Create the heatmap plot
+    plt.imshow(cm, interpolation='nearest', cmap=cmap)
 
-    ax.set_xticks(np.arange(cm.shape[1]))
-    ax.set_xticklabels(class_names, rotation=45, ha="right", rotation_mode="anchor", fontsize=tick_label_fontsize)
-    ax.set_yticks(np.arange(cm.shape[0]))
-    ax.set_yticklabels(class_names, fontsize=tick_label_fontsize)
+    # Added pad and increased title fontsize
+    plt.title(title, fontsize=25, pad=20)
 
-    ax.set_title(f'Confusion Matrix - {model_name}', fontsize=plot_title_fontsize)
-    ax.set_ylabel('True label', fontsize=axis_title_fontsize)
-    ax.set_xlabel('Predicted label', fontsize=axis_title_fontsize)
+    # fraction and pad adjust the colorbar height to perfectly match the plot height
+    plt.colorbar(fraction=0.046, pad=0.04)
 
-    fmt = 'd'
+    # Set up ticks and labels with increased fontsize
+    tick_marks = np.arange(len(class_names))
+    plt.xticks(tick_marks, class_names, rotation=45, ha='right', rotation_mode='anchor', fontsize=14)
+    plt.yticks(tick_marks, class_names, fontsize=12)
+
+    # Set axes titles with increased fontsize
+    plt.ylabel('True label', fontsize=20, labelpad=5)
+    plt.xlabel('Predicted label', fontsize=20, labelpad=5)
+
+    # Annotate cells with values (including zeros) and slightly larger numbers
     thresh = cm.max() / 2.
-    for i in range(cm.shape[0]):
-        for j in range(cm.shape[1]):
-            ax.text(j, i, format(cm[i, j], fmt),
-                    ha="center", va="center",
-                    color="white" if cm[i, j] > thresh else "black",
-                    fontsize=cell_fontsize)
-    fig.tight_layout()
-    plt.savefig(f'{model_name.replace(" ", "_")}_confusion_matrix.png')
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(j, i, format(cm[i, j], 'd'),
+                 ha="center", va="center",
+                 color="white" if cm[i, j] > thresh else "black",
+                 fontsize=10)
+
+    # Ensures everything fits without getting cropped
+    plt.tight_layout()
+
+    # Save output
+    save_name = f'{model_name.replace(" ", "_")}_confusion_matrix.png'
+    plt.savefig(save_name, dpi=300, bbox_inches='tight')
+    print(f"Saved '{save_name}' successfully.")
     # plt.show()
 
 # GTSRB dataset
@@ -592,21 +499,18 @@ trainset = torchvision.datasets.ImageFolder(root='GTSRB/GTSRB_Final_Training_Ima
                                                     shear=10,
                                                 ),
                                                 transforms.RandomPerspective(distortion_scale=0.2, p=0.3),
-                                                # -- Color/Lighting: simulate weather, time-of-day --
+                                                # Color/Lighting: simulate weather, time-of-day
                                                 transforms.ColorJitter(
                                                     brightness=0.4,
                                                     contrast=0.4,
                                                     saturation=0.4,
                                                     hue=0.1,
                                                 ),
-                                                # -- Blur: simulate motion blur & out-of-focus --
-                                                transforms.GaussianBlur(kernel_size=5, sigma=(0.1, 2.0)),
+                                                transforms.GaussianBlur(kernel_size=5, sigma=(0.1, 2.0)), # Blur: simulate motion blur & out-of-focus
                                                 TrivialAugment(),
-                                                # -- To tensor + normalize --
                                                 transforms.ToTensor(),
                                                 transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
-                                                # -- Occlusion: simulate partial sign obstruction --
-                                                transforms.RandomErasing(p=0.2, scale=(0.02, 0.15)),
+                                                transforms.RandomErasing(p=0.2, scale=(0.02, 0.15)), # Occlusion: simulate partial sign obstruction
                                             ]),
                                             )
 
@@ -627,34 +531,29 @@ train_loader = torch.utils.data.DataLoader(dataset=trainset,
 
 test_loader = torch.utils.data.DataLoader(dataset=testset,
                                           batch_size=batch_size,
-                                          shuffle=False, # <-- No need to shuffle the test set!
+                                          shuffle=False,
                                           num_workers=8, #5090
                                           pin_memory=True #5090
                                           )
 
-# ---------------------------------------------------------
-# NEW: AUGMENTATION VISUALIZATION CHECK
-# ---------------------------------------------------------
+
+# AUGMENTATION VISUALIZATION CHECK
 # 1. Create a temporary DataLoader to grab 12 images
 check_loader = torch.utils.data.DataLoader(trainset, batch_size=12, shuffle=True)
-
 # 2. Grab one batch of transformed images
 images, labels = next(iter(check_loader))
-
 # 3. Create a grid using torchvision's utility
 grid_tensor = torchvision.utils.make_grid(images, nrow=4, padding=2, normalize=True)
-
 # 4. Convert to NumPy for Matplotlib
 np_grid = grid_tensor.numpy()
 plt_grid = np.transpose(np_grid, (1, 2, 0))
-
 # 5. Plot and save the image grid
 plt.figure(figsize=(12, 8))
 plt.imshow(plt_grid)
 plt.axis('off')
 plt.title('GTSRB Training Set with TrivialAugment')
 plt.savefig('augmentation_check.png', bbox_inches='tight')
-# ---------------------------------------------------------
+
 
 # GTSRB class names
 gtsrb_class_names = [
@@ -751,16 +650,14 @@ model.head = torch.nn.Linear(in_features=192, out_features=43, bias=True)  # out
 model = model.cuda()
 
 # Hyperparameter
-num_epochs = 1
+num_epochs = 100
 # Loss and optimizer
-loss = nn.CrossEntropyLoss()
-optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9) #default lr=0.007
-#scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
-# T_max is your total epochs. eta_min is the lowest the learning rate will ever go.
+loss = nn.CrossEntropyLoss(label_smoothing=0.1)
+optimizer = optim.AdamW(model.parameters(), lr=0.0005, weight_decay=0.05)
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=100, eta_min=0.0001)
 
 # Early Stopping parameters for MaMa model
-patience_mama = 80
+patience_mama = 30
 best_mama_accuracy = 0.0
 mama_epochs_no_improve = 0
 best_mama_state_dict = None
@@ -770,22 +667,22 @@ best_mama_map_epoch = 0
 best_mama_iou = 0.0
 best_mama_iou_epoch = 0
 
-# --- NEW CHECKPOINT SETUP ---
+# CHECKPOINT SETUP
 start_epoch_mama = 0
 checkpoint_file_mama = "mama_training_checkpoint.pth"
-resume_training = True  # Set to True to automatically load if a checkpoint exists
+resume_training = False  # Set to True to automatically load if a checkpoint exists
 
 if resume_training and os.path.exists(checkpoint_file_mama):
     start_epoch_mama, checkpoint = load_checkpoint(checkpoint_file_mama, model, optimizer, scheduler)
 
-    # Restore the early stopping tracking so it doesn't reset to zero!
+    # Restore the early stopping tracking so it doesn't reset to zero
     best_mama_accuracy = checkpoint.get('best_mama_accuracy', 0.0)
     best_mama_epoch = checkpoint.get('best_mama_epoch', 0)
     best_mama_map = checkpoint.get('best_mama_map', 0.0)
     best_mama_iou = checkpoint.get('best_mama_iou', 0.0)
     mama_epochs_no_improve = checkpoint.get('mama_epochs_no_improve', 0)
 
-# Train Mamba-Transformer in Mamba-Transformer
+# Train MaMa
 mama_accuracy_list = []
 mama_train_loss_list = []
 mama_test_loss_list = []
@@ -796,7 +693,6 @@ for epoch in range(start_epoch_mama, num_epochs):
     total_batch = len(trainset) // batch_size
     running_loss = 0.0
 
-    # Grab the active learning rate for this epoch
     current_lr = optimizer.param_groups[0]['lr']
 
     model.train()
@@ -809,6 +705,7 @@ for epoch in range(start_epoch_mama, num_epochs):
 
         optimizer.zero_grad()
         cost.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
         optimizer.step()
 
         running_loss += cost.item()
@@ -840,7 +737,7 @@ for epoch in range(start_epoch_mama, num_epochs):
     if current_test_accuracy > best_mama_accuracy:
         best_mama_accuracy = current_test_accuracy
         mama_epochs_no_improve = 0
-        best_mama_state_dict = model.state_dict().copy()  # Save the best model state
+        best_mama_state_dict = copy.deepcopy(model.state_dict())  # Save the best model state
         best_mama_epoch = epoch + 1
         print(
             f"INFO (MaMa): New best accuracy: {best_mama_accuracy:.2f}% at epoch {best_mama_epoch}. Saving model state.")
@@ -868,7 +765,7 @@ for epoch in range(start_epoch_mama, num_epochs):
     track_highest_accuracy(mama_accuracy_list)
     track_highest_map(mama_map_list)
     track_highest_iou(mama_iou_list)
-    # --- NEW SAVE TRIGGER ---
+    # SAVE TRIGGER
     # Package everything needed to resume perfectly
     checkpoint_state = {
         'epoch': epoch + 1,  # Save the NEXT epoch number to start from
@@ -882,7 +779,6 @@ for epoch in range(start_epoch_mama, num_epochs):
         'mama_epochs_no_improve': mama_epochs_no_improve
     }
     save_checkpoint(checkpoint_state, filename=checkpoint_file_mama)
-    # ------------------------
     print("--------------------------------------------------------------------")
 
     if mama_epochs_no_improve >= patience_mama:
@@ -954,13 +850,12 @@ num_epochs = 100
 moex_lam = .9
 moex_prob = .7
 # Loss and optimizer
-loss = nn.CrossEntropyLoss()
-optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9) #default lr=0.007
-#scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
+loss = nn.CrossEntropyLoss(label_smoothing=0.1)
+optimizer = optim.AdamW(model.parameters(), lr=0.0005, weight_decay=0.05)
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=100, eta_min=0.0001)
 
 # Early Stopping parameters for MaMa-MoEx model
-patience_moex = 80
+patience_moex = 50
 best_moex_accuracy = 0.0
 moex_epochs_no_improve = 0
 best_moex_state_dict = None
@@ -970,17 +865,17 @@ best_moex_map_epoch = 0
 best_moex_iou = 0.0
 best_moex_iou_epoch = 0
 
-# Train Mamba-Transformer in Mamba-Transformer
+# Train MaMa-MoEx
 moex_accuracy_list = []
 moex_train_loss_list = []
 moex_test_loss_list = []
 moex_map_list = []
 moex_iou_list = []
 
-# --- NEW CHECKPOINT SETUP FOR MOEX ---
+# CHECKPOINT SETUP FOR MOEX
 start_epoch_moex = 0
 checkpoint_file_moex = "mama_moex_training_checkpoint.pth"
-resume_training_moex = True  # Set to True to automatically load if a checkpoint exists
+resume_training_moex = True # Set to True to automatically load if a checkpoint exists
 
 if resume_training_moex and os.path.exists(checkpoint_file_moex):
     start_epoch_moex, checkpoint_moex = load_checkpoint(checkpoint_file_moex, model, optimizer, scheduler)
@@ -996,7 +891,6 @@ for epoch in range(start_epoch_moex, num_epochs):
     total_batch = len(trainset) // batch_size
     running_loss = 0.0
 
-    # Grab the active learning rate for this epoch
     current_lr = optimizer.param_groups[0]['lr']
 
     model.train()
@@ -1022,6 +916,7 @@ for epoch in range(start_epoch_moex, num_epochs):
         # Backpropagation
         optimizer.zero_grad()
         cost.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
         optimizer.step()
 
         running_loss += cost.item()
@@ -1055,7 +950,7 @@ for epoch in range(start_epoch_moex, num_epochs):
     if current_moex_test_accuracy > best_moex_accuracy:
         best_moex_accuracy = current_moex_test_accuracy
         moex_epochs_no_improve = 0
-        best_moex_state_dict = model.state_dict().copy()  # Save the best model state
+        best_moex_state_dict = copy.deepcopy(model.state_dict())  # Save the best model state
         best_moex_epoch = epoch + 1
         print(
             f"INFO (MaMa-MoEx): New best accuracy: {best_moex_accuracy:.2f}% at epoch {best_moex_epoch}. Saving model state.")
@@ -1083,7 +978,7 @@ for epoch in range(start_epoch_moex, num_epochs):
     track_highest_accuracy(moex_accuracy_list)
     track_highest_map(moex_map_list)
     track_highest_iou(moex_iou_list)
-    # --- NEW SAVE TRIGGER FOR MOEX ---
+    # SAVE TRIGGER FOR MOEX
     checkpoint_state_moex = {
         'epoch': epoch + 1,  # Save the NEXT epoch number to start from
         'state_dict': model.state_dict(),
@@ -1096,8 +991,6 @@ for epoch in range(start_epoch_moex, num_epochs):
         'moex_epochs_no_improve': moex_epochs_no_improve
     }
     save_checkpoint(checkpoint_state_moex, filename=checkpoint_file_moex)
-    # ---------------------------------
-
     print("--------------------------------------------------------------------")
 
     if moex_epochs_no_improve >= patience_moex:
@@ -1159,6 +1052,7 @@ model_save_path_moex = "mama_moex_model.pth"
 torch.save(model.state_dict(), model_save_path_moex)
 
 # Accuracy comparison
+plt.figure(figsize=(21, 12))
 plt.subplot(1, 2, 1)
 
 # Define epoch ranges based on actual run lengths for each model
