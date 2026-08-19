@@ -8,7 +8,7 @@
 
 ## 🏆 Achievement
 
-This project was awarded **🥇 First Prize** in the **University-level Student Scientific Research Award** at **Ho Chi Minh City Open University**.
+This project was awarded **🥇 First Prize** in the **University-level Student Scientific Research Award** at **[Ho Chi Minh City Open University](https://htqlkh.ou.edu.vn/bai-viet/thong-bao-quyet-dinh-ket-qua-de-tai-svnckh-nam-hoc-2025-2026-6a4468653d0f930b1fcdc375)**.
 
 ## 🛠️ Technologies
 - `Python`
