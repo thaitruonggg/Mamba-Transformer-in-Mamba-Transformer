@@ -11,7 +11,6 @@ import argparse
 import os
 import math
 import warnings
-
 import torch
 import torch.nn.functional as F
 import torchvision.transforms as T
@@ -23,12 +22,13 @@ from ultralytics import YOLO
 warnings.filterwarnings("ignore")
 
 from MaMa_MoEx import MaMa_MoEx_Ti
+#from MaMa import MaMa_Ti
 
 # ==========================================
 # DEFAULT CONFIGURATION
 # ==========================================
 DEFAULT_DETECTOR_PATH = "../yolo11_model/gtsdbbest.pt"
-DEFAULT_CLASSIFIER_PATH = "mama_moex_model.pth"
+DEFAULT_CLASSIFIER_PATH = "pretrained_models/mama_moex_model.pth"
 DEFAULT_IMAGE_PATH = "test_images/1.jpg"
 
 # Thresholds
@@ -91,16 +91,16 @@ CLASS_NAME_MAP = {
     232: ("TT100K", TT100K_CLASS_NAMES),
 }
 
+# Return (dataset_name, class_names) for a given number of classes.
 def get_class_names(num_classes):
-    """Return (dataset_name, class_names) for a given number of classes."""
     if num_classes in CLASS_NAME_MAP:
         return CLASS_NAME_MAP[num_classes]
     # Fallback: generate generic names
     print(f"Warning: Unknown dataset with {num_classes} classes. Using generic class names.")
     return ("Unknown", [f"Class_{i}" for i in range(num_classes)])
 
+# Load the YOLO detection model.
 def load_detector(model_path, device):
-    """Load the YOLO detection model."""
     print(f"[Detector]  Loading YOLO from: {model_path}")
     detector = YOLO(model_path)
     detector.to(device)
@@ -135,8 +135,7 @@ def compute_entropy(probabilities):
     High entropy = model is unsure (probabilities spread across many classes).
     Low entropy  = model is focused on one class.
     """
-    # Clamp to avoid log(0)
-    probs = probabilities.clamp(min=1e-9)
+    probs = probabilities.clamp(min=1e-9) # Clamp to avoid log(0)
     entropy = -(probs * probs.log()).sum().item()
     return entropy
 
@@ -191,7 +190,7 @@ def run_pipeline(image_path, detector, classifier, device,
         T.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
     ])
 
-    # ── Stage 1: Detection (YOLO) ──
+    # Stage 1: Detection (YOLO)
     results = detector(original_image, conf=detect_thresh, verbose=False)[0]
     num_detections = len(results.boxes)
     print(f"\n[Stage 1] YOLO detected {num_detections} sign(s)")
@@ -207,7 +206,7 @@ def run_pipeline(image_path, detector, classifier, device,
         plt.show()
         return
 
-    # ── Prepare the figure ──
+    # Prepare the figure
     fig = plt.figure(figsize=(14, 9), frameon=False)
     ax = plt.Axes(fig, [0., 0., 1., 1.])
     ax.set_axis_off()
@@ -217,7 +216,7 @@ def run_pipeline(image_path, detector, classifier, device,
     classified_count = 0
     misc_count = 0
 
-    # ── Stage 2: Classification (MaMa-MoEx) per detection ──
+    # Stage 2: Classification (MaMa-MoEx) per detection
     for i, box in enumerate(results.boxes):
         x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
         det_conf = box.conf[0].item()
@@ -230,7 +229,7 @@ def run_pipeline(image_path, detector, classifier, device,
             cropped_img, classifier, classify_transform, device, class_names
         )
 
-        # ── Decision: Classified or Misc? ──
+        # Decision: Classified or Misc?
         is_confident = (cls_conf >= classify_thresh) and (entropy <= entropy_thresh)
 
         if is_confident:
@@ -262,14 +261,14 @@ def run_pipeline(image_path, detector, classifier, device,
               f"det={det_conf:.2f}, cls={cls_conf:.1f}%, H={entropy:.2f}, "
               f"best_guess=\"{class_name}\"{reason}")
 
-        # ── Draw the bounding box ──
+        # Draw the bounding box
         rect = patches.Rectangle(
             (x1, y1), x2 - x1, y2 - y1,
             linewidth=3, edgecolor=box_color, facecolor='none'
         )
         ax.add_patch(rect)
 
-        # ── Draw the label ──
+        # Draw the label
         ax.text(
             x1, y1 - 10, label_text,
             color='white', fontsize=9, fontweight='bold',
@@ -277,14 +276,14 @@ def run_pipeline(image_path, detector, classifier, device,
             verticalalignment='bottom'
         )
 
-    # ── Summary ──
+    # Summary
     print(f"\n[Summary] {num_detections} detected → "
           f"{classified_count} classified, {misc_count} misc/unknown")
 
     plt.show()
 
+# List available images in the test folder.
 def list_test_images(folder):
-    """List available images in the test folder."""
     valid_ext = {'.jpg', '.jpeg', '.png', '.bmp', '.tiff', '.webp'}
     images = []
     if os.path.isdir(folder):
@@ -298,11 +297,11 @@ def parse_args():
         description="Traffic Sign Detection + Classification Demo (Single Image)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-Examples:
-  python demo_image_single.py
-  python demo_image_single.py --image test_images/2.jpg
-  python demo_image_single.py --image test_images/1.jpg --detect-conf 0.3 --classify-conf 90
-  python demo_image_single.py --list
+    Examples:
+    python demo_image_single.py
+    python demo_image_single.py --image test_images/2.jpg
+    python demo_image_single.py --image test_images/1.jpg --detect-conf 0.3 --classify-conf 90
+    python demo_image_single.py --list
         """
     )
     parser.add_argument("--image", type=str, default=DEFAULT_IMAGE_PATH,

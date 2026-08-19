@@ -1,0 +1,14 @@
+torch
+torchvision
+einops
+timm
+matplotlib
+Pillow
+ultralytics
+opencv-python
+numpy
+torchattacks
+torchsummary
+ptflops
+tqdm
+ml-collections

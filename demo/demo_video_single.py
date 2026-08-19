@@ -27,8 +27,8 @@ from MaMa_MoEx import MaMa_MoEx_Ti
 # DEFAULT CONFIGURATION
 # ==========================================
 DEFAULT_DETECTOR_PATH = "../yolo11_model/gtsdbbest.pt"
-DEFAULT_CLASSIFIER_PATH = "mama_moex_model.pth"
-DEFAULT_INPUT_VIDEO = "TestImages/1.mp4"
+DEFAULT_CLASSIFIER_PATH = "pretrained_models/mama_moex_model.pth"
+DEFAULT_INPUT_VIDEO = "test_images/1.mp4"
 DEFAULT_OUTPUT_VIDEO = "result_video.mp4"
 
 # Thresholds
@@ -91,8 +91,8 @@ CLASS_NAME_MAP = {
     232: ("TT100K", TT100K_CLASS_NAMES),
 }
 
+# Return (dataset_name, class_names) for a given number of classes.
 def get_class_names(num_classes):
-    """Return (dataset_name, class_names) for a given number of classes."""
     if num_classes in CLASS_NAME_MAP:
         return CLASS_NAME_MAP[num_classes]
     print(f"Warning: Unknown dataset with {num_classes} classes. Using generic class names.")
@@ -106,8 +106,8 @@ COLOR_DARK_ORANGE = (0, 100, 204)
 COLOR_WHITE = (255, 255, 255)
 COLOR_BLACK = (0, 0, 0)
 
+# Load the YOLO detection model.
 def load_detector(model_path, device):
-    """Load the YOLO detection model."""
     print(f"[Detector]  Loading YOLO from: {model_path}")
     detector = YOLO(model_path)
     detector.to(device)
@@ -143,8 +143,8 @@ def compute_entropy(probabilities):
     """
     return -torch.sum(probabilities * torch.log(probabilities + 1e-7)).item()
 
+# Draw a text label with a filled background rectangle above a bounding box.
 def draw_label(frame, text, x1, y1, bg_color, text_color=COLOR_WHITE, font_scale=0.6, thickness=2):
-    """Draw a text label with a filled background rectangle above a bounding box."""
     (tw, th), _ = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, font_scale, thickness)
     cv2.rectangle(frame, (x1, y1 - th - 10), (x1 + tw, y1), bg_color, -1)
     cv2.putText(frame, text, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, font_scale, text_color, thickness)
@@ -203,7 +203,7 @@ def process_video(input_path, output_path, detector, classifier, device,
 
         start_time = time.time()
 
-        # ── Stage 1: Detection + Tracking (YOLO + ByteTrack) ──
+        # Stage 1: Detection + Tracking (YOLO + ByteTrack)
         results = detector.track(frame, conf=detect_thresh, persist=True,
                                  tracker="bytetrack.yaml", verbose=False)[0]
 
@@ -216,7 +216,7 @@ def process_video(input_path, output_path, detector, classifier, device,
                 if x2 <= x1 or y2 <= y1:
                     continue
 
-                # ── Stage 2: Classify with MaMa-MoEx ──
+                # Stage 2: Classify with MaMa-MoEx
                 cropped_img = Image.fromarray(cv2.cvtColor(frame[y1:y2, x1:x2], cv2.COLOR_BGR2RGB))
                 crop_tensor = classify_transform(cropped_img).unsqueeze(0).to(device)
 
@@ -229,14 +229,14 @@ def process_video(input_path, output_path, detector, classifier, device,
                 conf_percent = conf_score.item() * 100
                 class_name = class_names[class_idx.item()]
 
-                # ── Decision: Classified or Misc? ──
+                # Decision: Classified or Misc?
                 is_confident = (conf_percent >= classify_thresh) and (entropy <= entropy_thresh)
 
                 # Update tracker memory only when confident
                 if is_confident:
                     track_memory[track_id] = {"name": class_name, "conf": conf_percent}
 
-                # ── Draw every detection ──
+                # Draw every detection
                 if track_id in track_memory:
                     # Classified — use remembered label (green)
                     mem = track_memory[track_id]
@@ -249,7 +249,7 @@ def process_video(input_path, output_path, detector, classifier, device,
                     cv2.rectangle(frame, (x1, y1), (x2, y2), COLOR_ORANGE, 3)
                     draw_label(frame, label_text, x1, y1, COLOR_DARK_ORANGE)
 
-        # ── Timing ──
+        # Timing
         if device.type == 'cuda':
             torch.cuda.synchronize()
         end_time = time.time()
@@ -261,7 +261,7 @@ def process_video(input_path, output_path, detector, classifier, device,
         total_latency_ms += latency_ms
         valid_frames += 1
 
-        # ── Overlay metrics on video ──
+        # Overlay metrics on video
         cv2.rectangle(frame, (10, 10), (280, 80), COLOR_BLACK, -1)
         cv2.putText(frame, f"FPS: {current_fps:.1f}", (20, 40),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, COLOR_GREEN, 2)
@@ -273,7 +273,7 @@ def process_video(input_path, output_path, detector, classifier, device,
         pbar.set_postfix(FPS=f"{current_fps:.1f}", Latency=f"{latency_ms:.1f}ms")
         pbar.update(1)
 
-    # ── Cleanup ──
+    # Cleanup
     pbar.close()
     cap.release()
     out.release()

@@ -1152,7 +1152,7 @@ Class 41 (0041): 100.00% (60/60)
 Class 42 (0042): 90.00% (81/90)
 --------------------------------------------------------------------
 Epoch [85/100], Test Loss: 0.696457, Overall Accuracy: 99.61%
-Final accuracy of loaded MaMa model (from epoch 85): 99.61%
+Final accuracy of loaded MaMa model (from epoch 85): 99.71%
 Final mAP of loaded MaMa model (from epoch 85): 98.8332%
 Final IoU of loaded MaMa model (from epoch 85): 98.5042%
 Macro F1 Score: 0.9923
