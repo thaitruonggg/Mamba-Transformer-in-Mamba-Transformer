@@ -101,7 +101,6 @@ MAMBA_FORCE_BUILD=TRUE pip install --no-cache-dir --force-reinstall \
 ```bash
 pip install -r requirements.txt
 ```
----
 
 ### Pretrained Weights
 
@@ -115,6 +114,8 @@ All pretrained model weights are included in the repository under `pretrained_mo
 | `mama_moex_tt100k_model.pth` | TT100K | MaMa-MoEx-Ti |
 
 No separate download is needed — they are available after cloning the repository.
+
+---
 
 ## 🪄 Training
 
@@ -157,7 +158,7 @@ python demo/demo_video_single.py \
 
 GTSRB and TT100K datasets can be downloaded at:
 
-- **German Traffic Sign Recognition Benchmark (GTSRB):** [![GTSRB](https://img.shields.io/badge/Kaggle-GTSRB-link?style=flat&logo=kaggle&color=blue&link=https%3A%2F%2Fwww.kaggle.com%2Fdatasets%2Fnaofunyannn%2Fmama-gtsrb)](https://www.kaggle.com/datasets/naofunyannn/mama-gtsrb)
+- **German Traffic Sign Recognition Benchmark (GTSRB):** [![MaMa_GTSRB](https://img.shields.io/badge/Kaggle-MaMa_GTSRB-link?style=flat&logo=kaggle&color=blue&link=https%3A%2F%2Fwww.kaggle.com%2Fdatasets%2Fnaofunyannn%2Fmama-gtsrb)](https://www.kaggle.com/datasets/naofunyannn/mama-gtsrb)
 
   The dataset directory should have the following structure:
   ```
@@ -198,7 +199,23 @@ GTSRB and TT100K datasets can be downloaded at:
           └── Readme-Images.txt
   ```
 
-- **Tsinghua-Tencent 100K (TT100K):** From the authors [![TT100K](https://img.shields.io/badge/Dataset-TT100K-blue?logo=ieee&labelColor=gray&color=green&link=https%3A%2F%2Fcg.cs.tsinghua.edu.cn%2Ftraffic-sign%2F)](https://cg.cs.tsinghua.edu.cn/traffic-sign/) or our complete package [![TT100K Kaggle](https://img.shields.io/badge/Kaggle-TT100K-blue?logo=kaggle&labelColor=gray&color=blue&link=https%3A%2F%2Fwww.kaggle.com%2Fdatasets%2Fnaofunyannn%2Fmama-tt100k)](https://www.kaggle.com/datasets/naofunyannn/mama-tt100k)
+- **German Traffic Sign Detection Benchmark (GTSDB):** [![MaMa_GTSDB](https://img.shields.io/badge/Kaggle-MaMa_GTSDB-link?style=flat&logo=kaggle&color=blue&link=https%3A%2F%2Fwww.kaggle.com%2Fdatasets%2Fnaofunyannn%2Fyolov11gtsdb)](https://www.kaggle.com/datasets/naofunyannn/yolov11gtsdb)
+
+  The dataset directory should have the following structure:
+  ```
+  GTSDB
+  ├── train
+  │   ├── images
+  │   └── labels
+  ├── valid
+  │   ├── images
+  │   └── labels
+  ├── README.dataset.txt
+  ├── README.roboflow.txt
+  └── data.yaml
+  ```
+
+- **Tsinghua-Tencent 100K (TT100K):** From the authors [![TT100K](https://img.shields.io/badge/Dataset-TT100K-blue?logo=ieee&labelColor=gray&color=green&link=https%3A%2F%2Fcg.cs.tsinghua.edu.cn%2Ftraffic-sign%2F)](https://cg.cs.tsinghua.edu.cn/traffic-sign/) or our complete package [![MaMa-TT100K](https://img.shields.io/badge/Kaggle-MaMa--TT100K-blue?logo=kaggle&labelColor=gray&color=blue&link=https%3A%2F%2Fwww.kaggle.com%2Fdatasets%2Fnaofunyannn%2Fmama-tt100k)](https://www.kaggle.com/datasets/naofunyannn/mama-tt100k)
 
   The dataset directory should have the following structure:
   ```
