@@ -8,9 +8,7 @@
 
 ## 🏆 Achievement
 
-> [!IMPORTANT]
-> This project was awarded **🥇 First Prize** in the **University-level Student Scientific Research Award**
-> at **Ho Chi Minh City Open University**.
+This project was awarded **🥇 First Prize** in the **University-level Student Scientific Research Award** at **Ho Chi Minh City Open University**.
 
 ## 🛠️ Technologies
 - `Python`
@@ -37,8 +35,8 @@ Before installing, make sure you have:
 | Python | Latest stable | 3.8+ |
 | CUDA | `13.0` | `11.6+` |
 | PyTorch | `2.13.0+cu130` | `1.12+` |
-| Torchvision | `0.28.0+cu130` | — |
-| NVIDIA GPU | — | Required |
+| Torchvision | `0.28.0+cu130` | - |
+| NVIDIA GPU | - | Required |
 
 ---
 
@@ -48,8 +46,6 @@ Before installing, make sure you have:
 git clone https://github.com/naofunyan/Mamba-Transformer-in-Mamba-Transformer.git
 cd Mamba-Transformer-in-Mamba-Transformer
 ```
-
----
 
 ### 2. Create a virtual environment (recommended)
 
@@ -66,8 +62,6 @@ source .venv/bin/activate          # Linux / macOS
 # .venv\Scripts\activate           # Windows
 ```
 
----
-
 ### 3. Install `mamba-ssm`
 
 > [!IMPORTANT]
@@ -80,7 +74,7 @@ source .venv/bin/activate          # Linux / macOS
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu130
 ```
 
-**Then install `mamba-ssm`** — choose one option:
+**Then install `mamba-ssm`** - choose one option:
 
 | Option | Command | When to use |
 |---|---|---|
@@ -102,32 +96,11 @@ MAMBA_FORCE_BUILD=TRUE pip install --no-cache-dir --force-reinstall \
 
 </details>
 
----
-
 ### 4. Install remaining dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
-
----
-
-### Training
-
-**On GTSRB:**
-```bash
-python main_gtsrb.py
-```
-
-**On TT100K:**
-```bash
-python main_tt100k.py
-```
-
-> [!NOTE]
-> Both scripts use hardcoded dataset paths at the top of each file.
-> Make sure the dataset directories match the structure shown in the [Datasets](#-datasets) section before running.
-
 ---
 
 ### Pretrained Weights
@@ -143,9 +116,24 @@ All pretrained model weights are included in the repository under `pretrained_mo
 
 No separate download is needed — they are available after cloning the repository.
 
----
+## 🪄 Training
 
-### Demo
+**On GTSRB:**
+```bash
+python main_gtsrb.py
+```
+
+**On TT100K:**
+```bash
+python main_tt100k.py
+```
+
+> [!NOTE]
+> Both scripts use hardcoded dataset paths at the top of each file.
+> Make sure the dataset directories match the structure shown in the [Datasets](#-datasets) section before running.
+
+
+## 🎬 Demo
 
 Run inference on a single image using YOLO detection + MaMa-MoEx classification:
 
@@ -164,8 +152,6 @@ python demo/demo_video_single.py \
   --detector yolo11_model/gtsdbbest.pt \
   --classifier pretrained_models/mama_moex_model.pth
 ```
-
----
 
 ## 📊 Datasets
 
@@ -247,14 +233,45 @@ GTSRB and TT100K datasets can be downloaded at:
   └── test_result.pkl
   ```
 
----
 
 ## 📈 Results
 
+### 🔎 GTSRB - Classification Performance Comparison
+
+| Group | Year | Model | FLOPs (G) | Params (M) | Accuracy (%) | F1-Score (%) | Precision (%) | Recall (%) | mAP (%) |
+|---|---|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| CNN | 2024 | Two-Stage CNN | — | — | 98.86 | 98.86 | 98.90 | 98.54 | — |
+| CNN | 2025 | Benfaress et al. | — | — | 98.90 | 98.54 | 98.67 | 98.42 | — |
+| Transformer | 2023 | LNL-Ti | 1.2 | 6.1 | 97.90 | — | — | — | — |
+| Transformer | 2023 | LNL-MoEx-Ti | 1.2 | 6.1 | 98.60 | — | — | — | — |
+| Transformer | 2024 | Mingwin et al. | — | 9.61 | 98.41 | 98.42 | 98.51 | 98.41 | — |
+| Transformer | 2025 | ECViT | 0.698 | 4.888 | 96.93 | — | — | — | — |
+| Transformer | 2025 | TrafficSignFusion | — | — | 97.89 | — | — | — | 88.42 |
+| Mamba | 2024 | MambaTSR | 56.98 | 0.09 | 99.00 | — | — | — | — |
+| **Ours** | **2026** | **MaMa** | **1.71** | **8.62** | **99.71** | **99.61** | **99.63** | **99.61** | **99.25** |
+| **Ours** | **2026** | **MaMa-MoEx** | **1.71** | **8.62** | **99.74** | **99.71** | **99.71** | **99.71** | **99.38** |
+
+### 🔎 TT100K - Classification Performance Comparison
+
+| Group | Year | Model | FLOPs (G) | Params (M) | Accuracy (%) | F1-Score (%) | Precision (%) | Recall (%) | mAP (%) |
+|---|---|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| CNN | 2023 | SC-YOLO | — | 6.1 | — | 92.5 | 92.3 | 92.6 | 95.2 |
+| CNN | 2024 | YOLOv7-TS | — | 34.7 | — | 89.92 | 92.36 | 87.60 | 92.45 |
+| CNN | 2024 | YOLO-CCA | 99.2 | 33.8 | — | — | 86.3 | 88.0 | — |
+| CNN | 2025 | Benfaress et al. | — | — | 99.08 | 99.07 | 99.08 | 99.27 | — |
+| Transformer | 2025 | YOLOv8-ViT | — | — | 98.9 | 97.5 | 97.9 | 96.6 | — |
+| Mamba | 2024 | MambaTSR | 56.98 | 0.09 | 99.43 | — | — | — | — |
+| **Ours** | **2026** | **MaMa** | **1.71** | **8.63** | **99.15** | **99.10** | **99.11** | **99.10** | **97.96** |
+| **Ours** | **2026** | **MaMa-MoEx** | **1.71** | **8.63** | **99.36** | **99.31** | **99.32** | **99.31** | **98.69** |
+
+---
+
+### 📹 Real-world Inference Results
+
 <div align="center">
-  <img src="result_plots/4.18.png" width="80%" alt="Result 1" />
+  <img src="result_plots/4.18.png" width="80%" alt="Real-world inference result 1" />
   <br /><br />
-  <img src="result_plots/4.19.png" width="80%" alt="Result 2" />
+  <img src="result_plots/4.19.png" width="80%" alt="Real-world inference result 2" />
   <br /><br />
-  <img src="result_plots/4.20.png" width="80%" alt="Result 3" />
+  <img src="result_plots/4.20.png" width="80%" alt="Real-world inference result 3" />
 </div>
